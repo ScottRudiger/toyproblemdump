@@ -1,0 +1,27 @@
+{
+  "name": "toyproblems",
+  "version": "1.0.0",
+  "description": "Repository for dumping my solutions to various toy problems I've come across",
+  "main": "WUBWUB.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ScottRudiger/toyproblems.git"
+  },
+  "keywords": [
+    "javascript",
+    "toy",
+    "problems"
+  ],
+  "author": "Scott Rudiger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ScottRudiger/toyproblems/issues"
+  },
+  "homepage": "https://github.com/ScottRudiger/toyproblems#readme",
+  "dependencies": {
+    "mocha": "^3.5.0"
+  }
+}
