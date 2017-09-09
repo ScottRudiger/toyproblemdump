@@ -17,7 +17,7 @@ Output
 
 Return the words of the initial song that Polycarpus used to make a dubsteb remix. Separate the words with a space.
 
-Examples
+Example
 
 songDecoder("WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB")
   // =>  WE ARE THE CHAMPIONS MY FRIEND
@@ -27,16 +27,50 @@ const songDecoder = song => song.split('WUB').filter(word => word).join(' ');
 
 // note: could be shortened by just passing Boolean into filter; however, I prefer this implementation
 
-const assert = (actual, expected, testName) => {
-  result = actual === expected ? 'test passed' : `FAIL: ${testName}`;
-  console.log(result);
-};
+const expect = require('chai').expect;
 
-assert(songDecoder('AWUBBWUBC'), 'A B C', 'WUB should be replaced by 1 space');
-assert(songDecoder('AWUBWUBWUBBWUBWUBWUBC'), 'A B C', 'multiple WUBs should be replaced by only 1 space');
-assert(songDecoder('WUBAWUBBWUBCWUB'), 'A B C', 'heading or trailing spaces should be removed');
-assert(
-  songDecoder('WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB'),
-  'WE ARE THE CHAMPIONS MY FRIEND',
-  'result should be a classic'
+const areEqual = (requirement, actual, expected) => (
+  it(requirement, () => expect(actual).to.be.equal(expected))
 );
+
+describe('Dubstep', () => {
+
+  context('remove the WUBs', () => {
+
+    areEqual(
+      'should replace WUB with 1 space',
+      songDecoder('AWUBBWUBC'),
+      'A B C'
+    );
+
+    areEqual(
+      'should replace consecutive WUBs with only 1 space',
+      songDecoder('AWUBWUBWUBBWUBWUBWUBC'),
+      'A B C'
+    );
+
+    areEqual(
+      'should remove leading or trailing WUBs',
+      songDecoder('WUBAWUBBWUBCWUB'),
+      'A B C'
+    );
+
+    areEqual(
+      'should return an empty string if the original had no lyrics',
+      songDecoder('WUBWUBWUBWUBWUBWUBWUBWUBWUB'),
+      ''
+    );
+
+  });
+
+  context('Queen', () => {
+
+    areEqual(
+      'should recover the lyrics of a classic',
+      songDecoder('WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB'),
+      'WE ARE THE CHAMPIONS MY FRIEND'
+    );
+
+  });
+
+});
