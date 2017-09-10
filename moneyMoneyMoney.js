@@ -1,3 +1,5 @@
+// from codewars.com
+
 /*
 Mr. Scrooge has a sum of money 'P' that he wants to invest and he wants to know how many years 'Y' this sum has to be kept in the bank in order for this sum of money to amount to 'D'.
 
@@ -26,8 +28,14 @@ Your task is to complete the method provided and return the number of years 'Y' 
 Assumptions : Assume that Desired Principal 'D' is always greater than the initial principal, however it is best to take into consideration that if the Desired Principal 'D' is equal to Principal 'P' this should return 0 Years.
 */
 
+/*eslint-disable curly*/
 const calculateYears = (principal, interest, tax, desired) => {
-
+  let years = 0;
+  return (function compound(principal) {
+    if (principal >= desired) return years;
+    years++;
+    return compound(principal * (1 + (interest * (1 - tax))));
+  })(principal);
 };
 
 const expect = require('chai').expect;
