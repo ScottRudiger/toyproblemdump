@@ -21,22 +21,18 @@ After 2nd Year -->
   P = 1083.86
 After 3rd Year -->
   P = 1128.30
-Thus Mr. Scrooge has to wait for 3 years for the initial pricipal to ammount to the desired sum.
+Thus Mr. Scrooge has to wait for 3 years for the initial pricipal to amount to the desired sum.
 
-Your task is to complete the method provided and return the number of years 'Y' as a whole in order for Mr. Scrooge to get the desired sum.
+Your task is to complete the method provided and return the number of years 'Y' as a whole number in order for Mr. Scrooge to get the desired sum.
 
 Assumptions : Assume that Desired Principal 'D' is always greater than the initial principal, however it is best to take into consideration that if the Desired Principal 'D' is equal to Principal 'P' this should return 0 Years.
 */
 
 /*eslint-disable curly*/
-const calculateYears = (principal, interest, tax, desired) => {
-  let years = 0;
-  return (function compound(principal) {
-    if (principal >= desired) return years;
-    years++;
-    return compound(principal * (1 + (interest * (1 - tax))));
-  })(principal);
-};
+
+const calculateYears = (principal, interest, tax, desired) => (
+  Math.ceil(Math.log(desired / principal) / Math.log(1 + (interest * (1 - tax))))
+);
 
 const expect = require('chai').expect;
 
@@ -47,9 +43,8 @@ describe('moneyMoneyMoney', () => {
     expect(calculateYears(1000, 0.01625, 0.18, 1200)).to.equal(14);
   });
 
-  it('should return 0 when desired amount is <= to original principal', () => {
+  it('should return 0 when desired amount is = to original principal', () => {
     expect(calculateYears(1000, 0.05, 0.18, 1000)).to.equal(0);
-    expect(calculateYears(1200, 0.05, 0.18, 1000)).to.equal(0);
   });
 
 });
