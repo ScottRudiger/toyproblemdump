@@ -18,9 +18,9 @@ returns []
 
 Beware: r must be without duplicates.*/
 
-const inArray = (array1, array2) => {
-
-};
+const inArray = (array1, array2) => (
+  array1.filter(word1 => array2.some(word2 => word2.includes(word1))).sort()
+);
 
 const expect = require('chai').expect;
 
