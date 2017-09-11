@@ -43,12 +43,12 @@ String.prototype.padEvenly = function(desiredLength, char = ' ') {
 };
 
 const towerBuilder = nFloors => {
-  let result = [];
-  let length = nFloors * 2 - 1;
-  for (let i = length; i >= 0; i -= 2) {
+  const result = [];
+  const length = nFloors * 2 - 1;
+  for (let i = 1; i <= length; i += 2) {
     result.push('*'.repeat(i).padEvenly(length));
   }
-  return result.reverse();
+  return result;
 };
 
 const expect = require('chai').expect;
