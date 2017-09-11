@@ -33,3 +33,17 @@ and a tower of 6 floors looks like below
   '***********'
 ]
 Go challenge Build Tower Advanced (https://www.codewars.com/kata/57675f3dedc6f728ee000256) once you have finished this :)*/
+
+const towerBuilder = nFloors => {
+
+};
+
+const expect = require('chai').expect;
+
+describe('towerBuilder should make pyramid-shaped towers', () => {
+  it('should output the correct towers given 1, 2, and 3', () => {
+    expect(JSON.stringify(towerBuilder(1))).to.equal(JSON.stringify(['*']));
+    expect(JSON.stringify(towerBuilder(2))).to.equal(JSON.stringify([' * ', '***']));
+    expect(JSON.stringify(towerBuilder(2))).to.equal(JSON.stringify(['  *  ', ' *** ', '*****']));
+  });
+});
