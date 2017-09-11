@@ -14,8 +14,9 @@ The Challenge:
 Your code must return true or false depending upon whether the given number is a Narcissistic number.
 
 Error checking for text strings or other invalid inputs is not required, only valid integers will be passed into the function.*/
+/*eslint-disable eqeqeq*/
 
-const narcissistic = value => String(value).split('').map(Number).reduce((a, b) => a + Math.pow(b, String(value).length), 0) === value;
+const narcissistic = value => `${value}`.split('').reduce((a, b) => a + Math.pow(b, `${value}`.length), 0) == value;
 
 const expect = require('chai').expect;
 
