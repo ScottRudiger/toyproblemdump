@@ -1,4 +1,4 @@
-// from codewars.com
+// Money,Money,Money from https://www.codewars.com/kata/money-money-money/javascript
 
 /*
 Mr. Scrooge has a sum of money 'P' that he wants to invest and he wants to know how many years 'Y' this sum has to be kept in the bank in order for this sum of money to amount to 'D'.
