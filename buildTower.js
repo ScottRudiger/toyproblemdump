@@ -34,8 +34,21 @@ and a tower of 6 floors looks like below
 ]
 Go challenge Build Tower Advanced (https://www.codewars.com/kata/57675f3dedc6f728ee000256) once you have finished this :)*/
 
-const towerBuilder = nFloors => {
+String.prototype.padEvenly = function(desiredLength, char = ' ') {
+  const padding = (desiredLength - this.length) / 2;
+  let that = this;
+  that = that.padStart(that.length + padding, char);
+  that = that.padEnd(that.length + padding, char);
+  return that.toString();
+};
 
+const towerBuilder = nFloors => {
+  let result = [];
+  let length = nFloors * 2 - 1;
+  for (let i = length; i >= 0; i -= 2) {
+    result.push('*'.repeat(i).padEvenly(length));
+  }
+  return result.reverse();
 };
 
 const expect = require('chai').expect;
@@ -44,6 +57,6 @@ describe('towerBuilder should make pyramid-shaped towers', () => {
   it('should output the correct towers given 1, 2, and 3', () => {
     expect(JSON.stringify(towerBuilder(1))).to.equal(JSON.stringify(['*']));
     expect(JSON.stringify(towerBuilder(2))).to.equal(JSON.stringify([' * ', '***']));
-    expect(JSON.stringify(towerBuilder(2))).to.equal(JSON.stringify(['  *  ', ' *** ', '*****']));
+    expect(JSON.stringify(towerBuilder(3))).to.equal(JSON.stringify(['  *  ', ' *** ', '*****']));
   });
 });
