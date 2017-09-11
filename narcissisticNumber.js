@@ -15,9 +15,7 @@ Your code must return true or false depending upon whether the given number is a
 
 Error checking for text strings or other invalid inputs is not required, only valid integers will be passed into the function.*/
 
-const narcissistic = value => {
-
-};
+const narcissistic = value => String(value).split('').map(Number).reduce((a, b) => a + Math.pow(b, String(value).length), 0) === value;
 
 const expect = require('chai').expect;
 
