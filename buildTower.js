@@ -34,7 +34,7 @@ and a tower of 6 floors looks like below
 ]
 Go challenge Build Tower Advanced (https://www.codewars.com/kata/57675f3dedc6f728ee000256) once you have finished this :)*/
 
-const towerBuilder = n => [...Array(n)].map((_, i) => ' '.repeat(n - i - 1) + '*'.repeat(i * 2 + 1) + ' '.repeat(n - i - 1));
+const towerBuilder = n => Array.from({length: n}, (_, i, p = ' '.repeat(n - i - 1)) => p + '*'.repeat(i * 2 + 1) + p);
 
 const expect = require('chai').expect;
 
