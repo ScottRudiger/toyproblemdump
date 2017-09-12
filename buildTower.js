@@ -34,21 +34,13 @@ and a tower of 6 floors looks like below
 ]
 Go challenge Build Tower Advanced (https://www.codewars.com/kata/57675f3dedc6f728ee000256) once you have finished this :)*/
 
-String.prototype.padEvenly = function(desiredLength, char = ' ') {
-  const padding = (desiredLength - this.length) / 2;
-  let that = this;
-  that = that.padStart(that.length + padding, char);
-  that = that.padEnd(that.length + padding, char);
-  return that.toString();
-};
-
 const towerBuilder = nFloors => {
-  const result = [];
   const length = nFloors * 2 - 1;
-  for (let i = 1; i <= length; i += 2) {
-    result.push('*'.repeat(i).padEvenly(length));
-  }
-  return result;
+  return [...Array(nFloors)].map((_, i) => {
+    const floor = '*'.repeat(i * 2 + 1);
+    const padding = ' '.repeat((length - floor.length) / 2);
+    return `${padding}${floor}${padding}`;
+  });
 };
 
 const expect = require('chai').expect;
