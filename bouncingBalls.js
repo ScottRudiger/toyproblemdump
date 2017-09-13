@@ -40,7 +40,7 @@ h = 3, bounce = 1, window = 1.5, result is -1 (Condition 2) not fullfilled).*/
 //   // return
 // };
 
-const bouncingBall = (h, b, w) => Math.floor(Math.log(w / (h * h)) / Math.log(b));
+const bouncingBall = (h, b, w) => b >= 1 || b <= 0 || h < 0 || w > h ? -1 : Math.floor(Math.log(w / (h * h)) / Math.log(b));
 
 const expect = require('chai').expect;
 
@@ -64,7 +64,7 @@ describe('Bouncing Balls', () => {
     });
   });
 
-  context('is invoked with valid inputs', () => {
+  context('is invoked with valid input', () => {
     it('should return -1 if bounciness is less than or equal to 0 or 1 or more', () => {
       expect(bouncingBall(3, -0.5, 1.5)).to.equal(-1);
       expect(bouncingBall(3, -0, 1.5)).to.equal(-1);
