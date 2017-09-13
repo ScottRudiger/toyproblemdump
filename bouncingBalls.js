@@ -26,34 +26,19 @@ h = 3, bounce = 0.66, window = 1.5, result is 3
 
 h = 3, bounce = 1, window = 1.5, result is -1 (Condition 2) not fullfilled).*/
 
-// const bouncingBallie = (hb, bounce, hw) => {
-//   // return 30 * 0.66 ^ x = 1.5
-//   // x = sqrt(1.5/0.66 - 30)
-//   // return Math.floor(Math.sqrt((hw / bounce - hb) * hw * -1));
-//   // return Math.sqrt(3);
-//   return 30 * Math.pow(0.66, 15) * 30 = 1.76
-//          hb * bounce ^ x * hb = hw
-//          bounce ^ x = hw / (hb * hb)
-//          log(bounce ^ x) = log(hb^2)
-//          x * log(bounce) = log(hb^2)
-//          x = log(hb^2) / log(bounce)
-//   // return
+const bouncingBall = (h, b, w) => b >= 1 || b <= 0 || h < 0 || w > h || h * b < w ? -1 : Math.floor(Math.log(w / h) / Math.log(b)) * 2 + 1;
+
+// const bouncingBall = (h, b, w) => {
+//   if (b >= 1 || b <= 0 || h < 0 || w > h || h * b < w) { return -1; }
+//   let count = 0;
+//   while (h >= w) {
+//     h *= b;
+//     h >= w ? count += 2 : count++;
+//   }
+//   return count;
 // };
 
-// const bouncingBall = (h, b, w) => b >= 1 || b <= 0 || h < 0 || w > h || h * b < w ? -1 : Math.floor(Math.log(w / (h * h)) / Math.log(b) - (1 - b));
-
-const bouncingBall = (h, b, w) => {
-  if (b >= 1 || b <= 0 || h < 0 || w > h || h * b < w) { return -1; }
-  let count = 0;
-  while (h >= w) {
-    h *= b;
-    h >= w ? count += 2 : count++;
-  }
-  return count;
-};
-
 const expect = require('chai').expect;
-const mocha = require('mocha');
 
 describe('Bouncing Balls', () => {
 
