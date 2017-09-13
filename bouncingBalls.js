@@ -26,9 +26,21 @@ h = 3, bounce = 0.66, window = 1.5, result is 3
 
 h = 3, bounce = 1, window = 1.5, result is -1 (Condition 2) not fullfilled).*/
 
-const bouncingBall = (h, bounce, window) => {
+// const bouncingBallie = (hb, bounce, hw) => {
+//   // return 30 * 0.66 ^ x = 1.5
+//   // x = sqrt(1.5/0.66 - 30)
+//   // return Math.floor(Math.sqrt((hw / bounce - hb) * hw * -1));
+//   // return Math.sqrt(3);
+//   return 30 * Math.pow(0.66, 15) * 30 = 1.76
+//          hb * bounce ^ x * hb = hw
+//          bounce ^ x = hw / (hb * hb)
+//          log(bounce ^ x) = log(hb^2)
+//          x * log(bounce) = log(hb^2)
+//          x = log(hb^2) / log(bounce)
+//   // return
+// };
 
-};
+const bouncingBall = (h, b, w) => Math.floor(Math.log(w / (h * h)) / Math.log(b));
 
 const expect = require('chai').expect;
 
