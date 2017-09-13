@@ -64,4 +64,20 @@ describe('Bouncing Balls', () => {
     });
   });
 
+  context('is invoked with valid inputs', () => {
+    it('should return -1 if bounciness is less than or equal to 0 or 1 or more', () => {
+      expect(bouncingBall(3, -0.5, 1.5)).to.equal(-1);
+      expect(bouncingBall(3, -0, 1.5)).to.equal(-1);
+      expect(bouncingBall(3, 0, 1.5)).to.equal(-1);
+      expect(bouncingBall(3, 1, 1.5)).to.equal(-1);
+      expect(bouncingBall(3, 1.5, 1.5)).to.equal(-1);
+    });
+    it('should return -1 if height is less than 0', () => {
+      expect(bouncingBall(-1, 0.5, 1.5)).to.equal(-1);
+    });
+    it('should return -1 if the window\'s height is greater than height', () => {
+      expect(bouncingBall(3, 0.5, 3.5)).to.equal(-1);
+    });
+  });
+
 });
