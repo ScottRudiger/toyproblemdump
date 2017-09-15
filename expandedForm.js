@@ -14,3 +14,20 @@ If you liked this kata, check out part 2 (https://www.codewars.com/kata/write-nu
 const expandedForm = n => {
 
 };
+
+const expect = require('chai').expect;
+
+describe('expandedForm function', () => {
+  it('should return a string', () => {
+    expect(expandedForm(2)).to.be.a('string');
+  });
+  it('should return \'10 + 2\' given 12', () => {
+    expect(expandedForm(12)).to.equal('10 + 2');
+  });
+  it('should return \'40 + 2\' given 42', () => {
+    expect(expandedForm(42)).to.equal('40 + 2');
+  });
+  it('should return \'70000 + 300 + 4\' given 70304', () => {
+    expect(expandedForm(70304)).to.equal('70000 + 300 + 4');
+  });
+});
