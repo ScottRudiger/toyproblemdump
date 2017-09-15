@@ -22,7 +22,16 @@ const isInertial = arr => {
 const expect = require('chai').expect;
 
 describe('isInertial function', () => {
-  it('should return true given [11, 4, 20, 9, 2, 8]', () => {
+  it('should return true when all conditions are satisfied', () => {
     expect(isInertial([11, 4, 20, 9, 2, 8])).to.be.true;
+  });
+  it('should return false when there are no odd values', () => {
+    expect(isInertial([2, 4, 6, 8])).to.be.false;
+  });
+  it('should return false when the maximum value is odd', () => {
+    expect(isInertial([11, 4, 20, 9, 2, 8, 21])).to.be.false;
+  });
+  it('should return false when an even value that\'s not the maximum value is greater than the odd values', () => {
+    expect(isInertial([11, 4, 20, 9, 2, 8, 18])).to.be.false;
   });
 });
