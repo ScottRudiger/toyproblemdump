@@ -16,7 +16,10 @@ c. the two odd values (11 and 9) are greater than all the even values that are n
 Write a function called isInertial that accepts an integer array and returns true if the array is inertial; otherwise it returns false.*/
 
 const isInertial = arr => {
-
+  const maxIsEven = arr.splice(arr.indexOf(Math.max(...arr)), 1)[0] % 2 === 0;
+  const containsAtLeastOneOdd = arr.some(x => x % 2 !== 0);
+  const oddsAreGreaterThanEvens = Math.min(...arr.filter(x => x % 2 !== 0)) > Math.max(...arr.filter(x => x % 2 === 0));
+  return maxIsEven && containsAtLeastOneOdd && oddsAreGreaterThanEvens;
 };
 
 const expect = require('chai').expect;
