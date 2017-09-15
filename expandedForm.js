@@ -11,7 +11,10 @@ NOTE: All numbers will be whole numbers greater than 0.
 
 If you liked this kata, check out part 2 (https://www.codewars.com/kata/write-number-in-expanded-form-part-2)!!*/
 
-const expandedForm = n => [...String(n)].map((d, i, n) => d.padEnd(n.length - i, 0)).filter(Number).join(' + ');
+// const expandedForm = n => [...String(n)].map((d, i, n) => d.padEnd(n.length - i, 0)).filter(Number).join(' + ');
+
+// codewars problem does not support ES2017 features, refactor to exclude padEnd method:
+const expandedForm = n => [...String(n)].map((d, i, n) => d + '0'.repeat(n.length - i - 1)).filter(Number).join(' + ');
 
 const expect = require('chai').expect;
 
