@@ -18,3 +18,11 @@ Write a function called isInertial that accepts an integer array and returns tru
 const isInertial = arr => {
 
 };
+
+const expect = require('chai').expect;
+
+describe('isInertial function', () => {
+  it('should return true given [11, 4, 20, 9, 2, 8]', () => {
+    expect(isInertial([11, 4, 20, 9, 2, 8])).to.be.true;
+  });
+});
