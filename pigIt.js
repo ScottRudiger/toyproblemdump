@@ -4,9 +4,7 @@
 
 pigIt('Pig latin is cool'); // igPay atinlay siay oolcay*/
 
-const pigIt = s => {
-
-};
+const pigIt = s => s.split(' ').map(w => `${w.slice(1) + w[0]}ay`).join(' ');
 
 const expect = require('chai').expect;
 
