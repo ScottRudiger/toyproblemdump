@@ -20,3 +20,19 @@ The function you write for this challenge is the inverse of this kata: "Next big
 const nextSmaller = n => {
 
 };
+
+const expect = require('chai').expect;
+
+describe('nextSmaller function finds the next smallest number with the same digits', () => {
+  context('works when there is a valid nextSmaller number', () => {
+    it('should return 12 given 21', () => expect(nextSmaller(21)).to.equal(12));
+    it('should return 513 given 531', () => expect(nextSmaller(531)).to.equal(513));
+    it('should return 2017 given 2071', () => expect(nextSmaller(2071)).to.equal(2017));
+  });
+  context('returns -1 for numbers without a valid nextSmaller number', () => {
+    it('should return -1 given 9', () => expect(nextSmaller(9)).to.equal(-1));
+    it('should return -1 given 111', () => expect(nextSmaller(111)).to.equal(-1));
+    it('should return -1 given 135', () => expect(nextSmaller(135)).to.equal(-1));
+    it('should return -1 given 1027', () => expect(nextSmaller(1027)).to.equal(-1));
+  });
+});
