@@ -17,35 +17,7 @@ some tests will include very large numbers.
 test data only employs positive integers.
 The function you write for this challenge is the inverse of this kata: "Next bigger number with the same digits." (http://www.codewars.com/kata/next-bigger-number-with-the-same-digits)*/
 
-const nextSmallerD = (n, a = [...String(n)].map(Number)) => {
-  for (let j = a.length, i = j - 1; i >= 0; i--, j--) {
-    // if digit is greater than prev digit
-    if (a[i] > a[j]) {
-      // swap digit with next smaller digit to the right
-      a[i] = a.splice(a.indexOf(Math.max(...a.slice(j).filter(n => n < a[i])), j), 1, a[i])[0];
-      // concatenate left side up to same index (inclusive) + right side sorted descending
-      const r = Number([...a.slice(0, j), ...a.slice(j).sort().reverse()].join(''));
-      // cover leading zero case; if result is not the same # of digits as the input, return -1
-      return Math.ceil(Math.log(r + 1) / Math.LN10) === a.length ? r : -1;
-    }
-  }
-  return -1;
-};
-
-const nextSmaller = (n, a = [...String(n)].map(Number)) => {
-  for (let j = a.length, i = j - 1; j--, i-- >= 0;) {
-    // if digit is greater than prev digit
-    if (a[i] > a[j]) {
-      // swap digit with next smaller digit to the right
-      a[i] = a.splice(a.indexOf(Math.max(...a.slice(j).filter(n => n < a[i])), j), 1, a[i])[0];
-      // concatenate left side up to same index (inclusive) + right side sorted descending
-      const r = [...a.slice(0, j), ...a.slice(j).sort().reverse()].join('');
-      // cover leading zero case; if first digit of result is 0, return -1
-      return +r[0] ? +r : -1;
-    }
-  }
-  return -1;
-};
+const nextSmaller = (n, a = [...String(n)].map(Number), j = a.length, i = j - 1) => j ? a[i] > a[j] ? ((s = (() => a[i] = a.splice(a.indexOf(Math.max(...a.slice(j).filter(n => n < a[i])), j), 1, a[i])[0])(), r = (() => [...a.slice(0, j), ...a.slice(j).sort().reverse()].join(''))()) => +r[0] ? +r : -1)() : nextSmaller(n, a, j - 1) : -1;
 
 const expect = require('chai').expect;
 
