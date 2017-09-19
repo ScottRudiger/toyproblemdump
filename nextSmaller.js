@@ -18,8 +18,19 @@ test data only employs positive integers.
 The function you write for this challenge is the inverse of this kata: "Next bigger number with the same digits." (http://www.codewars.com/kata/next-bigger-number-with-the-same-digits)*/
 /*eslint-disable curly*/
 
-const nextSmaller = n => {
-
+const nextSmaller = (n, a = [...String(n)].map(Number)) => {
+  for (let j = a.length, i = j - 1; i >= 0; i--, j--) {
+    // if digit is greater than prev digit
+    if (a[i] > a[j]) {
+      // swap digit with max digit to the right
+      a[i] = a.splice(a.slice(j).indexOf(Math.max(...a.slice(j).filter(n => n < a[i]))) + i + 1, 1, a[i])[0];
+      // concatenate left side up to same index (inclusive) + right side sorted descending
+      const r = String(Number([...a.slice(0, j), ...a.slice(j).sort().reverse()].join('')));
+      // cover leading zero case; if result is not the same # of digits as the input, return -1
+      return r.length === a.length ? Number(r) : -1;
+    }
+  }
+  return -1;
 };
 
 const expect = require('chai').expect;
