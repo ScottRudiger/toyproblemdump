@@ -16,7 +16,6 @@ nextSmaller(1027) == -1 // 0721 is out since we don't write numbers with leading
 some tests will include very large numbers.
 test data only employs positive integers.
 The function you write for this challenge is the inverse of this kata: "Next bigger number with the same digits." (http://www.codewars.com/kata/next-bigger-number-with-the-same-digits)*/
-/*eslint-disable curly*/
 
 const nextSmaller = (n, a = [...String(n)].map(Number)) => {
   for (let j = a.length, i = j - 1; i >= 0; i--, j--) {
@@ -25,9 +24,9 @@ const nextSmaller = (n, a = [...String(n)].map(Number)) => {
       // swap digit with next smaller digit to the right
       a[i] = a.splice(a.indexOf(Math.max(...a.slice(j).filter(n => n < a[i])), j), 1, a[i])[0];
       // concatenate left side up to same index (inclusive) + right side sorted descending
-      const r = String(Number([...a.slice(0, j), ...a.slice(j).sort().reverse()].join('')));
+      const r = Number([...a.slice(0, j), ...a.slice(j).sort().reverse()].join(''));
       // cover leading zero case; if result is not the same # of digits as the input, return -1
-      return r.length === a.length ? Number(r) : -1;
+      return String(r).length === a.length ? r : -1;
     }
   }
   return -1;
