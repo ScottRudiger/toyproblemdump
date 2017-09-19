@@ -26,7 +26,7 @@ const nextSmaller = (n, a = [...String(n)].map(Number)) => {
       // concatenate left side up to same index (inclusive) + right side sorted descending
       const r = Number([...a.slice(0, j), ...a.slice(j).sort().reverse()].join(''));
       // cover leading zero case; if result is not the same # of digits as the input, return -1
-      return String(r).length === a.length ? r : -1;
+      return Math.ceil(Math.log(r + 1) / Math.LN10) === a.length ? r : -1;
     }
   }
   return -1;
