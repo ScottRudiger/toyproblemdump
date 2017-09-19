@@ -16,6 +16,7 @@ nextSmaller(1027) == -1 // 0721 is out since we don't write numbers with leading
 some tests will include very large numbers.
 test data only employs positive integers.
 The function you write for this challenge is the inverse of this kata: "Next bigger number with the same digits." (http://www.codewars.com/kata/next-bigger-number-with-the-same-digits)*/
+/*eslint-disable curly*/
 
 const nextSmaller = n => {
 
@@ -28,11 +29,28 @@ describe('nextSmaller function finds the next smallest number with the same digi
     it('should return 12 given 21', () => expect(nextSmaller(21)).to.equal(12));
     it('should return 513 given 531', () => expect(nextSmaller(531)).to.equal(513));
     it('should return 2017 given 2071', () => expect(nextSmaller(2071)).to.equal(2017));
+    it('should return 790 given 907', () => expect(nextSmaller(907)).to.equal(790));
+    it('should return 1072 given 1207', () => expect(nextSmaller(1207)).to.equal(1072));
+  });
+  context('works on bigger numbers', () => {
+    it('should return 123456789 given 123456798', () => {
+      expect(nextSmaller(123456798)).to.equal(123456789);
+    });
+    it('should return 1234567890 given 1234567908', () => {
+      expect(nextSmaller(1234567908)).to.equal(1234567890);
+    });
+    it('should return 466937331 given 466971333', () => {
+      expect(nextSmaller(466971333)).to.equal(466937331);
+    });
+    it('should return 520135347774 given 520135374477', () => {
+      expect(nextSmaller(520135374477)).to.equal(520135347774);
+    });
   });
   context('returns -1 for numbers without a valid nextSmaller number', () => {
     it('should return -1 given 9', () => expect(nextSmaller(9)).to.equal(-1));
     it('should return -1 given 111', () => expect(nextSmaller(111)).to.equal(-1));
     it('should return -1 given 135', () => expect(nextSmaller(135)).to.equal(-1));
     it('should return -1 given 1027', () => expect(nextSmaller(1027)).to.equal(-1));
+    it('should return -1 given 123456789', () => expect(nextSmaller(123456789)).to.equal(-1));
   });
 });
