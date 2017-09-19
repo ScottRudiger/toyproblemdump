@@ -17,7 +17,7 @@ some tests will include very large numbers.
 test data only employs positive integers.
 The function you write for this challenge is the inverse of this kata: "Next bigger number with the same digits." (http://www.codewars.com/kata/next-bigger-number-with-the-same-digits)*/
 
-const nextSmaller = (n, a = [...String(n)].map(Number), j = a.length, i = j - 1) => j ? a[i] > a[j] ? ((s = (() => a[i] = a.splice(a.indexOf(Math.max(...a.slice(j).filter(n => n < a[i])), j), 1, a[i])[0])(), r = (() => [...a.slice(0, j), ...a.slice(j).sort().reverse()].join(''))()) => +r[0] ? +r : -1)() : nextSmaller(n, a, j - 1) : -1;
+const nextSmaller = (n, a = [...`${n}`], j = a.length, i = j - 1) => j ? a[i] > a[j] ? ((s = (() => a[i] = a.splice(a.indexOf(`${Math.max(...a.slice(j).filter(n => n < a[i]))}`, j), 1, a[i])[0])(), r = (() => [...a.slice(0, j), ...a.slice(j).sort().reverse()].join(''))()) => +r[0] ? +r : -1)() : nextSmaller(n, a, i) : -1;
 
 const expect = require('chai').expect;
 
