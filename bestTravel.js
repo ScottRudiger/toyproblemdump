@@ -26,3 +26,24 @@ ys = [91, 74, 73, 85, 73, 81, 87] choose_best_sum(230, 3, ys) -> 228*/
 const chooseBestSum = (t, k, ls) => {
 
 };
+
+const expect = require('chai').expect;
+
+describe('chooseBestSum function', () => {
+
+  it('should work when bestSum is equal to t', () => {
+    const ts = [50, 55, 56, 57, 58];
+    expect(chooseBestSum(163, 3, ts)).to.equal(163);
+  });
+
+  it('should return null if no valid bestSum exists', () => {
+    const ts = 50;
+    expect(chooseBestSum(163, 3, ts)).to.be.null;
+  });
+
+  it('should work when bestSum is less than t', () => {
+    const ts = [91, 74, 73, 85, 73, 81, 87];
+    expect(chooseBestSum(230, 3, ts)).to.equal(228);
+  });
+
+});
