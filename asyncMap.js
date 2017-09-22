@@ -39,7 +39,19 @@
  */
 
 const asyncMap = (tasks, callback) => {
-
+  let count = 0;
+  const r = [];
+  for (let i = 0; i < tasks.length; i++) {
+    (i => {
+      tasks[i](val => {
+        r[i] = val;
+        count++;
+        if (count === tasks.length) {
+          callback(r);
+        }
+      });
+    })(i);
+  }
 };
 
 const expect = require('chai').expect;
