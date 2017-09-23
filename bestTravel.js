@@ -22,27 +22,20 @@ ts = [50, 55, 56, 57, 58] choose_best_sum(163, 3, ts) -> 163
 xs = [50] choose_best_sum(163, 3, xs) -> nil (or null or ... or -1 (C++, C, Rust, Swift, Go)
 
 ys = [91, 74, 73, 85, 73, 81, 87] choose_best_sum(230, 3, ys) -> 228*/
+/*eslint-disable curly*/
 
 const chooseBestSum = (t, k, ls) => {
-  ls = ls.sort().reverse();
-  const combos = (function getCombos(k, ls) {
+  const combos = (getCombos = (k, ls) => {
     const temp = [];
-    if (k > ls.length) { return null; }
-    if (k === ls.length) { return [ls]; }
-    if (k === 1) { return ls.map(l => [l]); }
-    for (let i = 0; i < ls.length - k + 1; i++) {
-      const first = ls[i];
+    if (k === 1) return ls.map(l => [l]);
+    for (let i = 0; i <= ls.length - k; i++) {
       const rest = getCombos(k - 1, ls.slice(i + 1));
-      for (let j = 0; j < rest.length; j++) {
-        temp.push([first, ...rest[j]]);
-      }
+      for (let j = 0; j < rest.length;) temp.push([ls[i], ...rest[j++]]);
     }
     return temp;
   })(k, ls);
-  if (combos) {
-    var bestSum = Math.max(...combos.map(combo => combo.reduce((a, b) => a + b)).filter(sum => sum <= t));
-  }
-  return combos && bestSum !== -Infinity ? bestSum : null;
+  var bestSum = Math.max(...combos.map(combo => combo.reduce((a, b) => a + b)).filter(sum => sum <= t));
+  return bestSum !== -Infinity ? bestSum : null;
 };
 
 const expect = require('chai').expect;
@@ -65,7 +58,3 @@ describe('chooseBestSum function', () => {
   });
 
 });
-
-// afterEach(function (done) {
-//   setTimeout(done, 5000);
-// });
