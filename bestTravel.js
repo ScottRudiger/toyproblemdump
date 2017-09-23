@@ -25,7 +25,7 @@ ys = [91, 74, 73, 85, 73, 81, 87] choose_best_sum(230, 3, ys) -> 228*/
 /*eslint-disable curly*/
 
 const chooseBestSum = (t, k, ls) => {
-  const combos = (getCombos = (k, ls) => {
+  const bestSum = Math.max(...(getCombos = (k, ls) => {
     const temp = [];
     if (k === 1) return ls.map(l => [l]);
     for (let i = 0; i <= ls.length - k; i++) {
@@ -33,8 +33,7 @@ const chooseBestSum = (t, k, ls) => {
       for (let j = 0; j < rest.length;) temp.push([ls[i], ...rest[j++]]);
     }
     return temp;
-  })(k, ls);
-  var bestSum = Math.max(...combos.map(combo => combo.reduce((a, b) => a + b)).filter(sum => sum <= t));
+  })(k, ls).map(combo => combo.reduce((a, b) => a + b)).filter(sum => sum <= t));
   return bestSum !== -Infinity ? bestSum : null;
 };
 
