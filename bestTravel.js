@@ -24,7 +24,25 @@ xs = [50] choose_best_sum(163, 3, xs) -> nil (or null or ... or -1 (C++, C, Rust
 ys = [91, 74, 73, 85, 73, 81, 87] choose_best_sum(230, 3, ys) -> 228*/
 
 const chooseBestSum = (t, k, ls) => {
-
+  ls = ls.sort().reverse();
+  const combos = (function getCombos(k, ls) {
+    const temp = [];
+    if (k > ls.length) { return null; }
+    if (k === ls.length) { return [ls]; }
+    if (k === 1) { return ls.map(l => [l]); }
+    for (let i = 0; i < ls.length - k + 1; i++) {
+      const first = ls[i];
+      const rest = getCombos(k - 1, ls.slice(i + 1));
+      for (let j = 0; j < rest.length; j++) {
+        temp.push([first, ...rest[j]]);
+      }
+    }
+    return temp;
+  })(k, ls);
+  if (combos) {
+    var bestSum = Math.max(...combos.map(combo => combo.reduce((a, b) => a + b)).filter(sum => sum <= t));
+  }
+  return combos && bestSum !== -Infinity ? bestSum : null;
 };
 
 const expect = require('chai').expect;
@@ -47,3 +65,7 @@ describe('chooseBestSum function', () => {
   });
 
 });
+
+// afterEach(function (done) {
+//   setTimeout(done, 5000);
+// });
