@@ -4,7 +4,7 @@
   "description": "Repository for dumping my solutions to various toy problems I've come across",
   "main": "WUBWUB.js",
   "scripts": {
-    "test": "mocha nyan.js --timeout 3000 --reporter nyan"
+    "test": "mocha nyan.js --timeout 3000 --reporter nyan --watch"
   },
   "repository": {
     "type": "git",
