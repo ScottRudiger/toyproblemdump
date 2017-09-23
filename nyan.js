@@ -1,3 +1,3 @@
 afterEach(function (done) {
-  setTimeout(done, 150);
+  setTimeout(done, 30);
 });
