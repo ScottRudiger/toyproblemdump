@@ -24,7 +24,7 @@ xs = [50] choose_best_sum(163, 3, xs) -> nil (or null or ... or -1 (C++, C, Rust
 ys = [91, 74, 73, 85, 73, 81, 87] choose_best_sum(230, 3, ys) -> 228*/
 /*eslint-disable curly*/
 
-const chooseBestSum = (t, k, ls, b = Math.max(...ls.reduce((r, e) => r.concat(r.filter(c => c.length < k).map(c => c.concat([e]))), [[]]).filter(c => c.length === k).map(c => c.reduce((a, b) => a + b)).filter(s => s <= t))) => b > -Infinity ? b : null;
+const chooseBestSum = (t, k, ls) => ls.reduce((r, e) => r.concat(r.filter(c => c.length < k).map(c => c.concat([e]))), [[]]).filter(c => c.length === k).map(c => c.reduce((a, b) => a + b)).filter(s => s <= t).sort((a, b) => b - a)[0] || null;
 
 const expect = require('chai').expect;
 
