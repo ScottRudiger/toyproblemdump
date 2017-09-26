@@ -16,7 +16,7 @@ Examples
 123.456.78.90
 123.045.067.089
 Note: leading zeros (e.g. 01.02.03.04) are considered not valid in this kata!*/
-/*eslint-disable curly*/
+/*eslint-disable curly, quotes*/
 
 // const isValidIp = address => {
 //   const octets = address.split('.');
@@ -32,12 +32,14 @@ Note: leading zeros (e.g. 01.02.03.04) are considered not valid in this kata!*/
 
 // const isValidIp = (a, o = a.split('.')) => !a.includes(' ') && o.length === 4 && !o.some(o => o.length > 1 && !+o[0]) && o.map(Number).every(o => o < 256);
 
-
 // // passes all codewars tests, but would improperly return true in some cases; e.g., '1.2.3.4.256'
 // const isValidIp = a => a.split('.').filter(o => !o.includes(' ') && !(o.length > 1 && !+o[0]) && +o < 256).length === 4;
 
-// with regex
-const isValidIp = a => /^((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(?!$)|$)){4}$/.test(a);
+// // with regex
+// const isValidIp = a => /^((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(?!$)|$)){4}$/.test(a);
+
+// shorten previous one-liner (non-regex) solution
+const isValidIp = (a, o = a.split('.')) => o.length === 4 && o.every(o => !(o.includes(' ') || o[1] && !+o[0]) && o < 256);
 
 const expect = require('chai').expect;
 
@@ -76,6 +78,9 @@ describe('isValidIp function', () => {
   context('an IP address with spaces is invalid', () => { // based on codewars test cases
     it('should return false for 1. 2.3.4', () => {
       expect(isValidIp('1. 2.3.4')).to.be.false;
+    });
+    it(`should return false for '1.2.3.4 '`, () => {
+      expect(isValidIp('1.2.3.4 ')).to.be.false;
     });
   });
 
