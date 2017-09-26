@@ -33,8 +33,11 @@ Note: leading zeros (e.g. 01.02.03.04) are considered not valid in this kata!*/
 // const isValidIp = (a, o = a.split('.')) => !a.includes(' ') && o.length === 4 && !o.some(o => o.length > 1 && !+o[0]) && o.map(Number).every(o => o < 256);
 
 
-// passes all codewars tests, but would improperly return true in some cases; e.g., '1.2.3.4.256'
-const isValidIp = a => a.split('.').filter(o => !o.includes(' ') && !(o.length > 1 && !+o[0]) && +o < 256).length === 4;
+// // passes all codewars tests, but would improperly return true in some cases; e.g., '1.2.3.4.256'
+// const isValidIp = a => a.split('.').filter(o => !o.includes(' ') && !(o.length > 1 && !+o[0]) && +o < 256).length === 4;
+
+// with regex
+const isValidIp = a => /^((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(?!$)|$)){4}$/.test(a);
 
 const expect = require('chai').expect;
 
@@ -76,6 +79,7 @@ describe('isValidIp function', () => {
     });
   });
 
+  // additional test to avoid certain false positives
   context('should correctly ascertain validity when only the 5th octet is invalid', () => {
     it('should return false for 1.2.3.4.256', () => {
       expect(isValidIp('1.2.3.4.256')).to.be.false;
