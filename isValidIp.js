@@ -18,17 +18,19 @@ Examples
 Note: leading zeros (e.g. 01.02.03.04) are considered not valid in this kata!*/
 /*eslint-disable curly*/
 
-const isValidIp = address => {
-  const octets = address.split('.');
-  // check that IP address does not include whitespace
-  if (address.includes(' ')) return false;
-  // check that IP address is exactly four octets long
-  if (octets.length !== 4) return false;
-  // check that there are no leading zeros
-  if (octets.some(octet => octet.length > 1 && !+octet[0])) return false;
-  // check that octet's value is between 0 and 255 (inclusive)
-  return octets.map(Number).every(octet => octet < 256 && octet >= 0);
-};
+// const isValidIp = address => {
+//   const octets = address.split('.');
+//   // check that IP address does not include whitespace
+//   if (address.includes(' ')) return false;
+//   // check that IP address is exactly four octets long
+//   if (octets.length !== 4) return false;
+//   // check that there are no leading zeros
+//   if (octets.some(octet => octet.length > 1 && !+octet[0])) return false;
+//   // check that octet's value is between 0 and 255 (inclusive)
+//   return octets.map(Number).every(octet => octet < 256 && octet >= 0);
+// };
+
+const isValidIp = (a, o = a.split('.')) => !a.includes(' ') && o.length === 4 && !o.some(o => o.length > 1 && !+o[0]) && o.map(Number).every(o => o < 256);
 
 const expect = require('chai').expect;
 
