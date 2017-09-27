@@ -24,7 +24,9 @@ name this outer function fib.
 //   return p.reduce((a, b) => a + b);
 // };
 
-const perimeter = (n, p2 = 0, p1 = 4, s = 4, i = 1) => i > n ? s : perimeter(n, p1, p2 + p1, s + p2 + p1, i + 1);
+// const perimeter = (n, p2 = 0, p1 = 4, s = 4, i = 1) => i > n ? s : perimeter(n, p1, p2 + p1, s + p2 + p1, i + 1);
+
+const perimeter = (n, p2 = 0, p1 = 4, s = 4) => !n ? s : perimeter(n - 1, p1, p2 + p1, s + p2 + p1);
 
 const expect = require('chai').expect;
 
