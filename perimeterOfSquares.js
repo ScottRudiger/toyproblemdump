@@ -17,6 +17,18 @@ have an outer auxiliary function that calculates Fibonacci numbers,
 name this outer function fib.
 (More than 500 CW passed the kata so it is now impossible to change the random tests).*/
 
-const perimeter = n => {
+const perimeter = squares => {
 
 };
+
+const expect = require('chai').expect;
+
+describe('perimeter function', () => {
+  it('should return 4 when n is 0', () => expect(perimeter(0)).to.equal(4));
+  it('should return 8 when n is 1', () => expect(perimeter(1)).to.equal(8));
+  it('should return 80 when n is 5', () => expect(perimeter(5)).to.equal(80));
+  it('should return 572 when n is 9', () => expect(perimeter(9)).to.equal(572));
+  it('should return almost 180 trillion when n is 64', () => {
+    expect(perimeter(64)).to.equal(179782280851408);
+  });
+});
