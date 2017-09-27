@@ -17,12 +17,14 @@ have an outer auxiliary function that calculates Fibonacci numbers,
 name this outer function fib.
 (More than 500 CW passed the kata so it is now impossible to change the random tests).*/
 
-const perimeter = n => {
-  for (var i = 0, p = [0, 4]; i < n; i++) {
-    p.push(p[p.length - 1] + p[p.length - 2]);
-  }
-  return p.reduce((a, b) => a + b);
-};
+// const perimeter = n => {
+//   for (var i = 0, p = [0, 4]; i < n; i++) {
+//     p.push(p[p.length - 1] + p[p.length - 2]);
+//   }
+//   return p.reduce((a, b) => a + b);
+// };
+
+const perimeter = (n, p2 = 0, p1 = 4, s = 4, i = 1) => i > n ? s : perimeter(n, p1, p2 + p1, s + p2 + p1, i + 1);
 
 const expect = require('chai').expect;
 
