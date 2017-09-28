@@ -39,7 +39,9 @@ name this outer function fib.
 
 // const perimeter = (n, m = n + 2, s = 0, s5 = Math.sqrt(5)) => m ? perimeter(n, --m, s + Math.round(1 / s5 * (Math.pow((1 + s5) / 2, m) - Math.pow((1 - s5) / 2, m))) * 4) : s;
 
-const perimeter = (n, s = 0, m = n + 1, s5 = Math.sqrt(5)) => m ? perimeter(n, s + Math.round((1 / s5) * (Math.pow((1 + s5) / 2, m) - Math.pow((1 - s5) / 2, m))) * 4, --m) : s;
+// const perimeter = (n, s = 0, m = n + 1, s5 = Math.sqrt(5)) => m ? perimeter(n, s + Math.round((1 / s5) * (Math.pow((1 + s5) / 2, m) - Math.pow((1 - s5) / 2, m))) * 4, --m) : s;
+
+const perimeter = (n, s = 0, m = n + 1, r = 5 ** 0.5, p = (1 + r) / 2) => m ? perimeter(n, s + Math.round((p ** m - (-p) ** -m) / r) * 4, --m) : s;
 
 const expect = require('chai').expect;
 
