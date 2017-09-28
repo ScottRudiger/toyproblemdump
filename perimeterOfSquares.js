@@ -26,7 +26,16 @@ name this outer function fib.
 
 // const perimeter = (n, p2 = 0, p1 = 4, s = 4, i = 1) => i > n ? s : perimeter(n, p1, p2 + p1, s + p2 + p1, i + 1);
 
-const perimeter = (n, p2 = 0, p1 = 4, s = 4) => !n ? s : perimeter(n - 1, p1, p2 + p1, s + p2 + p1);
+// const perimeter = (n, p2 = 0, p1 = 4, s = 4) => !n ? s : perimeter(n - 1, p1, p2 + p1, s + p2 + p1);
+
+const perimeter = (n, s5 = Math.sqrt(5), p = (1 + s5) / 2, pn = (1 - s5) / 2) => {
+  let s = 0;
+  n += 2;
+  while (n--) {
+    s += Math.round((1 / s5) * (Math.pow(p, n) - Math.pow(pn, n))) * 4;
+  }
+  return s;
+};
 
 const expect = require('chai').expect;
 
