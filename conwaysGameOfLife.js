@@ -13,7 +13,31 @@ Each cell's neighborhood is the 8 cells immediately around it (i.e. Moore Neighb
 
 console.log(htmlize(cells));
 trace (htmlize cells)*/
+/*eslint-disable curly*/
 
 const getGeneration = (cells, generation) => {
 
 };
+
+const {expect} = require('chai');
+
+describe('getGeneration function', () => {
+  const input = [
+    [1, 0, 0],
+    [0, 1, 1],
+    [1, 1, 0]
+  ];
+  const output = [
+    [0, 1, 0],
+    [0, 0, 1],
+    [1, 1, 1]
+  ];
+  it('should not mutate the input array', () => {
+    const copy = [...input];
+    getGeneration(input, 1);
+    expect(input).to.eql(copy);
+  });
+  it('should return the correct output', () => {
+    expect(getGeneration(input, 1)).to.eql(output);
+  });
+});
