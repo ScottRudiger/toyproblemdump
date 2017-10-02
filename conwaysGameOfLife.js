@@ -1,4 +1,4 @@
-// Conway's Game of Life from https://www.codewars.com/kata/conways-game-of-life-unlimited-edition/train/javascript
+// Conway's Game of Life - Unlimited Edition from https://www.codewars.com/kata/conways-game-of-life-unlimited-edition/train/javascript
 
 /*Given a 2D array and a number of generations, compute n timesteps of Conway's Game of Life.
 
@@ -15,8 +15,31 @@ console.log(htmlize(cells));
 trace (htmlize cells)*/
 /*eslint-disable curly*/
 
-const getGeneration = (cells, generation) => {
+const countNeighbors = (cells, coord) => {
+  let count = 0;
+  if (cells[coord[0] + 1] ? cells[coord[0] + 1][coord[1] + 1] : false) count++;
+  if (cells[coord[0] + 0] ? cells[coord[0] + 0][coord[1] + 1] : false) count++;
+  if (cells[coord[0] + 1] ? cells[coord[0] + 1][coord[1] + 0] : false) count++;
+  if (cells[coord[0] - 1] ? cells[coord[0] - 1][coord[1] - 1] : false) count++;
+  if (cells[coord[0] - 1] ? cells[coord[0] - 1][coord[1] + 1] : false) count++;
+  if (cells[coord[0] + 1] ? cells[coord[0] + 1][coord[1] - 1] : false) count++;
+  if (cells[coord[0] + 0] ? cells[coord[0] + 0][coord[1] - 1] : false) count++;
+  if (cells[coord[0] - 1] ? cells[coord[0] - 1][coord[1] + 0] : false) count++;
+  return count;
+};
 
+const getGeneration = (cells, generation) => {
+  const copy = [];
+  cells.forEach(row => copy.push(row.slice()));
+  for (let i = 0; i < cells.length; i++) {
+    for (let j = 0; j < cells[i].length; j++) {
+      const count = countNeighbors(cells, [i, j]);
+      if (count < 2) copy[i][j] = 0; // death by underpopulation
+      if (count > 3) copy[i][j] = 0; // death by overpopulation
+      if (count === 3) copy[i][j] = 1; // reproduction
+    }
+  }
+  return copy;
 };
 
 const {expect} = require('chai');
@@ -34,7 +57,7 @@ describe('getGeneration function', () => {
   ];
   it('should not mutate the input array', () => {
     const copy = [...input];
-    getGeneration(input, 1);
+    // getGeneration(input, 1);
     expect(input).to.eql(copy);
   });
   it('should return the correct output', () => {
