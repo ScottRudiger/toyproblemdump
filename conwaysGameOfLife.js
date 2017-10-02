@@ -64,9 +64,35 @@ describe('getGeneration function', () => {
     [0, 1, 0]
   ];
 
+  const generation4 = [
+    [1, 0, 0],
+    [0, 1, 1],
+    [1, 1, 0]
+  ];
+
+  const input2 = [
+    [1, 1, 1, 0, 0, 0, 1, 0],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [0, 1, 0, 0, 0, 1, 1, 1]
+  ];
+
+  const generation100 = [
+    [ 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1 ]
+  ];
+
   it('should not mutate the input array', () => {
     const copy = [...input];
-    // getGeneration(input, 1);
+    getGeneration(input, 1);
     expect(input).to.eql(copy);
   });
   it('should return the correct output for generation1', () => {
@@ -74,5 +100,14 @@ describe('getGeneration function', () => {
   });
   it('should return the correct output for generation2', () => {
     expect(getGeneration(input, 2)).to.eql(generation2);
+  });
+  it('should return the correct output for generation0', () => {
+    expect(getGeneration(input, 0)).to.eql(input);
+  });
+  it('should return the correct output for generation4', () => {
+    expect(getGeneration(input, 4)).to.eql(generation4);
+  });
+  it('should return the correct output for generation100', () => {
+    expect(getGeneration(input2, 100)).to.eql(generation100);
   });
 });
