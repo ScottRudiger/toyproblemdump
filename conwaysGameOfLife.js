@@ -45,22 +45,34 @@ const getGeneration = (cells, generation) => {
 const {expect} = require('chai');
 
 describe('getGeneration function', () => {
+
   const input = [
     [1, 0, 0],
     [0, 1, 1],
     [1, 1, 0]
   ];
-  const output = [
+
+  const generation1 = [
     [0, 1, 0],
     [0, 0, 1],
     [1, 1, 1]
   ];
+
+  const generation2 = [
+    [1, 0, 1],
+    [0, 1, 1],
+    [0, 1, 0]
+  ];
+
   it('should not mutate the input array', () => {
     const copy = [...input];
     // getGeneration(input, 1);
     expect(input).to.eql(copy);
   });
-  it('should return the correct output', () => {
-    expect(getGeneration(input, 1)).to.eql(output);
+  it('should return the correct output for generation1', () => {
+    expect(getGeneration(input, 1)).to.eql(generation1);
+  });
+  it('should return the correct output for generation2', () => {
+    expect(getGeneration(input, 2)).to.eql(generation2);
   });
 });
