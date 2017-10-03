@@ -28,7 +28,7 @@ const countNeighbors = (cells, coord) => {
   return count;
 };
 
-const padCells = cells => (p = _ => cells[0].map(v => 0), c = cells.map(row => row.slice()), c.unshift(p()), c.push(p()), c.map(row => { row.unshift(0); row.push(0); }), c);
+const padCells = c => (c = c.map(r => r.slice()), c.unshift(c[0].map(v => 0)), c.push(c[0].map(v => 0)), c.map(r => (r.unshift(0), r.push(0))), c);
 
 const cropCells = c => ((t = c => c[0].some(v => v) ? 0 : (c.shift(), t(c)))(c), (b = c => c[c.length - 1].some(v => v) ? 0 : (c.pop(), b(c)))(c), (l = c => c.some(r => r[0]) ? 0 : (c.map(r => r.shift()), l(c)))(c), (r = c => c.some(r => r[r.length - 1]) ? 0 : (c.map(r => r.pop()), r(c)))(c), c);
 
