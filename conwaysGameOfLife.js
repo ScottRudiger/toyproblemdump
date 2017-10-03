@@ -13,15 +13,8 @@ Each cell's neighborhood is the 8 cells immediately around it (i.e. Moore Neighb
 
 console.log(htmlize(cells));
 trace (htmlize cells)*/
-/*eslint-disable curly, one-var*/
 
-const countNeighbors = (c, i, j) => (n = 0, d = [-1, 0, 1], d.map(k => d.map(l => (k || l) && c[i + k] && c[i + k][j + l] ? n++ : 0)), n);
-
-const padCells = c => (c = c.map(r => r.slice()), c.unshift(c[0].map(v => 0)), c.push(c[0].map(v => 0)), c.map(r => (r.unshift(0), r.push(0))), c);
-
-const cropCells = c => ((t = c => c[0].some(v => v) ? 0 : (c.shift(), t(c)))(c), (b = c => c[c.length - 1].some(v => v) ? 0 : (c.pop(), b(c)))(c), (l = c => c.some(r => r[0]) ? 0 : (c.map(r => r.shift()), l(c)))(c), (r = c => c.some(r => r[r.length - 1]) ? 0 : (c.map(r => r.pop()), r(c)))(c), c);
-
-const getGeneration = (c, g) => !g ? cropCells(c) : (t = padCells(c), m = padCells(c), t.map((r, i) => r.map((_, j) => (n = countNeighbors(t, i, j), m[i][j] = n === 2 ? m[i][j] : n === 3 ? 1 : 0))), getGeneration(m, g - 1));
+const getGeneration = (c, g) => !g ? (c => ((t = c => c[0].some(v => v) ? 0 : (c.shift(), t(c)))(c), (b = c => c[c.length - 1].some(v => v) ? 0 : (c.pop(), b(c)))(c), (l = c => c.some(r => r[0]) ? 0 : (c.map(r => r.shift()), l(c)))(c), (r = c => c.some(r => r[r.length - 1]) ? 0 : (c.map(r => r.pop()), r(c)))(c), c))(c) : (t = (c => (c = c.map(r => r.slice()), c.unshift(c[0].map(v => 0)), c.push(c[0].map(v => 0)), c.map(r => (r.unshift(0), r.push(0))), c))(c), m = t.map(r => r.slice()), t.map((r, i) => r.map((_, j) => (n = ((c, i, j) => (o = 0, d = [-1, 0, 1], d.map(k => d.map(l => (k || l) && c[i + k] && c[i + k][j + l] ? o++ : 0)), o))(t, i, j), m[i][j] = n === 2 ? m[i][j] : n === 3 ? 1 : 0))), getGeneration(m, g - 1));
 
 const {expect} = require('chai');
 
