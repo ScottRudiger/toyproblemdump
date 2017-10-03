@@ -15,16 +15,11 @@ console.log(htmlize(cells));
 trace (htmlize cells)*/
 /*eslint-disable curly, one-var*/
 
-const countNeighbors = (cells, coord) => {
+const countNeighbors = (c, i, j) => {
   let count = 0;
-  if (cells[coord[0] + 1] ? cells[coord[0] + 1][coord[1] + 1] : false) count++;
-  if (cells[coord[0] + 0] ? cells[coord[0] + 0][coord[1] + 1] : false) count++;
-  if (cells[coord[0] + 1] ? cells[coord[0] + 1][coord[1] + 0] : false) count++;
-  if (cells[coord[0] - 1] ? cells[coord[0] - 1][coord[1] - 1] : false) count++;
-  if (cells[coord[0] - 1] ? cells[coord[0] - 1][coord[1] + 1] : false) count++;
-  if (cells[coord[0] + 1] ? cells[coord[0] + 1][coord[1] - 1] : false) count++;
-  if (cells[coord[0] + 0] ? cells[coord[0] + 0][coord[1] - 1] : false) count++;
-  if (cells[coord[0] - 1] ? cells[coord[0] - 1][coord[1] + 0] : false) count++;
+  for (let k = -1; k < 2; k++) for (let l = -1; l < 2; l++) {
+    if ((k || l) && c[i + k] ? c[i + k][j + l] : false) count++;
+  }
   return count;
 };
 
@@ -37,7 +32,7 @@ const getGeneration = (cells, generation) => {
   const copyToCount = padCells(cells), copyToMutate = padCells(cells);
   for (let i = 0; i < copyToCount.length; i++) {
     for (let j = 0; j < copyToCount[i].length; j++) {
-      const count = countNeighbors(copyToCount, [i, j]);
+      const count = countNeighbors(copyToCount, i, j);
       copyToMutate[i][j] = count === 2 ? copyToMutate[i][j] : count === 3 ? 1 : 0;
     }
   }
