@@ -15,13 +15,7 @@ console.log(htmlize(cells));
 trace (htmlize cells)*/
 /*eslint-disable curly, one-var*/
 
-const countNeighbors = (c, i, j) => {
-  let count = 0;
-  for (let k = -1; k < 2; k++) for (let l = -1; l < 2; l++) {
-    if ((k || l) && c[i + k] ? c[i + k][j + l] : false) count++;
-  }
-  return count;
-};
+const countNeighbors = (c, i, j) => (t = 0, d = [-1, 0, 1], d.map(k => d.map(l => (k || l) && c[i + k] && c[i + k][j + l] ? t++ : 0)), t);
 
 const padCells = c => (c = c.map(r => r.slice()), c.unshift(c[0].map(v => 0)), c.push(c[0].map(v => 0)), c.map(r => (r.unshift(0), r.push(0))), c);
 
