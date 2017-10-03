@@ -30,13 +30,7 @@ const countNeighbors = (cells, coord) => {
 
 const padCells = cells => (p = _ => cells[0].map(v => 0), c = cells.map(row => row.slice()), c.unshift(p()), c.push(p()), c.map(row => { row.unshift(0); row.push(0); }), c);
 
-const cropCells = cells => {
-  (cT = c => c[0].some(Boolean) ? null : (c.shift(), cT(c)))(cells);
-  (cB = c => c[c.length - 1].some(Boolean) ? null : (c.pop(), cB(c)))(cells);
-  (cL = c => c.some(r => r[0]) ? null : (c.forEach(r => r.shift()), cL(c)))(cells);
-  (cR = c => c.some(r => r[r.length - 1]) ? null : (c.forEach(r => r.pop()), cR(c)))(cells);
-  return cells;
-};
+const cropCells = c => ((t = c => c[0].some(v => v) ? 0 : (c.shift(), t(c)))(c), (b = c => c[c.length - 1].some(v => v) ? 0 : (c.pop(), b(c)))(c), (l = c => c.some(r => r[0]) ? 0 : (c.map(r => r.shift()), l(c)))(c), (r = c => c.some(r => r[r.length - 1]) ? 0 : (c.map(r => r.pop()), r(c)))(c), c);
 
 const getGeneration = (cells, generation) => {
   if (!generation) return cropCells(cells);
