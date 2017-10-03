@@ -13,7 +13,7 @@ Each cell's neighborhood is the 8 cells immediately around it (i.e. Moore Neighb
 
 console.log(htmlize(cells));
 trace (htmlize cells)*/
-/*eslint-disable curly*/
+/*eslint-disable curly, one-var*/
 
 const countNeighbors = (cells, coord) => {
   let count = 0;
@@ -28,61 +28,26 @@ const countNeighbors = (cells, coord) => {
   return count;
 };
 
-const padCells = cells => {
-  cells.unshift(Array(cells[0].length).fill(0));
-  cells.push(Array(cells[0].length).fill(0));
-  cells.forEach(row => row.unshift(0));
-  cells.forEach(row => row.push(0));
-};
-
-const cropTop = cells => {
-  if (cells[0].reduce((a, b) => a + b)) return;
-  cells.splice(0, 1);
-  cropTop(cells);
-};
-
-const cropBottom = cells => {
-  if (cells[cells.length - 1].reduce((a, b) => a + b)) return;
-  cells.splice(cells.length - 1, 1);
-  cropBottom(cells);
-};
-
-const cropLeft = cells => {
-  if (cells.some(row => row[0])) return;
-  cells.forEach(row => row.splice(0, 1));
-  cropLeft(cells);
-};
-
-const cropRight = cells => {
-  if (cells.some(row => row[row.length - 1])) return;
-  cells.forEach(row => row.splice(row.length - 1, 1));
-  cropRight(cells);
-};
+const padCells = cells => (p = _ => cells[0].map(v => 0), c = cells.map(row => row.slice()), c.unshift(p()), c.push(p()), c.map(row => { row.unshift(0); row.push(0); }), c);
 
 const cropCells = cells => {
-  cropTop(cells);
-  cropBottom(cells);
-  cropLeft(cells);
-  cropRight(cells);
+  (cT = c => c[0].some(Boolean) ? null : (c.shift(), cT(c)))(cells);
+  (cB = c => c[c.length - 1].some(Boolean) ? null : (c.pop(), cB(c)))(cells);
+  (cL = c => c.some(r => r[0]) ? null : (c.forEach(r => r.shift()), cL(c)))(cells);
+  (cR = c => c.some(r => r[r.length - 1]) ? null : (c.forEach(r => r.pop()), cR(c)))(cells);
   return cells;
 };
 
 const getGeneration = (cells, generation) => {
   if (!generation) return cropCells(cells);
-  const copyToCount = [];
-  cells.forEach(row => copyToCount.push(row.slice()));
-  padCells(copyToCount);
-  const copyToMutate = [];
-  copyToCount.forEach(row => copyToMutate.push(row.slice()));
+  const copyToCount = padCells(cells), copyToMutate = padCells(cells);
   for (let i = 0; i < copyToCount.length; i++) {
     for (let j = 0; j < copyToCount[i].length; j++) {
       const count = countNeighbors(copyToCount, [i, j]);
-      if (count < 2) copyToMutate[i][j] = 0; // death by underpopulation
-      if (count > 3) copyToMutate[i][j] = 0; // death by overpopulation
-      if (count === 3) copyToMutate[i][j] = 1; // reproduction
+      copyToMutate[i][j] = count === 2 ? copyToMutate[i][j] : count === 3 ? 1 : 0;
     }
   }
-  return getGeneration(cropCells(copyToMutate), generation - 1);
+  return getGeneration(copyToMutate, generation - 1);
 };
 
 const {expect} = require('chai');
