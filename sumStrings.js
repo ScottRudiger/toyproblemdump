@@ -10,8 +10,8 @@ A string representation of an integer will contain no characters besides the ten
 /*eslint-disable quotes, curly*/
 
 const sumStrings = (a, b, c = []) => {
-  [l, o] = [a.length > b.length ? a : b, b.length < a.length ? b : a];
-  o = [...Array(l.length - o.length).fill('0'), ...o];
+  l = a.length > b.length ? a : b;
+  o = (b.length < a.length ? b : a).padStart(l.length, '0');
   for (let i = l.length - 1, prev = 0; i >= 0; i--) {
     const sum = prev + +l[i] + +o[i];
     c.unshift(sum > 9 ? `${sum - 10}` : `${sum}`);
@@ -20,6 +20,8 @@ const sumStrings = (a, b, c = []) => {
   }
   return c.slice(c.findIndex(v => +v)).join('');
 };
+
+// const sumStrings = (a, b) => (l = (a.length > b.length ? a : b).reverse(), o = b.length < a.length ? b : a, o = [...Array(l.length - o.length).fill('0'), ...o], l);
 
 const {expect} = require('chai');
 
