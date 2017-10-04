@@ -10,11 +10,9 @@ A string representation of an integer will contain no characters besides the ten
 /*eslint-disable quotes, curly*/
 
 const sumStrings = (a, b, c = []) => {
-  const l = a.length > b.length ? a : b;
-  let o = b.length < a.length ? b : a;
+  [l, o] = [a.length > b.length ? a : b, b.length < a.length ? b : a];
   o = [...Array(l.length - o.length).fill('0'), ...o];
-  let prev = 0;
-  for (let i = l.length - 1; i >= 0; i--) {
+  for (let i = l.length - 1, prev = 0; i >= 0; i--) {
     const sum = prev + +l[i] + +o[i];
     c.unshift(sum > 9 ? `${sum - 10}` : `${sum}`);
     prev = sum > 9 ? 1 : 0;
