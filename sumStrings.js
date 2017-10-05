@@ -14,7 +14,9 @@ A string representation of an integer will contain no characters besides the ten
 // refactor as codewars does not support ES2017's padStart method
 // const sumStrings = (a, b) => (l = (a, b) => '0'.repeat(a.length - b.length) + b, a.length > b.length ? b = l(a, b) : a = l(b, a), r = s => s.split('').reverse(), a = r(a), b = r(b), p = 0, r = [...a.reduce((r, v, i) => (s = p + +v + +b[i], p = +(s > 9), [...r, p ? `${s - 10}` : `${s}`]), []), p].reverse(), r.slice(r.findIndex(v => +v)).join(''));
 
-const sumStrings = (a, b) => (a = [...a], b = [...b], r = [], (c => { while (a.length || b.length || c) (c += ~~a.pop() + ~~b.pop(), r.unshift(c % 10), c = c > 9); })(0), r.slice(r.findIndex(v => +v)).join(''));
+// const sumStrings = (a, b) => (a = [...a], b = [...b], r = [], (c => { while (a.length || b.length || c) (c += ~~a.pop() + ~~b.pop(), r.unshift(c % 10), c = c > 9); })(0), r.slice(r.findIndex(v => +v)).join(''));
+
+const sumStrings = (a, b, s = 0, r = []) => a.length || b.length || s ? (a = [...a], b = [...b], s += ~~a.pop() + ~~b.pop(), r.unshift(s % 10), sumStrings(a, b, s > 9, r)) : r.slice(r.findIndex(v => +v)).join('');
 
 const {expect} = require('chai');
 
