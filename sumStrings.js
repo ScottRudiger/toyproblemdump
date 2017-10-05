@@ -9,16 +9,7 @@ sumStrings('1','2') // => '3'
 A string representation of an integer will contain no characters besides the ten numerals "0" to "9".*/
 /*eslint-disable quotes, curly*/
 
-const sumStrings = (a, b, c = []) => {
-  a.length < b.length ? a = a.padStart(b.length, '0') : b = b.padStart(a.length, '0');
-  for (let i = a.length - 1, prev = 0; i >= 0; i--) {
-    const sum = prev + +a[i] + +b[i];
-    c.unshift(sum > 9 ? `${sum - 10}` : `${sum}`);
-    prev = sum > 9 ? 1 : 0;
-    if (!i) c.unshift(prev);
-  }
-  return c.slice(c.findIndex(v => +v)).join('');
-};
+const sumStrings = (a, b) => (a.length < b.length ? a = a.padStart(b.length, '0') : b = b.padStart(a.length, '0'), r = s => s.split('').reverse(), a = r(a), b = r(b), p = 0, r = [...a.reduce((r, v, i) => (s = p + +v + +b[i], [...r, s > 9 ? (p = 1, `${s - 10}`) : (p = 0, `${s}`)]), []), p].reverse(), r.slice(r.findIndex(v => +v)).join(''));
 
 const {expect} = require('chai');
 
