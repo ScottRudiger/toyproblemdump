@@ -9,7 +9,10 @@ sumStrings('1','2') // => '3'
 A string representation of an integer will contain no characters besides the ten numerals "0" to "9".*/
 /*eslint-disable quotes, curly*/
 
-const sumStrings = (a, b) => (a.length < b.length ? a = a.padStart(b.length, '0') : b = b.padStart(a.length, '0'), r = s => s.split('').reverse(), a = r(a), b = r(b), p = 0, r = [...a.reduce((r, v, i) => (s = p + +v + +b[i], [...r, s > 9 ? (p = 1, `${s - 10}`) : (p = 0, `${s}`)]), []), p].reverse(), r.slice(r.findIndex(v => +v)).join(''));
+// const sumStrings = (a, b) => (a.length < b.length ? a = a.padStart(b.length, '0') : b = b.padStart(a.length, '0'), r = s => s.split('').reverse(), a = r(a), b = r(b), p = 0, r = [...a.reduce((r, v, i) => (s = p + +v + +b[i], [...r, s > 9 ? (p = 1, `${s - 10}`) : (p = 0, `${s}`)]), []), p].reverse(), r.slice(r.findIndex(v => +v)).join(''));
+
+// refactor as codewars does not support ES2017's padStart method
+const sumStrings = (a, b) => (l = (a, b) => '0'.repeat(a.length - b.length) + b, a.length > b.length ? b = l(a, b) : a = l(b, a), r = s => s.split('').reverse(), a = r(a), b = r(b), p = 0, r = [...a.reduce((r, v, i) => (s = p + +v + +b[i], p = +(s > 9), [...r, p ? `${s - 10}` : `${s}`]), []), p].reverse(), r.slice(r.findIndex(v => +v)).join(''));
 
 const {expect} = require('chai');
 
