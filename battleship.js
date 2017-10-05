@@ -13,3 +13,43 @@ This is all you need to solve this kata. If you're interested in more informatio
 const validateBattlefield = field => {
 
 };
+
+const {expect} = require('chai');
+
+describe('validateBattlefield function', () => {
+
+  const valid = [
+    [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+    [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+    [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ];
+
+  const invalid = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ];
+
+  it('should return true for a valid battlefield', () => {
+    expect(validateBattlefield(valid)).to.be.true;
+  });
+
+  it('should return false for an invalid battlefield', () => {
+    expect(validateBattlefield(invalid)).to.be.false;
+  });
+
+});
