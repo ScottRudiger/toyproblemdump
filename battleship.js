@@ -31,7 +31,7 @@ describe('validateBattlefield function', () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   ];
 
-  const invalid = [
+  const invalid1 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -44,12 +44,29 @@ describe('validateBattlefield function', () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   ];
 
+  const invalid2 = [
+    [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+    [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+    [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+  ];
+
   it('should return true for a valid battlefield', () => {
     expect(validateBattlefield(valid)).to.be.true;
   });
 
-  it('should return false for an invalid battlefield', () => {
-    expect(validateBattlefield(invalid)).to.be.false;
+  it('should return false for invalid1 battlefield', () => {
+    expect(validateBattlefield(invalid1)).to.be.false;
+  });
+
+  it('should return false for invalid2 battlefield', () => {
+    expect(validateBattlefield(invalid2)).to.be.false;
   });
 
 });
