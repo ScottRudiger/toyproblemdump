@@ -64,26 +64,13 @@ describe('validateBattlefield function', () => {
     [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
     [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
     [ 0, 0, 0, 0, 1, 1, 1, 0, 0, 0 ],
-    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
-    [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
-    [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
-    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
-  ];
-
-  const invalid4 = [
-    [ 1, 0, 0, 0, 0, 1, 1, 0, 0, 0 ],
-    [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 0 ],
-    [ 1, 0, 1, 0, 1, 1, 1, 0, 1, 0 ],
-    [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
-    [ 0, 0, 0, 0, 1, 1, 1, 0, 0, 0 ],
     [ 0, 1, 0, 0, 0, 0, 0, 0, 1, 0 ],
     [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
     [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
     [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
   ];
 
-  const invalid5 = [
+  const invalid4 = [
     [ 1, 0, 0, 0, 0, 1, 1, 0, 0, 0 ],
     [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 0 ],
     [ 1, 0, 1, 0, 1, 1, 1, 0, 1, 0 ],
@@ -96,7 +83,7 @@ describe('validateBattlefield function', () => {
     [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
   ];
 
-  const invalid6 = [
+  const invalid5 = [
     [ 0, 0, 0, 0, 0, 1, 1, 0, 0, 0 ],
     [ 0, 0, 1, 0, 0, 0, 0, 0, 1, 0 ],
     [ 0, 0, 1, 0, 1, 1, 1, 0, 1, 0 ],
@@ -109,7 +96,7 @@ describe('validateBattlefield function', () => {
     [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
   ];
 
-  const invalid7 = [
+  const invalid6 = [
     [ 1, 0, 0, 0, 0, 1, 1, 0, 0, 0 ],
     [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 0 ],
     [ 1, 0, 1, 0, 1, 1, 1, 0, 1, 0 ],
@@ -122,7 +109,7 @@ describe('validateBattlefield function', () => {
     [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
   ];
 
-  const invalid8 = [
+  const invalid7 = [
     [ 1, 0, 0, 0, 0, 1, 1, 0, 0, 0 ],
     [ 1, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
     [ 1, 1, 0, 0, 1, 1, 1, 0, 1, 0 ],
@@ -135,7 +122,7 @@ describe('validateBattlefield function', () => {
     [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
   ];
 
-  const invalid9 = [
+  const invalid8 = [
     [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
     [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 0 ],
     [ 1, 0, 1, 0, 1, 1, 1, 0, 1, 0 ],
@@ -182,10 +169,6 @@ describe('validateBattlefield function', () => {
 
   it('should return false for invalid8 battlefield', () => {
     expect(validateBattlefield(invalid8)).to.be.false;
-  });
-
-  it('should return false for invalid9 battlefield', () => {
-    expect(validateBattlefield(invalid9)).to.be.false;
   });
 
 });
