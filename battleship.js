@@ -57,6 +57,45 @@ describe('validateBattlefield function', () => {
     [0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
   ];
 
+  const invalid3 = [
+    [ 1, 0, 0, 0, 0, 1, 1, 0, 0, 0 ],
+    [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 0 ],
+    [ 1, 0, 1, 0, 1, 1, 1, 0, 1, 0 ],
+    [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
+    [ 0, 0, 0, 0, 1, 1, 1, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
+    [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+  ];
+
+  const invalid4 = [
+    [ 1, 0, 0, 0, 0, 1, 1, 0, 0, 0 ],
+    [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 0 ],
+    [ 1, 0, 1, 0, 1, 1, 1, 0, 1, 0 ],
+    [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
+    [ 0, 0, 0, 0, 1, 1, 1, 0, 0, 0 ],
+    [ 0, 1, 0, 0, 0, 0, 0, 0, 1, 0 ],
+    [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+  ];
+
+  const invalid5 = [
+    [ 1, 0, 0, 0, 0, 1, 1, 0, 0, 0 ],
+    [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 0 ],
+    [ 1, 0, 1, 0, 1, 1, 1, 0, 1, 0 ],
+    [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
+    [ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
+    [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+  ];
+
   it('should return true for a valid battlefield', () => {
     expect(validateBattlefield(valid)).to.be.true;
   });
@@ -67,6 +106,22 @@ describe('validateBattlefield function', () => {
 
   it('should return false for invalid2 battlefield', () => {
     expect(validateBattlefield(invalid2)).to.be.false;
+  });
+
+  it('should return false for invalid3 battlefield', () => {
+    expect(validateBattlefield(invalid3)).to.be.false;
+  });
+
+  it('should return false for invalid4 battlefield', () => {
+    expect(validateBattlefield(invalid4)).to.be.false;
+  });
+
+  it('should return false for invalid5 battlefield', () => {
+    expect(validateBattlefield(invalid5)).to.be.false;
+  });
+
+  it('should return false for invalid6 battlefield', () => {
+    expect(validateBattlefield(invalid6)).to.be.false;
   });
 
 });
