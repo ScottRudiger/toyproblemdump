@@ -9,9 +9,16 @@ You are guaranteed an integer argument. For any values outside the positive rang
 Note: 0! is always equal to 1. Negative values should return null or an empty string(in C++).
 
 For more on Factorials : http://en.wikipedia.org/wiki/Factorial*/
+/*eslint-disable curly*/
+
+const sum = (a, b, s = 0, r = []) => a.length || b.length || s ? (a = [...a], b = [...b], s += ~~a.pop() + ~~b.pop(), r.unshift(s % 10), sum(a, b, s > 9, r)) : r.slice(r.findIndex(v => +v)).join('');
 
 const factorial = n => {
-  return '1';
+  let r = ['1'];
+  for (let i = 1; i <= n; i++) {
+    r = [...r.reduce((s, d, j, r) => sum(s, `${d.padEnd(r.length - j, '0') * i}`), '0')];
+  }
+  return r.join('');
 };
 
 const {expect} = require('chai');
