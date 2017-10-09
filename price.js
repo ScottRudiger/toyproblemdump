@@ -13,13 +13,13 @@ function should return a string 'NaN' if the input is not a valid number*/
 
 const numberToPrice = n => {
   if (isNaN(n)) return 'NaN';
-  n = [...`${n}`].reverse();
-  d = n.indexOf('.') === -1 ? '.00' : n.slice(0, n.indexOf('.') + 1).slice(-3).reverse().join('').padEnd(3, '0');
-  n = n.slice(n.indexOf('.') + 1);
-  for (let i = 3; i < n.length; i += 4) {
-    n.splice(i, 0, ',');
+  int = [...`${n}`].reverse();
+  dec = int.indexOf('.') === -1 ? '.00' : int.slice(0, int.indexOf('.') + 1).slice(-3).reverse().join('').padEnd(3, '0');
+  int = int.slice(int.indexOf('.') + 1);
+  for (let i = 3; i < (n < 0 ? int.length - 1 : int.length); i += 4) {
+    int.splice(i, 0, ',');
   }
-  return n.reverse().join('') + d;
+  return int.reverse().join('') + dec;
 };
 
 const {expect} = require('chai');
@@ -37,4 +37,7 @@ describe('numberToPrice function', () => {
     expect(numberToPrice(-100000000000.3)).to.equal('-100,000,000,000.30');
   });
   it(`should return 'NaN' for invalid inputs`, () => expect(numberToPrice('@')).to.equal('NaN'));
+  it(`should return 'NaN' given an empty string`, () => {
+    expect(numberToPrice('')).to.equal('NaN');
+  });
 });
