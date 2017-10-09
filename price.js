@@ -25,12 +25,16 @@ const numberToPrice = n => {
 const {expect} = require('chai');
 
 describe('numberToPrice function', () => {
+  it('should return a string', () => expect(numberToPrice(100)).to.be.a.string);
   it(`should return '1,500.12' given 1500.129`, () =>{
     expect(numberToPrice(1500.129)).to.equal('1,500.12');
   });
   it(`should return '-5.00' given -5`, () => expect(numberToPrice(-5)).to.equal('-5.00'));
   it(`should return '1,000,000.50' given 1000000.5`, () => {
     expect(numberToPrice(1000000.5)).to.equal('1,000,000.50');
+  });
+  it(`should return '-1,000,000,000.30' given -1000000000.3`, () => {
+    expect(numberToPrice(-100000000000.3)).to.equal('-100,000,000,000.30');
   });
   it(`should return 'NaN' for invalid inputs`, () => expect(numberToPrice('@')).to.equal('NaN'));
 });
