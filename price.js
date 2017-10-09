@@ -12,7 +12,7 @@ function should return a string 'NaN' if the input is not a valid number*/
 /*eslint-disable quotes, curly*/
 
 const numberToPrice = n => {
-  if (isNaN(n)) return 'NaN';
+  if (isNaN(n) || !`${n}`.length) return 'NaN';
   int = [...`${n}`].reverse();
   dec = int.indexOf('.') === -1 ? '.00' : int.slice(0, int.indexOf('.') + 1).slice(-3).reverse().join('').padEnd(3, '0');
   int = int.slice(int.indexOf('.') + 1);
