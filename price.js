@@ -37,13 +37,11 @@ function should return a string 'NaN' if the input is not a valid number*/
 
 const numberToPrice = n => {
   if (isNaN(n) || !`${n}`.length) return 'NaN';
-  const num = `${n}`.split('.');
-  const int = [...num[0]];
-  const dec = '.' + (num[1] ? num[1].padEnd(2, '0').slice(0, 2) : '00');
-  for (let i = int.length - 3; i > (n < 0 ? 1 : 0); i -= 3) {
-    int.splice(i, 0, ',');
-  }
-  return int.join('') + dec;
+  const m = `${n}`.split('.');
+  const $ = [...m[0]];
+  const c = '.' + (m[1] ? m[1].padEnd(2, '0').slice(0, 2) : '00');
+  for (let i = $.length - 3; i > (n < 0 ? 1 : 0); i -= 3) $.splice(i, 0, ',');
+  return $.join('') + c;
 };
 
 const {expect} = require('chai');
