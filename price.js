@@ -11,15 +11,28 @@ Numbers should use the standard comma for every 3 numbers and dot to separate th
 function should return a string 'NaN' if the input is not a valid number*/
 /*eslint-disable quotes, curly*/
 
+// const numberToPrice = n => {
+//   if (isNaN(n) || !`${n}`.length) return 'NaN';
+//   int = [...`${n}`].reverse();
+//   const idxOfDot = int.indexOf('.');
+//   dec = idxOfDot === -1 ? '.00' : int.slice(0, idxOfDot + 1).slice(-3).reverse().join('').padEnd(3, '0');
+//   int = int.slice(idxOfDot + 1);
+//   for (let i = 3; i < (n < 0 ? int.length - 1 : int.length); i += 4) {
+//     int.splice(i, 0, ',');
+//   }
+//   return int.reverse().join('') + dec;
+// };
+
 const numberToPrice = n => {
   if (isNaN(n) || !`${n}`.length) return 'NaN';
-  int = [...`${n}`].reverse();
-  dec = int.indexOf('.') === -1 ? '.00' : int.slice(0, int.indexOf('.') + 1).slice(-3).reverse().join('').padEnd(3, '0');
-  int = int.slice(int.indexOf('.') + 1);
-  for (let i = 3; i < (n < 0 ? int.length - 1 : int.length); i += 4) {
+  int = [...`${n}`];
+  const idxOfDot = int.indexOf('.');
+  dec = idxOfDot === -1 ? '.00' : int.slice(idxOfDot).slice(0, 3).join('').padEnd(3, '0');
+  int = int.slice(0, idxOfDot !== -1 ? idxOfDot : Infinity);
+  for (let i = int.length - 3; i > (n < 0 ? 1 : 0); i -= 3) {
     int.splice(i, 0, ',');
   }
-  return int.reverse().join('') + dec;
+  return int.join('') + dec;
 };
 
 const {expect} = require('chai');
