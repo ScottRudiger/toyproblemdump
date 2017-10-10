@@ -8,11 +8,17 @@ round()
 ceil()
 floor()*/
 
-round = n => (s = `${n}`.split('.'), s[1] ? s[1][0] >= 5 ? +s[0] + 1 : +s[0] : n);
+// round = n => (s = `${n}`.split('.'), s[1] ? s[1][0] >= 5 ? +s[0] + 1 : +s[0] : n);
 
-ceil = n => (s = `${n}`.split('.'), s[1] ? +s[0] + 1 : n);
+// ceil = n => (s = `${n}`.split('.'), s[1] ? +s[0] + 1 : n);
 
-floor = n => +`${n}`.split('.')[0];
+// floor = n => +`${n}`.split('.')[0];
+
+const floor = n => ~~n;
+
+const round = n => floor(n + 0.5);
+
+const ceil = n => n % 1 ? floor(n) + 1 : n;
 
 const {expect} = require('chai');
 
