@@ -18,7 +18,7 @@ const floor = n => ~~n;
 
 const round = n => floor(n + 0.5);
 
-const ceil = n => n - n % 1 + !!(n % 1);
+const ceil = n => ~~n - n ? ~~n + 1 : n;
 
 const {expect} = require('chai');
 
