@@ -20,13 +20,16 @@ describe('Math methods', () => {
   context('round functionality', () => {
     it('should return 0 given 0.4', () => expect(round(0.4)).to.equal(0));
     it('should return 1 given 0.5', () => expect(round(0.5)).to.equal(1));
+    it('should return 7 given 7.12', () => expect(round(7.12)).to.equal(7));
   });
   context('ceil functionality', () => {
     it('should return 1 given 0.4', () => expect(ceil(0.4)).to.equal(1));
     it('should return 1 given 0.5', () => expect(ceil(0.5)).to.equal(1));
+    it('should return 8 given 7.12', () => expect(ceil(7.12)).to.equal(8));
   });
   context('floor functionality', () => {
     it('should return 0 given 0.4', () => expect(floor(0.4)).to.equal(0));
     it('should return 0 given 0.5', () => expect(floor(0.5)).to.equal(0));
+    it('should return 7 given 7.12', () => expect(floor(7.12)).to.equal(7));
   });
 });
