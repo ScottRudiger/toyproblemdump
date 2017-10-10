@@ -8,7 +8,7 @@ round()
 ceil()
 floor()*/
 
-round = n => (s = `${n}`.split('.'), s[1] ? s[1] >= 5 ? +s[0] + 1 : +s[0] : n);
+round = n => (s = `${n}`.split('.'), s[1] ? s[1][0] >= 5 ? +s[0] + 1 : +s[0] : n);
 
 ceil = n => (s = `${n}`.split('.'), s[1] ? +s[0] + 1 : n);
 
