@@ -55,6 +55,59 @@ c2.execute(); // == fns.sum(fns.sum(1, 2), 5) == 8
 c1.execute(); // == fns.sum(1, 2) == 3
 */
 
+function sum(x, y) {
+  return x + y;
+}
+
+function double(x) {
+  return sum(x, x);
+}
+
+function minus (x, y) {
+  return x - y;
+}
+
+function addOne(x) {
+  return sum(x, 1);
+}
+
+const c = chain({sum: sum, minus: minus, double: double, addOne: addOne});
+
 function chain(fns) {
 
 }
+
+const {expect} = require('chai');
+
+describe('chain function', () => {
+  it('should sum two numbers', () => {
+    expect(c.sum(3, 4).execute()).to.equal(7);
+  });
+  context('chaining 1', () => {
+    const c1 = c.sum(1, 2);
+    it('should sum 2 numbers again', () => {
+      expect(c1.execute()).to.equal(3);
+    });
+    it('should double', () => {
+      expect(c1.double().execute()).to.equal(6);
+    });
+    it('should add one', () => {
+      expect(c1.addOne().execute()).to.equal(4);
+    });
+    it('should not have altered c1', () => {
+      expect(c1.execute()).to.equal(3);
+    });
+    context('chaining 2', () => {
+      const c2 = c.sum(1, 2).sum(5);
+      it('should add one', () => {
+        expect(c2.addOne().execute()).to.equal(9);
+      });
+      it('should add 3', () => {
+        expect(c2.sum(3).execute()).to.equal(11);
+      });
+      it('should not have altered c2', () => {
+        expect(c2.execute()).to.equal(8);
+      });
+    });
+  });
+});
