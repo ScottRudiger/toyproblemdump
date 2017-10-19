@@ -8,9 +8,7 @@ If the input String is empty, return an empty String. The words in the input Str
 
 For an input: "is2 Thi1s T4est 3a" the function should return "Thi1s is2 3a T4est"*/
 
-const order = w => {
-
-};
+const order = w => w.split` `.sort((a, b) => (f = w => w.split``.filter(v => +v)[0], f(a) - f(b))).join` `;
 
 const {expect} = require('chai');
 
