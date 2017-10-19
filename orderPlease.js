@@ -17,7 +17,9 @@ For an input: "is2 Thi1s T4est 3a" the function should return "Thi1s is2 3a T4es
 
 // order=w=>w.split` `.sort((a,b)=>(f=w=>[...w].filter(v=>+v)[0])(a)-f(b)).join` `
 
-order=w=>w.split` `.sort((a,b)=>(f=w=>w.match(/\d/))(a)-f(b)).join` `
+// order=w=>w.split` `.sort((a,b)=>(f=w=>w.match(/\d/))(a)-f(b)).join` `
+
+order=w=>w.split` `.sort((a,b)=>a.match(/\d/)-b.match(/\d/)).join` `
 
 const {expect} = require('chai');
 
