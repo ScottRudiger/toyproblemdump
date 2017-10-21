@@ -7,3 +7,26 @@ Note: you will always receive a valid array containing a random assortment of di
 const isValidWalk = walk => {
 
 };
+
+const {expect} = require('chai');
+
+// note: the codewars kata does not require Booleans; hence testing for truthiness or falsiness
+describe('isValidWalk function', () => {
+  it('should return a truthy value given a valid walk', () => {
+    expect(isValidWalk(['n', 's', 'n', 's', 'n', 's', 'n', 's', 'n', 's'])).to.be.ok;
+    expect(isValidWalk(['e', 'w', 'e', 'w', 'n', 's', 'n', 's', 'e', 'w'])).to.be.ok;
+    expect(isValidWalk(['n', 's', 'e', 'w', 'n', 's', 'e', 'w', 'n', 's'])).to.be.ok;
+  });
+  it('should return a falsy value if the walk is too short', () => {
+    expect(isValidWalk(['n'])).to.not.be.ok;
+    expect(isValidWalk(['n', 's'])).to.not.be.ok;
+  });
+  it('should return a falsy value if the walk is too long', () => {
+    expect(isValidWalk([ 'n', 's', 'n', 's', 'n', 's', 'n', 's', 'n', 's', 'n', 's' ])).to.not.be.ok;
+    expect(isValidWalk(['n', 's', 'e', 'w', 'n', 's', 'e', 'w', 'n', 's', 'e', 'w', 'n', 's', 'e', 'w'])).to.not.be.ok;
+  });
+  it('should return a falsy value if the walk does not bring you back to your starting point', () => {
+    expect(isValidWalk(['n', 's', 'n', 's', 'n', 's', 'n', 's', 'n', 'n'])).to.not.be.ok;
+    expect(isValidWalk(['e', 'e', 'e', 'w', 'n', 's', 'n', 's', 'e', 'w'])).to.not.be.ok;
+  });
+});
