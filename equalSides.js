@@ -33,6 +33,7 @@ An empty array should be treated like a 0 in this problem.*//*eslint-disable*/
 // const findEvenIndex = a => a.findIndex((e, i) => eval(a.slice(0, i).join`+`) === eval(a.slice(i + 1).join`+`));
 
 findEvenIndex=a=>a.findIndex((e,i)=>eval(a.slice(0,i).join`+`)==eval(a.slice(i+1).join`+`))
+findEvenIndex=a=>a.findIndex((e,i,_,s=(s,e)=>eval(a.slice(s,e).join`+`))=>s(0,i)==s(i+1))
 
 const {expect} = require('chai');
 
