@@ -28,5 +28,7 @@ describe('isValidWalk function', () => {
   it('should return a falsy value if the walk does not bring you back to your starting point', () => {
     expect(isValidWalk(['n', 's', 'n', 's', 'n', 's', 'n', 's', 'n', 'n'])).to.not.be.ok;
     expect(isValidWalk(['e', 'e', 'e', 'w', 'n', 's', 'n', 's', 'e', 'w'])).to.not.be.ok;
+    expect(isValidWalk(['n', 'w', 'e', 'w', 'e', 'w', 'e', 'w', 'w', 'e'])).to.not.be.ok;
+    expect(isValidWalk(['s', 'n', 'n', 's', 'n', 'w', 'e', 'e', 'w', 'e'])).to.not.be.ok;
   });
 });
