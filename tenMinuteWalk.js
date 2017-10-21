@@ -29,7 +29,9 @@ Note: you will always receive a valid array containing a random assortment of di
 
 // isValidWalk=w=>!(w.length==10?(c={n:0,s:0,e:0,w:0},w.map(d=>c[d]++),c.n-c.s|c.e-c.w):1)
 
-isValidWalk=w=>w.length!=10?0:(c={n:0,s:0,e:0,w:0},w.map(d=>c[d]++),c.n==c.s&c.e==c.w)
+// isValidWalk=w=>w.length!=10?0:(c={n:0,s:0,e:0,w:0},w.map(d=>c[d]++),c.n==c.s&c.e==c.w)
+
+isValidWalk=w=>w.length==10?(c={n:0,s:0,e:0,w:0},w.map(d=>c[d]++),c.n==c.s&c.e==c.w):0
 
 const {expect} = require('chai');
 
