@@ -5,17 +5,24 @@
 Note: you will always receive a valid array containing a random assortment of direction letters ('n', 's', 'e', or 'w' only). It will never give you an empty array (that's not a walk, that's standing still!).*/
 /*eslint-disable curly*/
 
+// const isValidWalk = walk => {
+//   if (walk.length !== 10) return false;
+//   const pos = [0, 0];
+//   const move = {
+//     n: () => pos[1]++,
+//     s: () => pos[1]--,
+//     e: () => pos[0]++,
+//     w: () => pos[0]--
+//   };
+//   walk.forEach(dir => move[dir]());
+//   return pos.every(coordinate => !coordinate);
+// };
+
 const isValidWalk = walk => {
   if (walk.length !== 10) return false;
-  const pos = [0, 0];
-  const move = {
-    n: () => pos[1]++,
-    s: () => pos[1]--,
-    e: () => pos[0]++,
-    w: () => pos[0]--
-  };
-  walk.forEach(dir => move[dir]());
-  return pos.every(coordinate => !coordinate);
+  const dir = {n: 0, s: 0, e: 0, w: 0};
+  walk.forEach(move => dir[move]++);
+  return dir.n === dir.s && dir.e === dir.w;
 };
 
 const {expect} = require('chai');
