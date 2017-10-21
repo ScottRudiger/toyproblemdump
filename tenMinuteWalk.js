@@ -3,7 +3,7 @@
 /*You live in the city of Cartesia where all roads are laid out in a perfect grid. You arrived ten minutes too early to an appointment, so you decided to take the opportunity to go for a short walk. The city provides its citizens with a Walk Generating App on their phones -- everytime you press the button it sends you an array of one-letter strings representing directions to walk (eg. ['n', 's', 'w', 'e']). You know it takes you one minute to traverse one city block, so create a function that will return true if the walk the app gives you will take you exactly ten minutes (you don't want to be early or late!) and will, of course, return you to your starting point. Return false otherwise.
 
 Note: you will always receive a valid array containing a random assortment of direction letters ('n', 's', 'e', or 'w' only). It will never give you an empty array (that's not a walk, that's standing still!).*/
-/*eslint-disable curly*/
+/*eslint-disable*/
 
 // const isValidWalk = walk => {
 //   if (walk.length !== 10) return false;
@@ -18,12 +18,14 @@ Note: you will always receive a valid array containing a random assortment of di
 //   return pos.every(coordinate => !coordinate);
 // };
 
-const isValidWalk = walk => {
-  if (walk.length !== 10) return false;
-  const dir = {n: 0, s: 0, e: 0, w: 0};
-  walk.forEach(move => dir[move]++);
-  return dir.n === dir.s && dir.e === dir.w;
-};
+// const isValidWalk = walk => {
+//   if (walk.length !== 10) return false;
+//   const dir = {n: 0, s: 0, e: 0, w: 0};
+//   walk.forEach(move => dir[move]++);
+//   return dir.n === dir.s && dir.e === dir.w;
+// };
+
+isValidWalk=a=>a.length==10?(n=s=e=w=0,c={n,s,e,w},a.map(d=>c[d]++),c.n==c.s&c.e==c.w):0
 
 const {expect} = require('chai');
 
