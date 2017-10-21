@@ -32,7 +32,8 @@ An empty array should be treated like a 0 in this problem.*//*eslint-disable*/
 
 // const findEvenIndex = a => a.findIndex((e, i) => eval(a.slice(0, i).join`+`) === eval(a.slice(i + 1).join`+`));
 
-findEvenIndex=a=>a.findIndex((e,i)=>eval(a.slice(0,i).join`+`)==eval(a.slice(i+1).join`+`))
+// findEvenIndex=a=>a.findIndex((e,i)=>eval(a.slice(0,i).join`+`)==eval(a.slice(i+1).join`+`))
+
 findEvenIndex=a=>a.findIndex((e,i,_,s=(s,e)=>eval(a.slice(s,e).join`+`))=>s(0,i)==s(i+1))
 
 const {expect} = require('chai');
@@ -42,4 +43,7 @@ describe('findEvenIndex function', () => {
   it('should return 1', () => expect(findEvenIndex([1, 100, 50, -51, 1, 1])).to.equal(1));
   it('should return -1', () => expect(findEvenIndex([1, 2, 3, 4, 5, 6])).to.equal(-1));
   it('should return -1', () => expect(findEvenIndex([20, 10, 30, 10, 10, 15, 35])).to.equal(3));
+  it('should return 24', () => {
+    expect(findEvenIndex([-9807,4892,-6975,269,-8439,-6886,2433,-1058,4774,5419,8154,8118,6277,-8656,7121,3197,-8591,9746,-6669,8326,-2833,1827,9114,-4624,-6785,7773,-554,-220,2594,845,7544,104,-1891,7321,4034,9608,9620,-2756,-9991,9990,-7554,4518,6444,5145,-37445])).to.equal(24);
+  });
 });
