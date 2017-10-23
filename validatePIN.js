@@ -13,3 +13,20 @@ validatePIN("a234") === false*/
 const validatePIN = pin => {
 
 };
+
+const {expect} = require('chai');
+
+describe('validatePIN function', () => {
+
+  const invalidPINs = ['1', '12', '123', '12345', '1234567', '-1234', '1.234', '00000000', 'a234', '.234'];
+
+  invalidPINs.forEach(PIN => it(`should return false given the invalid PIN ${PIN}`, () => {
+    expect(validatePIN(PIN)).to.be.false;
+  }));
+
+  const validPINs = ['1234', '0000', '1111', '123456', '098765', '000000', '123456', '090909'];
+
+  validPINs.forEach(PIN => it(`should return TRUE given the valid PIN ${PIN}`, () => {
+    expect(validatePIN(PIN)).to.be.true;
+  }));
+});
