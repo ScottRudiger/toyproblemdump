@@ -8,9 +8,12 @@ eg:
 
 validatePIN("1234") === true
 validatePIN("12345") === false
-validatePIN("a234") === false*/
+validatePIN("a234") === false*//*eslint-disable*/
 
-const validatePIN = pin => (l = pin.match(/\d/g).length, (pin.length === 4 || pin.length === 6) && (l === 4 || l === 6));
+// note: fails '-0.234' test case not covered on codewars (false positive)
+// const validatePIN = pin => (l = pin.match(/\d/g).length, (pin.length === 4 || pin.length === 6) && (l === 4 || l === 6));
+
+validatePIN=p=>/^\d{4}$|^\d{6}$/.test(p)
 
 const {expect} = require('chai');
 
