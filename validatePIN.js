@@ -10,9 +10,7 @@ validatePIN("1234") === true
 validatePIN("12345") === false
 validatePIN("a234") === false*/
 
-const validatePIN = pin => {
-
-};
+const validatePIN = pin => (l = pin.match(/\d/g).length, (pin.length === 4 || pin.length === 6) && (l === 4 || l === 6));
 
 const {expect} = require('chai');
 
