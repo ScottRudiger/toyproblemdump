@@ -22,9 +22,7 @@ finds the count of duplicates in a string
 @returns {number} count of duplicates
 */
 
-const duplicateCount = text => {
-
-};
+const duplicateCount = text => (counts = [...text.toLowerCase()].reduce((counts, char) => counts[char] ? (counts[char]++, counts) : (counts[char] = 1, counts), {}), Object.values(counts).filter(count => count > 1).length);
 
 const {expect} = require('chai');
 
