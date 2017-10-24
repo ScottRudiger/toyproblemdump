@@ -26,6 +26,8 @@ finds the count of duplicates in a string
 
 duplicateCount=t=>(c=[...t.toLowerCase()].reduce((c,v)=>c[v]?(c[v]++,c):(c[v]=1,c),{}),Object.values(c).filter(c=>c>1).length)
 
+duplicateCount=t=>[...t.toLowerCase()].filter((c,i,t)=>t.indexOf(c)!=i&i==t.lastIndexOf(c)).length
+
 const {expect} = require('chai');
 
 describe('duplicateCount function', () => {
