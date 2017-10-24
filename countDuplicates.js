@@ -19,3 +19,35 @@ Example
 const duplicateCount = text => {
 
 };
+
+const {expect} = require('chai');
+
+describe('duplicateCount function', () => {
+
+  const tests = {
+    abcde: 1,
+    aabbcde: 2,
+    aabBcde: 2,
+    Indivisibility: 6,
+    Indivisibilities: 7,
+    abcdefghijklmnopqrstuvwxyz: 0,
+    abcdefghijklmnopqrstuvwxyzbaaAAB: 5,
+    abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz: 2,
+    abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ: 2,
+    abcdefghwxyz: 0,
+    abcdefghABCDABCABA: 5,
+    abcdefghijABCDEABCDABCABa: 5,
+    abcdefghijklABCDEFabcdeABCDABCaba: 7,
+    abcdefghijABCDEabcdabcabA: 6,
+    abcdefghijklabcdefabcdeabcdABCABA: 7,
+    abcdefABCabA: 4,
+    zZzZzZzZzZz: 11
+  };
+
+  Object.entries(tests).forEach(test => {
+    it(`should return ${test[1]} given ${test[0]}`, () => {
+      expect(duplicateCount(test[0])).to.equal(test[1]);
+    });
+  });
+
+});
