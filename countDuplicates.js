@@ -14,7 +14,7 @@ Example
 "Indivisibilities" -> 2 # 'i' occurs seven times and 's' occurs twice
 "aA11" -> 2 # 'a' and '1'
 "ABBA" -> 2 # 'A' and 'B' each occur twice
-*//*eslint-disable curly*/
+*//*eslint-disable*/
 
 /**
 finds the count of duplicates in a string
@@ -22,7 +22,9 @@ finds the count of duplicates in a string
 @returns {number} count of duplicates
 */
 
-const duplicateCount = text => (counts = [...text.toLowerCase()].reduce((counts, char) => counts[char] ? (counts[char]++, counts) : (counts[char] = 1, counts), {}), Object.values(counts).filter(count => count > 1).length);
+// const duplicateCount = text => (counts = [...text.toLowerCase()].reduce((counts, char) => counts[char] ? (counts[char]++, counts) : (counts[char] = 1, counts), {}), Object.values(counts).filter(count => count > 1).length);
+
+duplicateCount=t=>(c=[...t.toLowerCase()].reduce((c,v)=>c[v]?(c[v]++,c):(c[v]=1,c),{}),Object.values(c).filter(c=>c>1).length)
 
 const {expect} = require('chai');
 
