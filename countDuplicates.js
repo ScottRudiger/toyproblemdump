@@ -14,6 +14,12 @@ Example
 "Indivisibilities" -> 2 # 'i' occurs seven times and 's' occurs twice
 "aA11" -> 2 # 'a' and '1'
 "ABBA" -> 2 # 'A' and 'B' each occur twice
+*//*eslint-disable curly*/
+
+/**
+finds the count of duplicates in a string
+@param {string} text - input string with or without duplicates
+@returns {number} count of duplicates
 */
 
 const duplicateCount = text => {
@@ -25,23 +31,24 @@ const {expect} = require('chai');
 describe('duplicateCount function', () => {
 
   const tests = {
-    abcde: 1,
+    a: 0,
+    abcde: 0,
     aabbcde: 2,
     aabBcde: 2,
-    Indivisibility: 6,
-    Indivisibilities: 7,
+    Indivisibility: 1,
+    Indivisibilities: 2,
     abcdefghijklmnopqrstuvwxyz: 0,
-    abcdefghijklmnopqrstuvwxyzbaaAAB: 5,
-    abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz: 2,
-    abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ: 2,
+    abcdefghijklmnopqrstuvwxyzbaaAAB: 2,
+    abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz: 26,
+    abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ: 26,
     abcdefghwxyz: 0,
-    abcdefghABCDABCABA: 5,
+    abcdefghABCDABCABA: 4,
     abcdefghijABCDEABCDABCABa: 5,
-    abcdefghijklABCDEFabcdeABCDABCaba: 7,
-    abcdefghijABCDEabcdabcabA: 6,
-    abcdefghijklabcdefabcdeabcdABCABA: 7,
-    abcdefABCabA: 4,
-    zZzZzZzZzZz: 11
+    abcdefghijklABCDEFabcdeABCDABCaba: 6,
+    abcdefghijABCDEabcdabcabA: 5,
+    abcdefghijklabcdefabcdeabcdABCABA: 6,
+    abcdefABCabA: 3,
+    zZzZzZzZzZz: 1
   };
 
   Object.entries(tests).forEach(test => {
