@@ -39,3 +39,24 @@ The two arrays have the same size (> 0) given as parameter in function comp.*/
 const comp = (array1, array2) => {
 
 };
+
+const {expect} = require('chai');
+
+describe('comp function', () => {
+  const testInputs = [
+    [[ 121, 144, 19, 161, 19, 144, 19, 11 ], [ 121, 14641, 20736, 361, 25921, 361, 20736, 361 ], true],
+    [[ 121, 144, 19, 161, 19, 144, 19, 11 ], [ 231, 14641, 20736, 361, 25921, 361, 20736, 361 ], false],
+    [[ 121, 144, 19, 161, 19, 144, 19, 11 ], [ 121, 14641, 20736, 36100, 25921, 361, 20736, 361 ], false],
+    [[], [], true],
+    [[], null, false],
+    [[ 121, 144, 19, 161, 19, 144, 19, 11, 1008 ], [ 121, 14641, 20736, 36100, 25921, 361, 20736, 361 ], false],
+    [[ 10000000, 100000000 ], [ 100000000000000, 10000000000000000 ], true],
+    [[ 10000001, 100000000 ], [ 100000000000000, 10000000000000000 ], false],
+    [[ 2, 2, 3 ], [ 4, 9, 9 ], false]
+  ];
+  testInputs.forEach(input => {
+    it(`should return ${input[3]} given ${input[0]} & ${input[1]}`, () => {
+      expect(comp(input[0], input[1])).to.equal(input[2]);
+    });
+  });
+});
