@@ -34,9 +34,11 @@ If a or b are empty the result is evident by itself.
 
 Note for C
 
-The two arrays have the same size (> 0) given as parameter in function comp.*/
+The two arrays have the same size (> 0) given as parameter in function comp.*//*eslint-disable*/
 
-const comp = (array1, array2) => !!array1 && !!array2 && array1.length === array2.length && array1.every(el => el * el === array2.splice(array2.findIndex(v => v === el * el), 1)[0]);
+// const comp = (array1, array2) => !!array1 && !!array2 && array1.length === array2.length && array1.every(el => el * el === array2.splice(array2.findIndex(v => v === el * el), 1)[0]);
+
+comp=(a,b)=>!!b&&a.length==b.length&&a.every(e=>e*e==b.splice(b.findIndex(v=>v==e*e),1)[0])
 
 const {expect} = require('chai');
 
