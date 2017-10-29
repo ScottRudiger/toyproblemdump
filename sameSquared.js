@@ -36,9 +36,7 @@ Note for C
 
 The two arrays have the same size (> 0) given as parameter in function comp.*/
 
-const comp = (array1, array2) => {
-
-};
+const comp = (array1, array2) => !!array1 && !!array2 && array1.length === array2.length && array1.every(el => el * el === array2.splice(array2.findIndex(v => v === el * el), 1)[0]);
 
 const {expect} = require('chai');
 
@@ -55,7 +53,7 @@ describe('comp function', () => {
     [[ 2, 2, 3 ], [ 4, 9, 9 ], false]
   ];
   testInputs.forEach(input => {
-    it(`should return ${input[3]} given ${input[0]} & ${input[1]}`, () => {
+    it(`should return ${input[2]} given ${input[0]} & ${input[1]}`, () => {
       expect(comp(input[0], input[1])).to.equal(input[2]);
     });
   });
