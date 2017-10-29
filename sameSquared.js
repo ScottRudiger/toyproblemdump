@@ -46,6 +46,8 @@ The two arrays have the same size (> 0) given as parameter in function comp.*//*
 
 comp=(a,b)=>!!b&&!(eval(a.map(v=>v*v).join`+`)-eval(b.join`+`))
 
+comp=(a,b)=>!!b&&a.map(v=>v*v).sort().join``==b.sort().join``
+
 const {expect} = require('chai');
 
 describe('comp function', () => {
