@@ -42,7 +42,9 @@ The two arrays have the same size (> 0) given as parameter in function comp.*//*
 
 // comp=(a,b)=>!!b&&a.every(e=>e*e==b.splice(b.findIndex(v=>v==e*e),1)[0])
 
-comp=(a,b)=>!!b&&a.every(e=>e*e==b.splice(b.indexOf(e*e),1)[0])
+// comp=(a,b)=>!!b&&a.every(e=>e*e==b.splice(b.indexOf(e*e),1)[0])
+
+comp=(a,b)=>!!b&&!(eval(a.map(v=>v*v).join`+`)-eval(b.join`+`))
 
 const {expect} = require('chai');
 
