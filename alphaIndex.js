@@ -20,6 +20,8 @@ Should return "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 1
 
 alphabetPosition=t=>(a='àabcdefghijklmnopqrstuvwxyz',[...`${t.toLowerCase()}`].reduce((i,l)=>[...i,a.indexOf(l)],[]).filter(i=>i>0).join` `)
 
+alphabetPosition=t=>[...`${t}`].map(l=>l.toLowerCase().charCodeAt(0)-96).filter(i=>i>0).join` `
+
 const {expect} = require('chai');
 
 describe('alphabetPostion function', () => {
