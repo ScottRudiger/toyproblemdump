@@ -24,6 +24,7 @@ alphabetPosition=t=>[...t].map(l=>l.toLowerCase().charCodeAt(0)-96).filter(i=>i>
 
 alphabetPosition=t=>t.match(/[a-zA-Z]/g).map(l=>l.toLowerCase().charCodeAt()-96).join` `
 
+alphabetPosition=t=>t.toLowerCase().match(/[a-z]/g).map(l=>l.charCodeAt()-96).join` `
 
 const {expect} = require('chai');
 
