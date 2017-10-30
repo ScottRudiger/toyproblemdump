@@ -11,12 +11,14 @@ a being 1, b being 2, etc.
 As an example:
 
 alphabet_position("The sunset sets at twelve o' clock.")
-Should return "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11" as a string.*/
+Should return "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11" as a string.*//*eslint-disable*/
 
-const alphabetPosition = text => {
-  const alphabet = 'àabcdefghijklmnopqrstuvwxyz';
-  return [...`${text.toLowerCase()}`].reduce((indices, letter) => [...indices, alphabet.indexOf(letter)], []).filter(i => i > 0).join` `;
-};
+// const alphabetPosition = text => {
+//   const alphabet = 'àabcdefghijklmnopqrstuvwxyz';
+//   return [...`${text.toLowerCase()}`].reduce((indices, letter) => [...indices, alphabet.indexOf(letter)], []).filter(i => i > 0).join` `;
+// };
+
+alphabetPosition=t=>(a='àabcdefghijklmnopqrstuvwxyz',[...`${t.toLowerCase()}`].reduce((i,l)=>[...i,a.indexOf(l)],[]).filter(i=>i>0).join` `)
 
 const {expect} = require('chai');
 
