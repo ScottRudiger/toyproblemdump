@@ -22,6 +22,9 @@ alphabetPosition=t=>(a='àabcdefghijklmnopqrstuvwxyz',[...`${t.toLowerCase()}`].
 
 alphabetPosition=t=>[...t].map(l=>l.toLowerCase().charCodeAt(0)-96).filter(i=>i>0).join` `
 
+alphabetPosition=t=>t.match(/[a-zA-Z]/g).map(l=>l.toLowerCase().charCodeAt()-96).join` `
+
+
 const {expect} = require('chai');
 
 describe('alphabetPostion function', () => {
