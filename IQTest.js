@@ -9,13 +9,15 @@
 iqTest("2 4 7 8 10") => 3 // Third number is odd, while the rest of the numbers are even
 
 iqTest("1 2 1 1") => 2 // Second number is even, while the rest of the numbers are odd
-*/
+*//*eslint-disable*/
 
-const iqTest = numbers => {
-  numbers = numbers.split` `;
-  const lookingForOdd = eval(numbers.slice(0, 3).map(n => !(n % 2)).join`+`) > 1;
-  return numbers.findIndex(n => lookingForOdd ? n % 2 : !(n % 2)) + 1;
-};
+// const iqTest = numbers => {
+//   numbers = numbers.split` `;
+//   const lookingForOdd = eval(numbers.slice(0, 3).map(n => !(n % 2)).join`+`) > 1;
+//   return numbers.findIndex(n => lookingForOdd ? n % 2 : !(n % 2)) + 1;
+// };
+
+iqTest=n=>(n=n.split` `,o=eval(n.slice(0,3).map(n=>!(n%2)).join`+`)>1,n.findIndex(n=>o?n%2:!(n%2))+1)
 
 const {expect} = require('chai');
 
