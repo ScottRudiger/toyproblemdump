@@ -12,7 +12,9 @@ iqTest("1 2 1 1") => 2 // Second number is even, while the rest of the numbers a
 */
 
 const iqTest = numbers => {
-
+  numbers = numbers.split` `;
+  const lookingForOdd = eval(numbers.slice(0, 3).map(n => !(n % 2)).join`+`) > 1;
+  return numbers.findIndex(n => lookingForOdd ? n % 2 : !(n % 2)) + 1;
 };
 
 const {expect} = require('chai');
@@ -32,7 +34,8 @@ describe('iqTest function', () => {
   };
 
   Object.keys(tests).forEach(test => {
-    it(`should return ${tests[test]}`, () => expect(iqTest(test)).to.equal(tests[test]));
+    const index = tests[test];
+    it(`should return ${index}`, () => expect(iqTest(test)).to.equal(index));
   });
 
 });
