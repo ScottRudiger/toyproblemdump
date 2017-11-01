@@ -19,6 +19,8 @@ iqTest("1 2 1 1") => 2 // Second number is even, while the rest of the numbers a
 
 iqTest=n=>(n=n.split` `,o=eval(n.slice(0,3).map(n=>!(n%2)).join`+`)>1,n.findIndex(n=>o?n%2:!(n%2))+1)
 
+iqTest=n=>(n=n.split` `.map(n=>n%2),e=eval(n.join`+`)>1,n.indexOf(e?0:1)+1)
+
 const {expect} = require('chai');
 
 describe('iqTest function', () => {
