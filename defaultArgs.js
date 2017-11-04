@@ -25,3 +25,24 @@ HINT: This problem requires using Fuction.prototype.toString() in order to extra
 const defaultArguments = (func, params) => {
 
 };
+
+const {expect} = require('chai');
+
+describe('defaultArguments function', () => {
+  const add = (a, b) => a + b;
+  const add_ = defaultArguments(add, {b: 9});
+  context('should default b to 9', () => {
+    it('should equal 19', () => {
+      expect(add_(10)).to.equal(19);
+    });
+    it('should should not use default when an argument is passed in for b', () => {
+      expect(add_(10, 5)).to.equal(15);
+    });
+  });
+  context('should change b\'s default to 3', () => {
+    add_ = defaultArguments(add_, {b: 3});
+    it('should equal 13', () => {
+      expect(add_(10)).to.equal(13);
+    });
+  });
+});
