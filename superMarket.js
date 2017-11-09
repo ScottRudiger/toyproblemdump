@@ -70,6 +70,8 @@ queueTime=(c,n)=>(q=c!=0&&c.splice(0,n)||[0],c.map(c=>q[q.indexOf(Math.min(...q)
 
 queueTime=(c,n)=>Math.max(...c.reduce((t,c)=>(t[t.indexOf(Math.min(...t))]+=c,t),Array(n).fill(0)))
 
+queueTime=(c,n,t=0)=>c!=0?(q=c.splice(0,n).map(c=>c-1).filter(c=>c),queueTime([...q,...c],n,t+1)):t
+
 const {expect} = require('chai');
 
 describe('queueTime function', () => {
