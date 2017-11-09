@@ -64,6 +64,8 @@ queueTime = (customers, n, t = 0) => {
 
 queueTime=(c,n)=>{with(Math){x=max;y=min}return x(...c.reduce((t,c)=>(t[t.indexOf(y(...t))]+=c,t),Array(n).fill(0)))}
 
+queueTime=(c,n)=>c!=0&&Math.max(...c.reduce((t,c)=>(t[t.indexOf(Math.min(...t))]+=c,t),c.splice(0,n)))||0
+
 const {expect} = require('chai');
 
 describe('queueTime function', () => {
