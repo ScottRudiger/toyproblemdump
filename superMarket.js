@@ -29,7 +29,7 @@ queueTime([2,3,10], 2)
 // should return 12
 N.B. You should assume that all the test input will be valid, as specified above.
 
-P.S. The situation in this kata can be likened to the more-computer-science-related idea of a thread pool, with relation to running multiple processes at the same time: https://en.wikipedia.org/wiki/Thread_pool*//*eslint-disable curly*/
+P.S. The situation in this kata can be likened to the more-computer-science-related idea of a thread pool, with relation to running multiple processes at the same time: https://en.wikipedia.org/wiki/Thread_pool*//*eslint-disable*/
 
 queueTime = (customers, n) => {
   let time = 0;
@@ -55,12 +55,14 @@ queueTime = (customers, n) => {
 
 queueTime = (customers, n, t = 0) => {
   // return time once all customers have been served
-  if (customers.length === 0) return t;
+  if (!customers.length) return t;
   // customers get in line, then remove already served customers
   const queue = customers.splice(0, n).map(c => c - 1).filter(c => c);
   // increment time and recurse
   return queueTime([...queue, ...customers], n, t + 1);
 };
+
+queueTime=(c,n)=>{with(Math){x=max;y=min}return x(...c.reduce((t,c)=>(t[t.indexOf(y(...t))]+=c,t),Array(n).fill(0)))}
 
 const {expect} = require('chai');
 
