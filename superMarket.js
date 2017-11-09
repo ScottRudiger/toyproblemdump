@@ -31,14 +31,26 @@ N.B. You should assume that all the test input will be valid, as specified above
 
 P.S. The situation in this kata can be likened to the more-computer-science-related idea of a thread pool, with relation to running multiple processes at the same time: https://en.wikipedia.org/wiki/Thread_pool*//*eslint-disable curly*/
 
-const queueTime = (customers, n) => {
+queueTime = (customers, n) => {
   let time = 0;
+  // first n customers get in line
   let queue = customers.splice(0, n);
   while (queue.some(c => c) || customers.length) {
+    // incremement time until all customers have been served
     time++;
+    // in each iteration, decrement all customers' values and if an empty space in the queue opens up, insert a new customer
     queue = queue.map(c => c ? --c : customers.shift() - 1);
   }
   return time;
+};
+
+queueTime = (customers, n) => {
+  // first n customers get in line
+  const queue = customers.length && customers.splice(0, n) || [0];
+  // place each remaining customer into the queue w/ the shortest wait time
+  customers.forEach(c => queue[queue.indexOf(Math.min(...queue))] += c);
+  // return the queue w/ the longest total wait time
+  return Math.max(...queue);
 };
 
 const {expect} = require('chai');
