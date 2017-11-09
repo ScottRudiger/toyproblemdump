@@ -29,10 +29,16 @@ queueTime([2,3,10], 2)
 // should return 12
 N.B. You should assume that all the test input will be valid, as specified above.
 
-P.S. The situation in this kata can be likened to the more-computer-science-related idea of a thread pool, with relation to running multiple processes at the same time: https://en.wikipedia.org/wiki/Thread_pool*/
+P.S. The situation in this kata can be likened to the more-computer-science-related idea of a thread pool, with relation to running multiple processes at the same time: https://en.wikipedia.org/wiki/Thread_pool*//*eslint-disable curly*/
 
 const queueTime = (customers, n) => {
-
+  let time = 0;
+  let queue = customers.splice(0, n);
+  while (queue.some(c => c) || customers.length) {
+    time++;
+    queue = queue.map(c => c ? --c : customers.shift() - 1);
+  }
+  return time;
 };
 
 const {expect} = require('chai');
@@ -42,16 +48,16 @@ describe('queueTime function', () => {
     [[[], 1], 0],
     [[[5], 1], 5],
     [[[2], 5], 2],
-    [[[1, 2, 3, 5, 5], 1], 15],
-    [[[1, 2, 3, 4, 5], 100], 5],
+    [[[1, 2, 3, 4, 5], 1], 15],
+    [[[1, 2, 3, 4, 5], 10], 5],
     [[[2, 2, 3, 3, 4, 4], 2], 9],
-    [[[33, 6, 22, 25, 11, 35, 24, 36, 45, 39, 21, 16, 7, 40, 41, 17, 2, 3, 1, 26, 43, 46], 3], 195],
+    [[[33, 6, 22, 25, 11, 35, 24, 36, 45, 39, 21, 16, 7, 40, 41, 17, 23, 1, 26, 43, 46], 3], 195],
     [[[13, 30, 13, 8, 17, 6, 32, 41, 21, 35, 44, 27], 4], 89],
-    [[[49, 13, 10, 46, 24, 43, 24, 5, 23, 22, 48, 50, 13, 31, 38, 5, 5, 0, 24, 16, 11], 2], 275],
-    [[[44, 49, 43, 40, 29, 21, 44, 8, 20, 48, 45, 37, 2, 10, 26, 24, 4, 7, 46, 32, 15, 26, 25, 45, 32, 27, 48, 7, 43, 12], 3], 308],
-    [[[4, 36, 18, 14, 42, 5, 37, 29, 38, 46, 20, 11, 16, 44, 33, 36, 4, 7, 50, 2, 11, 1, 13, 9], 1], 562],
+    [[[49, 13, 10, 46, 24, 43, 24, 5, 23, 22, 48, 50, 13, 31, 38, 5, 50, 24, 16, 11], 2], 275],
+    [[[44, 49, 43, 40, 29, 21, 44, 8, 20, 48, 45, 37, 2, 10, 26, 24, 47, 46, 32, 15, 26, 25, 45, 32, 27, 48, 7, 43, 12], 3], 308],
+    [[[4, 36, 18, 14, 42, 5, 37, 29, 38, 46, 20, 11, 16, 44, 33, 36, 47, 50, 2, 11, 1, 13, 9], 1], 562],
     [[[32, 35, 28, 21, 38, 21, 14, 6, 50, 43], 6], 77],
-    [[[18, 7, 13, 28, 34, 12, 18, 44, 36, 17, 41, 49, 20, 14, 47, 3, 1, 2, 33, 13, 7, 44, 44, 16, 16, 5], 1], 591],
+    [[[18, 7, 13, 28, 34, 12, 18, 44, 36, 17, 41, 49, 20, 14, 47, 3, 12, 33, 13, 7, 44, 44, 16, 16, 5], 1], 591],
     [[[4, 8, 46, 12, 19, 44, 36, 25, 49, 45, 38, 10, 17, 35], 2], 208],
     [[[31, 10, 23, 14, 29, 3, 23, 24, 35, 36, 47, 13, 10, 12, 48, 21, 34], 5], 97],
     [[[49, 19, 12, 29, 8, 12, 17, 12, 40, 18, 10, 32, 36, 10, 27, 12, 8, 42, 5, 22, 23, 35, 24, 41, 1], 1], 544],
