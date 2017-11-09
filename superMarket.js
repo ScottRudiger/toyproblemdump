@@ -66,6 +66,8 @@ queueTime=(c,n)=>{with(Math){x=max;y=min}return x(...c.reduce((t,c)=>(t[t.indexO
 
 queueTime=(c,n)=>c!=0&&Math.max(...c.reduce((t,c)=>(t[t.indexOf(Math.min(...t))]+=c,t),c.splice(0,n)))||0
 
+queueTime=(c,n)=>(q=c!=0&&c.splice(0,n)||[0],c.map(c=>q[q.indexOf(Math.min(...q))]+=c),Math.max(...q))
+
 const {expect} = require('chai');
 
 describe('queueTime function', () => {
