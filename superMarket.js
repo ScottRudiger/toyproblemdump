@@ -53,6 +53,15 @@ queueTime = (customers, n) => {
   return Math.max(...queue);
 };
 
+queueTime = (customers, n, t = 0) => {
+  // return time once all customers have been served
+  if (customers.length === 0) return t;
+  // customers get in line, then remove already served customers
+  const queue = customers.splice(0, n).map(c => c - 1).filter(c => c);
+  // increment time and recurse
+  return queueTime([...queue, ...customers], n, t + 1);
+};
+
 const {expect} = require('chai');
 
 describe('queueTime function', () => {
