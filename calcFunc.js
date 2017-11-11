@@ -69,3 +69,20 @@ const times = () => {
 const dividedBy = () => {
 
 };
+
+const {expect} = require('chai');
+
+describe('calculating functions', () => {
+  it('should be 35 given seven times five', () => {
+    expect(seven(times(five()))).to.equal(35);
+  });
+  it('should be 13 given four plus nine', () => {
+    expect(four(plus(nine()))).to.equal(13);
+  });
+  it('should be 5 given eight minus three', () => {
+    expect(eight(minus(three()))).to.equal(5);
+  });
+  it('should be 3 given six divided by 2', () => {
+    expect(six(dividedBy(two()))).to.equal(3);
+  });
+});
