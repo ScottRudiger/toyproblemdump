@@ -32,7 +32,6 @@ Your final job is to implement this function:
 * ex: canReach([6, 2], [8, 1], 0) === false
 *
 * canReach :: Square -> Square -> Int -> Boolean
-*/
 
 function canReach(from, to, movements) {
 }
@@ -48,7 +47,6 @@ So your first job is to implement this function:
 * ex: moveKnight([6, 2]) -> [ [ 8, 1 ], [ 8, 3 ], [ 4, 1 ], [ 4, 3 ], [ 7, 4 ], [ 5, 4 ] ]
 *
 * moveKnight :: Square -> [Square]
-*/
 
 function moveKnight(from) {
 }
@@ -59,7 +57,6 @@ When you are done (the tests for this part are green), you should implement:
 * returns: a random valid position in one movement
 * ex: moveKnightRandom([6, 2]) -> [ 8, 1 ]
 * moveKnightRandom :: Square -> Square
-*/
 
 function moveKnightRandom(from) {
 }
@@ -73,21 +70,21 @@ Let's implement the function compose():
 * ...
 * fnz x -> y
 * returns: the composed function -> fn1(fn2(...fnz(x)))
-*/
+
 function compose(fn1[, fn2, ...., fnz]) {
 }
 For example:
 
 /*
 * addOne :: Number -> Number
-*/
+
 function addOne(x) {
   return x + 1;
 }
 
 /*
 *        double :: Number -> Number
-*/
+
 function double(x) {
   return x * 2;
 }
@@ -101,7 +98,7 @@ compose(compose(addOne, double), double)(3); //13
 
 /*
 * wrap :: a -> [a]
-*/
+
 function wrap(x) {
   return [x];
 }
@@ -123,7 +120,7 @@ This auxiliary function might help us:
 * returns: array of valid knight jumps in one movement
 *
 * moveKnightFromArray :: [square] -> [square]
-*/
+
 function moveKnightFromArray(fromPositions) {
   return fromPositions.reduce(function(ac, from) {
     var to = moveKnight(from);
