@@ -31,3 +31,40 @@ NOTE: There will also be lists tested of lengths upwards of 10,000,000 elements.
 const sum_pairs = (ints, s) => {
 
 };
+
+const {expect} = require('chai');
+
+describe('sum_pairs', () => {
+  const a1 = [1, 4, 8, 7, 3, 15];
+  const a2 = [1, -2, 3, 0, -6, 1];
+  const a3 = [20, -13, 40];
+  const a4 = [1, 2, 3, 4, 1, 0];
+  const a5 = [10, 5, 2, 3, 7, 5];
+  const a6 = [4, -2, 3, 3, 4];
+  const a7 = [0, 2, 0];
+  const a8 = [5, 9, 13, -3];
+  it('should return [1, 7] given (a1, 8)', () => {
+    expect(sum_pairs(a1, 8)).to.eql([1, 7]);
+  });
+  it('should return [0, -6] given (a2, -6)', () => {
+    expect(sum_pairs(a2, -6)).to.eql([0, -6]);
+  });
+  it('should return undefined given (a3, -7)', () => {
+    expect(sum_pairs(a3, -7)).to.equal(undefined);
+  });
+  it('should return [1, 1] given (a4, 2)', () => {
+    expect(sum_pairs(a4, 2)).to.eql([1, 1]);
+  });
+  it('should return [3, 7] given (a5, 10)', () => {
+    expect(sum_pairs(a5, 10)).to.eql([3, 7]);
+  });
+  it('should return [4, 4] given (l6, 8)', () => {
+    expect(sum_pairs(a6, 8)).to.eql([4, 4]);
+  });
+  it('should return [0, 0] given (a7, 0)', () => {
+    expect(sum_pairs(a7, 0)).to.eql([0, 0]);
+  });
+  it('should return [13, -3] given (a8, 10)', () => {
+    expect(sum_pairs(a8, 10)).to.eql([13, -3]);
+  });
+});
