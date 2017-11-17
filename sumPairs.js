@@ -26,10 +26,28 @@ sum_pairs([10, 5, 2, 3, 7, 5],         10)
 == [3, 7]
 Negative numbers and duplicate numbers can and will appear.
 
-NOTE: There will also be lists tested of lengths upwards of 10,000,000 elements. Be sure your code doesn't time out.*//*eslint-disable camelcase*/
+NOTE: There will also be lists tested of lengths upwards of 10,000,000 elements. Be sure your code doesn't time out.*//*eslint-disable camelcase, curly, eqeqeq*/
 
 const sum_pairs = (ints, s) => {
-
+  for (let i = 0; i < ints.length; i++) {
+    for (let j = 0; j < (slice = ints.slice(i + 1)).length; j++) {
+      const sum = ints[i] + slice[j];
+      if (sum === s) {
+        var cutoff = i + j;
+        break;
+      }
+    }
+  }
+  const sums = [];
+  for (let i = 0; i <= cutoff; i++) {
+    for (let j = 0; j < (slice = ints.slice(i + 1)).length; j++) {
+      const sum = ints[i] + slice[j];
+      if (sum === s) {
+        sums.push([ints[i], slice[j], i + j]);
+      }
+    }
+  }
+  return sums == 0 ? undefined : sums.sort((a, b) => a[2] - b[2])[0].splice(0, 2);
 };
 
 const {expect} = require('chai');
