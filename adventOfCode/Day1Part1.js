@@ -43,6 +43,7 @@ p=n=>(s=0,[...n].map((e,i)=>e==n[(i+1)%n.length]&&(s+=+e)),s)
 p=n=>[...n].reduce((s,e,i)=>(e==n[(i+1)%n.length]?+e:0)+s,0)
 p=n=>(s=0,[...n].map((e,i)=>s+=e==n[(i+1)%n.length]?+e:0),s)
 p=n=>eval([...n,n[0]].filter((e,i,n)=>e==n[i+1]).join`+`)
+p=n=>[...n,n[0]].reduce((s,e,i,n)=>e==n[i+1]?+e+s:s,0)
 p=n=>eval((n+n[0]).match(/(.)(?=\1)/g).join`+`)
 
 const puzzleInput =
