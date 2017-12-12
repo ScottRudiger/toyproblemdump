@@ -30,6 +30,7 @@ p=n=>(l=n.length,s=n[0]==(f=n[l-1])?+f:0,s+=eval([...n].filter((e,i)=>e==n[i+1])
 p=n=>(l=n.length,s=n[0]==(f=n[l-1])?+f:0,s+=eval(n.match(/(.)(?=\1)/g).join`+`),s)
 p=n=>(l=n.length,s=n[0]==n[l-1]?+n[l-1]:0,[...n].map((e,i)=>e==n[i+1]&&(s+=+e)),s)
 p=n=>(l=n.length,s=n[0]==(f=n[l-1])?+f:0,[...n].map((e,i)=>e==n[i+1]&&(s+=+e)),s)
+p=n=>(s=n[0]==(f=n[n.length-1])?+f:0,[...n].map((e,i)=>e==n[i+1]&&(s+=+e)),s)
 p=n=>(n[0]==(f=n[n.length-1])?+f:0)+eval(n.match(/(.)(?=\1)/g).join`+`)
 
 const solution = p(
