@@ -38,6 +38,7 @@ p=n=>(s=n[0]==(f=n[n.length-1])?+f:0,[...n].map((e,i)=>e==n[i+1]&&(s+=+e)),s)
 p=n=>(n[0]==(f=n[n.length-1])?+f:0)+eval(n.match(/(.)(?=\1)/g).join`+`)
 p=n=>(n[0]==(f=[...n].pop())?+f:0)+eval(n.match(/(.)(?=\1)/g).join`+`)
 p=(n,s=0,l=n.length,i=l)=>i?p(n,((e=n[i-1])==n[i%l]?+e:0)+s,l,i-1):s
+p=(n,s,i=l=n.length)=>i?p(n,((e=n[i-1])==n[i%l]?+e:0)+~~s,i-1):s
 p=n=>(s=0,[...n].map((e,i)=>e==n[(i+1)%n.length]&&(s+=+e)),s)
 p=n=>[...n].reduce((s,e,i)=>(e==n[(i+1)%n.length]?+e:0)+s,0)
 p=n=>(s=0,[...n].map((e,i)=>s+=e==n[(i+1)%n.length]?+e:0),s)
