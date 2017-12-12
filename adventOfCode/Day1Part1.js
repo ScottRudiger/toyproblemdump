@@ -32,6 +32,7 @@ p=n=>(n[0]==(f=[...n].pop())?+f:0)+[...n].reduce((s,e,i)=>s+(n[i]==n[i+1]?+n[i]:
 p=n=>(l=n.length,s=n[0]==(f=n[l-1])?+f:0,s+=eval(n.match(/(.)(?=\1)/g).join`+`),s)
 p=n=>(l=n.length,s=n[0]==n[l-1]?+n[l-1]:0,[...n].map((e,i)=>e==n[i+1]&&(s+=+e)),s)
 p=n=>(l=n.length,s=n[0]==(f=n[l-1])?+f:0,[...n].map((e,i)=>e==n[i+1]&&(s+=+e)),s)
+p=(n,a=[...n])=>(n[0]==(f=a.pop())?+f:0)+a.reduce((s,e,i)=>s+(e==n[i+1]?+e:0),0)
 p=n=>(n[0]==(f=[...n].pop())?+f:0)+[...n].reduce((s,e,i)=>s+(e==n[i+1]?+e:0),0)
 p=n=>(s=n[0]==(f=n[n.length-1])?+f:0,[...n].map((e,i)=>e==n[i+1]&&(s+=+e)),s)
 p=n=>(n[0]==(f=n[n.length-1])?+f:0)+eval(n.match(/(.)(?=\1)/g).join`+`)
