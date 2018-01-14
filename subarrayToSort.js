@@ -27,8 +27,11 @@ const findSubArrayToSort = arr => {
     }
   }
   // find min & max between s & e inclusive
-  const min = Math.min(...arr.slice(s, e + 1));
-  const max = Math.max(...arr.slice(s, e + 1));
+  const [max, min] = arr.slice(s, e + 1).reduce(([max, min], el) => {
+    if (el > max) max = el;
+    if (el < min) min = el;
+    return [max, min];
+  }, [-Infinity, Infinity]);
   // iterate up to s exclusive
   for (let i = 0; i < s; i++) {
     // find first value > min
@@ -48,7 +51,7 @@ const findSubArrayToSort = arr => {
   }
   return [s, e];
 };
-// findSubArrayToSort([5, 7, 9, 13, 16, 12, 15, 8, 14, 18, 17, 20]);
+
 const {expect} = require('chai');
 
 describe('findSubArrayToSort function', () => {
