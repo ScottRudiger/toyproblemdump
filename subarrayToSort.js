@@ -11,9 +11,44 @@ Examples:
 */
 
 const findSubArrayToSort = arr => {
-
+  let [i, j] = [s, e] = [0, arr.length - 1];
+  // find first index where value is > next value
+  while (i < arr.length) {
+    if (arr[i] > arr[++i]) {
+      s = i - 1;
+      break;
+    }
+  }
+  // find last index where value is < prev value
+  while (j) {
+    if (arr[j] < arr[--j]) {
+      e = j + 1;
+      break;
+    }
+  }
+  // find min & max between s & e inclusive
+  const min = Math.min(...arr.slice(s, e + 1));
+  const max = Math.max(...arr.slice(s, e + 1));
+  // iterate up to s exclusive
+  for (let i = 0; i < s; i++) {
+    // find first value > min
+    if (arr[i] > min) {
+      // set s to that value's index
+      s = i;
+      break;
+    }
+  }
+  // iterate right to e exclusive
+  for (let i = arr.length - 1; i > e; i--) {
+    // find first value < max
+    if (arr[i] < max) {
+      e = i;
+      break;
+    }
+  }
+  return [s, e];
 };
-
+// findSubArrayToSort([5, 7, 9, 13, 16, 12, 15, 8, 14, 18, 17, 20]);
 const {expect} = require('chai');
 
 describe('findSubArrayToSort function', () => {
