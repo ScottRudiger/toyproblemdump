@@ -10,46 +10,60 @@ Examples:
 2) If the input array is [0, 1, 15, 25, 6, 7, 30, 40, 50], your program should be able to find that the subarray lies between the indexes 2 and 5.
 */
 
+// const findSubArrayToSort = arr => {
+//   let [i, j] = [s, e] = [0, arr.length - 1];
+//   // find first index where value is > next value
+//   while (i < arr.length) {
+//     if (arr[i] > arr[++i]) {
+//       s = i - 1;
+//       break;
+//     }
+//   }
+//   // find last index where value is < prev value
+//   while (j) {
+//     if (arr[j] < arr[--j]) {
+//       e = j + 1;
+//       break;
+//     }
+//   }
+//   // find min & max between s & e inclusive
+//   const [max, min] = arr.slice(s, e + 1).reduce(([max, min], el) => {
+//     if (el > max) max = el;
+//     if (el < min) min = el;
+//     return [max, min];
+//   }, [-Infinity, Infinity]);
+//   // iterate up to s exclusive
+//   for (let i = 0; i < s; i++) {
+//     // find first value > min
+//     if (arr[i] > min) {
+//       // set s to that value's index
+//       s = i;
+//       break;
+//     }
+//   }
+//   // iterate right to e exclusive
+//   for (let i = arr.length - 1; i > e; i--) {
+//     // find first value < max
+//     if (arr[i] < max) {
+//       e = i;
+//       break;
+//     }
+//   }
+//   return [s, e];
+// };
+
 const findSubArrayToSort = arr => {
-  let [i, j] = [s, e] = [0, arr.length - 1];
-  // find first index where value is > next value
-  while (i < arr.length) {
-    if (arr[i] > arr[++i]) {
-      s = i - 1;
-      break;
-    }
-  }
-  // find last index where value is < prev value
-  while (j) {
-    if (arr[j] < arr[--j]) {
-      e = j + 1;
-      break;
-    }
-  }
-  // find min & max between s & e inclusive
-  const [max, min] = arr.slice(s, e + 1).reduce(([max, min], el) => {
+  const [end] = arr.reduce(([end, max], el, i) => {
     if (el > max) max = el;
+    if (el < max) end = i;
+    return [end, max];
+  }, [arr.length - 1, -Infinity]);
+  const [start] = arr.reduceRight(([start, min], el, i) => {
     if (el < min) min = el;
-    return [max, min];
-  }, [-Infinity, Infinity]);
-  // iterate up to s exclusive
-  for (let i = 0; i < s; i++) {
-    // find first value > min
-    if (arr[i] > min) {
-      // set s to that value's index
-      s = i;
-      break;
-    }
-  }
-  // iterate right to e exclusive
-  for (let i = arr.length - 1; i > e; i--) {
-    // find first value < max
-    if (arr[i] < max) {
-      e = i;
-      break;
-    }
-  }
-  return [s, e];
+    if (el > min) start = i;
+    return [start, min];
+  }, [0, Infinity]);
+  return [start, end];
 };
 
 const {expect} = require('chai');
@@ -66,5 +80,9 @@ describe('findSubArrayToSort function', () => {
   it('should return indices [2, 10]', () => {
     const arr = [5, 7, 9, 13, 16, 12, 15, 8, 14, 18, 17, 20];
     expect(findSubArrayToSort(arr)).to.eql([2, 10]);
+  });
+  it('should return indices [1, 5]', () => {
+    const arr = [10, 20, 25, 35, 12, 11, 50, 60];
+    expect(findSubArrayToSort(arr)).to.eql([1, 5]);
   });
 });
