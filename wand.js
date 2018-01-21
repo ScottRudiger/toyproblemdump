@@ -93,6 +93,88 @@ w.prioriIncantatem();
 Whew! What a lot of magic! I'm gonna go get a butterbeer while you get to work on your Wands -- but before I go, I'll leave you with one hint: prioriIncantatem and deletrius do not necessarily need to be defined on any instance of Wand, nor do they need to be defined on any object up the prototype chain thereof, for that matter. You simply must ensure that it's possible to call them as if they were ;)
 */
 
+const MAX_PRIOR_SPELLS = 3;
+
 class Wand {
 
 }
+
+const {expect} = require('chai');
+
+describe('Wand class', () => {
+  it('should create an instance of the Wand class', () => {
+    expect(new Wand() instanceof Wand).to.be.true;
+  });
+  it('should extend the wand instance with passed-in spells', () => {
+    const w = new Wand({
+      peskipiksiPesternomi() {}
+    });
+    expect(typeof w.peskipiksiPesternomi).to.equal('function');
+  });
+});
+
+describe('prioriIncantatem method', () => {
+  it('should log method calls as described', () => {
+    const w = new Wand({
+      expelliarmus() {},
+      alohomora() {},
+      avadaKedavra() {}
+    });
+
+    w.alohomora();
+    w.expelliarmus();
+    w.avadaKedavra();
+
+    expect(w.prioriIncantatem()).to.eql(['avadaKedavra', 'expelliarmus', 'alohomora']);
+  });
+  it('should work when methods call other methods', () => {
+    const w = new Wand({
+      unlockTwice() {
+        this.alohomora();
+        this.alohomora();
+      },
+      alohomora() {
+        return 'unlocked!';
+      }
+    });
+
+    w.unlockTwice();
+
+    expect(w.prioriIncantatem()).to.eql(['alohomora', 'alohomora', 'unlockTwice']);
+  });
+});
+
+describe('deletrius method', () => {
+  it('should remove all method calls from history (except itself)', () => {
+    const w = new Wand({
+      a() {},
+      b() {},
+      c() {},
+      d() {}
+    });
+
+    w.a();
+    w.b();
+    w.c();
+    w.d();
+    w.deletrius();
+
+    expect(w.prioriIncantatem()).to.eql(['deletrius']);
+  });
+  it('should be present in the history when methods are called afterwards', () => {
+    const w = new Wand({
+      a() {},
+      b() {},
+      c() {},
+      d() {}
+    });
+
+    w.a();
+    w.b();
+    w.deletrius();
+    w.c();
+    w.d();
+
+    expect(w.prioriIncantatem()).to.eql(['d', 'c', 'deletrius']);
+  });
+});
