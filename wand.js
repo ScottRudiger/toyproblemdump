@@ -96,7 +96,25 @@ Whew! What a lot of magic! I'm gonna go get a butterbeer while you get to work o
 const MAX_PRIOR_SPELLS = 3;
 
 class Wand {
-
+  constructor(spells) {
+    Object.assign(this, spells);
+    this.history = [];
+    return new Proxy(this, {
+      get(target, key) {
+        if (typeof target[key] === 'function') {
+          target.history.unshift(key);
+          return target[key];
+        }
+        return target[key];
+      }
+    });
+  }
+  prioriIncantatem() {
+    return this.history.slice(1, MAX_PRIOR_SPELLS + 1);
+  }
+  deletrius() {
+    this.history = ['deletrius'];
+  }
 }
 
 const {expect} = require('chai');
