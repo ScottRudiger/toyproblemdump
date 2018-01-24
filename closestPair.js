@@ -21,3 +21,18 @@ Output:  7 and 40
 const findClosestPair = (arr1, arr2, x) => {
 
 };
+
+const {expect} = require('chai');
+
+describe('findClosestPair function', () => {
+  const arr1 = [1, 4, 5, 7];
+  const arr2 = [10, 20, 30, 40];
+  it('should return [1, 30]', () => {
+    const x = 32;
+    expect(findClosestPair(arr1, arr2, x)).to.eql([1, 30]);
+  });
+  it('should return [7, 40]', () => {
+    const x = 50;
+    expect(findClosestPair(arr1, arr2, x)).to.eql([7, 40]);
+  });
+});
