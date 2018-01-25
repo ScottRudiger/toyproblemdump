@@ -19,7 +19,32 @@ Output:  7 and 40
 */
 
 const findClosestPair = (arr1, arr2, x) => {
-
+  // initialize minimum difference as Infinity and result (undefined)
+  let minDiff = Infinity;
+  let result;
+  // initialize l as first index of arr1 (0)
+  let l = 0;
+  // initialize r as last index of arr2
+  let r = arr2.length - 1;
+  // loop until reaching the end of either arr
+  while (l < arr1.length && r > -1) {
+    // sum arr1[l] & arr2[r]
+    const sum = arr1[l] + arr2[r];
+    // set diff to |sum - x|
+    const diff = Math.abs(sum - x);
+    // if diff is less than previous minDiff, update minDiff and result
+    if (diff < minDiff) {
+      minDiff = diff;
+      result = [arr1[l], arr2[r]];
+    } else if (sum < x) {
+      // if sum is < x, increment l to get a larger sum
+      l++;
+    } else {
+      // otherwise, sum is > x; decrement r to get a smaller sum
+      r--;
+    }
+  }
+  return result;
 };
 
 const {expect} = require('chai');
