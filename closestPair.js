@@ -18,6 +18,8 @@ Input:  ar1[] = {1, 4, 5, 7};
 Output:  7 and 40
 */
 
+// O(m + n) as we are looping through both arrays once
+// O(1) constant extra space
 const findClosestPair = (arr1, arr2, x) => {
   // initialize minimum difference as Infinity and result (undefined)
   let minDiff = Infinity;
