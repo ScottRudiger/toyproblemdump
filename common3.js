@@ -19,3 +19,20 @@ Output: 5, 5
 const findCommon = (a1, a2, a3) => {
 
 };
+
+const {expect} = require('chai');
+
+describe('findCommon function', () => {
+  it('should return [5, 5]', () => {
+    const a1 = [1, 5, 5];
+    const a2 = [3, 4, 5, 5, 10];
+    const a3 = [5, 5, 10, 20];
+    expect(findCommon(a1, a2, a3)).to.eql([5, 5]);
+  });
+  it('should return [20, 80]', () => {
+    const a1 = [1, 5, 10, 20, 40, 80];
+    const a2 = [6, 7, 20, 80, 100];
+    const a3 = [3, 4, 15, 20, 30, 70, 80, 120];
+    expect(findCommon(a1, a2, a3)).to.eql([20, 80])
+  });
+});
