@@ -17,7 +17,25 @@ Output: 5, 5
 */
 
 const findCommon = (a1, a2, a3) => {
-
+  // initialize result array to hold common elements
+  const result = [];
+  // initialize a1, a2, and a3 indices at 0
+  let x = y = z = 0;
+  // loop until reaching the end of one of the arrays
+  while (x < a1.length && y < a2.length && z < a3.length) {
+    // if elements at x = y = z, it's a common element; add to result
+    if (a1[x] === a2[y] && a2[y] === a3[z]) {
+      result.push(a1[x]);
+      // increment all
+      x++; y++; z++;
+    } // else if element at x < y, increment x as it can't be a common element
+    else if (a1[x] < a2[y]) x++;
+    // else if element at y < z, increment y as it can't be a common element
+    else if (a2[y] < a3[z]) y++;
+    // else, x > y & y > z, increment z as it can't be a common element
+    else z++;
+  }
+  return result;
 };
 
 const {expect} = require('chai');
