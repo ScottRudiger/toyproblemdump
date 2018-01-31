@@ -13,8 +13,29 @@ Input: arr[] = {1, 3, 4, 7, 10}, x = 15
 Output: 4 and 10
 */
 
-const findClosestPair = (arr, x) => {
-
+const findClosestPair = (arr, x) => { // O(n)
+  // initialize l at left index, r at right index
+  let l = 0, r = arr.length - 1;
+  // initialize minDiff at Infinity, result as empty array
+  let minDiff = Infinity
+  let result = [];
+  // loop until l & r meet in the middle
+  while (l < r) {
+    // calculate sum & diff at each iteration
+    const sum = arr[l] + arr[r];
+    const diff = Math.abs(sum - x);
+    // if diff is less than minDiff
+    if (diff < minDiff) {
+      // update minDiff and result
+      minDiff = diff;
+      result = [arr[l], arr[r]];
+    }
+    // if sum < x, increment l to get a larger sum
+    if (sum < x) l++;
+    // else, sum > x; decrement r to get a smaller sum
+    else r--;
+  }
+  return result;
 };
 
 const {expect} = require('chai');
