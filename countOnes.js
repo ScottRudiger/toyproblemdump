@@ -15,6 +15,22 @@ Input: arr[] = {0, 0, 0, 0, 0, 0, 0}
 Output: 0
 */
 
-const countOnes = arr => {
+// inefficient solution O(n)
+const countOnes = arr => arr.lastIndexOf(1) + 1;
 
-};
+const {expect} = require('chai');
+
+describe('countOnes function', () => {
+  it('should return 2', () => {
+    const arr = [1, 1, 0, 0, 0, 0, 0];
+    expect(countOnes(arr)).to.equal(2);
+  });
+  it('should return 7', () => {
+    const arr = [1, 1, 1, 1, 1, 1, 1];
+    expect(countOnes(arr)).to.equal(7);
+  });
+  it('should return 0', () => {
+    const arr = [0, 0, 0, 0, 0, 0, 0];
+    expect(countOnes(arr)).to.equal(0);
+  });
+});
