@@ -26,3 +26,24 @@ Enjoy it!!
 const sumDigiPow = (a, b) => {
 
 };
+
+const {expect} = require('chai');
+
+describe('sumDigiPow function', () => {
+  const tests = new Map();
+
+  tests.set([1, 10], [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  tests.set([1, 100], [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]);
+  tests.set([10, 100], [89]);
+  tests.set([90, 100], []);
+  tests.set([90, 150], [135]);
+  tests.set([50, 150], [89, 135]);
+  tests.set([10, 150], [89, 135]);
+
+  for (const test of tests) {
+    const [input, output] = test;
+    it(`should return ${output} given ${input}`, () => {
+      expect(sumDigiPow(...input)).to.eql(output);
+    });
+  }
+});
