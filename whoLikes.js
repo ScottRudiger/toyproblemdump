@@ -21,6 +21,17 @@ let likes = names => {
   if (len > 3) return `${names[0]}, ${names[1]} and ${len - 2} others like this`;
 };
 
+likes = names => {
+  const len = names.length;
+  const labels = [
+    'no one likes this',
+    `${names[0]} likes this`,
+    `${names[0]} and ${names[1]} like this`,
+    `${names[0]}, ${names[1]} and ${names[2]} like this`
+  ];
+  return len > 3 ? `${names[0]}, ${names[1]} and ${len - 2} others like this` : labels[len];
+};
+
 const {expect} = require('chai');
 
 describe('likes function', () => {
