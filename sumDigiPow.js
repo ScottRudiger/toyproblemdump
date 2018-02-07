@@ -40,9 +40,8 @@ describe('sumDigiPow function', () => {
   tests.set([50, 150], [89, 135]);
   tests.set([10, 150], [89, 135]);
 
-  for (const test of tests) {
-    const [input, output] = test;
-    it(`should return ${output} given ${input}`, () => {
+  for (const [input, output] of tests) {
+    it(`should return [${output}] given [${input}]`, () => {
       expect(sumDigiPow(...input)).to.eql(output);
     });
   }
