@@ -23,7 +23,7 @@ sumDigPow(90, 100) == []
 Enjoy it!!
 */
 
-const sumDigPow = (a, b) => {
+let sumDigPow = (a, b) => {
   const result = [];
   for (let i = a; i <= b; i++) {
     const str = `${i}`;
@@ -35,6 +35,8 @@ const sumDigPow = (a, b) => {
   }
   return result;
 };
+
+sumDigPow=(a,b)=>[...Array(b+1).keys()].slice(a).filter(n=>[...`${n}`].reduce((s,d,i)=>s+(+d)**(i+1),0)==n)
 
 const {expect} = require('chai');
 
