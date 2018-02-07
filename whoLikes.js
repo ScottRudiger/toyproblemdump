@@ -15,3 +15,20 @@ For more than 4 names, the number in and 2 others simply increases.
 const likes = names => {
 
 };
+
+const {expect} = require('chai');
+
+describe('likes function', () => {
+  const tests = new Map();
+
+  tests.set([], 'no one likes this');
+  tests.set(['Peter'], 'Peter likes this');
+  tests.set(['Jacob', 'Alex'], 'Jacob and Alex like this');
+  tests.set(['Max', 'John', 'Mark'], 'Max, John and Mark like this');
+  tests.set(['Alex', 'Jacob', 'Mark', 'Max'], 'Alex, Jacob and 2 others like this');
+  tests.set(['Alex', 'Jacob', 'Mark', 'Max', 'Scott'], 'Alex, Jacob and 3 others like this');
+
+  for (const [test, sol] of tests) {
+    it(`should return ${sol}`, () => expect(likes(test)).to.equal(sol));
+  }
+});
