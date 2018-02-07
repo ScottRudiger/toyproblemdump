@@ -32,6 +32,20 @@ likes = names => {
   return len > 3 ? `${names[0]}, ${names[1]} and ${len - 2} others like this` : labels[len];
 };
 
+likes = names => {
+  const likes = names.length;
+  const labels = new Map([
+    [0, 'no one likes this'],
+    [1, `${names[0]} likes this`],
+    [2, `${names[0]} and ${names[1]} like this`],
+    [3, `${names[0]}, ${names[1]} and ${names[2]} like this`],
+    [likes > 3, `${names[0]}, ${names[1]} and ${likes - 2} others like this`]
+  ]);
+  for (const [num, label] of labels) {
+    if (likes === num || num === true) return label;
+  }
+};
+
 const {expect} = require('chai');
 
 describe('likes function', () => {
