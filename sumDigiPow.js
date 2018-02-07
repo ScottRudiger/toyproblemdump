@@ -23,13 +23,22 @@ sumDigPow(90, 100) == []
 Enjoy it!!
 */
 
-const sumDigiPow = (a, b) => {
-
+const sumDigPow = (a, b) => {
+  const result = [];
+  for (let i = a; i <= b; i++) {
+    const str = `${i}`;
+    let sum = 0;
+    for (let j = 0; j < str.length; j++) {
+      sum += str[j] ** (j + 1);
+    }
+    if (sum === i) result.push(i);
+  }
+  return result;
 };
 
 const {expect} = require('chai');
 
-describe('sumDigiPow function', () => {
+describe('sumDigPow function', () => {
   const tests = new Map();
 
   tests.set([1, 10], [1, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -42,7 +51,7 @@ describe('sumDigiPow function', () => {
 
   for (const [input, output] of tests) {
     it(`should return [${output}] given [${input}]`, () => {
-      expect(sumDigiPow(...input)).to.eql(output);
+      expect(sumDigPow(...input)).to.eql(output);
     });
   }
 });
