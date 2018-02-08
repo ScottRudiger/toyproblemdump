@@ -18,18 +18,20 @@ If the input-string is null or empty return exactly this value!
 If n is <= 0 then return the input text.
 */
 
-const encrypt = (text, n) => {
-  if (text) {
-    for (; n > 0; n--) {
-        const [odds, evens] = [[], []];
-        for (let i = 0; i < text.length; i++) {
-          (i % 2 ? odds : evens).push(text[i]);
-        }
-        text = [...odds, ...evens].join``;
-    }
-  }
-  return text;
-};
+// const encrypt = (text, n) => {
+//   if (text) {
+//     for (; n > 0; n--) {
+//         const [odds, evens] = [[], []];
+//         for (let i = 0; i < text.length; i++) {
+//           (i % 2 ? odds : evens).push(text[i]);
+//         }
+//         text = [...odds, ...evens].join``;
+//     }
+//   }
+//   return text;
+// };
+
+encrypt=(t,n)=>n>0?encrypt(t.replace(/.(.|$)/g,'$1')+t.replace(/(.)./g,'$1'),n-1):t
 
 const decrypt = (encryptedText, n) => {
   if (!encryptedText || n <= 0) return encryptedText;
