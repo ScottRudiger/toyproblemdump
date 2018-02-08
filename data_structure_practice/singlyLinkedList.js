@@ -23,7 +23,7 @@ class LinkedList {
     // if head not given
     head === undefined
     // default to null
-    ? null
+    ? this.head = null
     // if first argument is a Node,
     : head instanceof Node
     // set head to it
