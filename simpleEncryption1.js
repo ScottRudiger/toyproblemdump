@@ -20,7 +20,7 @@ If n is <= 0 then return the input text.
 
 const encrypt = (text, n) => {
   if (text) {
-    for (n; n > 0; n--) {
+    for (; n > 0; n--) {
         const [odds, evens] = [[], []];
         for (let i = 0; i < text.length; i++) {
           (i % 2 ? odds : evens).push(text[i]);
@@ -32,7 +32,19 @@ const encrypt = (text, n) => {
 };
 
 const decrypt = (encryptedText, n) => {
-
+  if (!encryptedText || n <= 0) return encryptedText;
+  const mid = encryptedText.length / 2 | 0;
+  let decodedText = encryptedText;
+  for (n; n--;) {
+    [encryptedText, decodedText] = [decodedText, ''];
+    for (let m = mid, l = 0; l < mid, m < encryptedText.length; l++, m++) {
+      decodedText += encryptedText[m];
+      if (l !== mid) {
+        decodedText += encryptedText[l];
+      }
+    }
+  }
+  return decodedText;
 };
 
 const {expect} = require('chai');
