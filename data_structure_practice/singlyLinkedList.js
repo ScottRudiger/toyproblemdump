@@ -48,6 +48,28 @@ class LinkedList {
       if (i === data.length - 1) this.tail = node;
     });
   }
+  add(datum, ...data) {
+    // save reference to old tail
+    const oldTail = this.tail;
+    // save reference to new tail and convert to Node if necessary
+    const newTail = datum instanceof Node ? datum : new Node(datum);
+    // if LinkedList is not empty (head/tail aren't null),
+    if (oldTail) {
+      // set old tail's next property to new tail
+      oldTail.next = newTail;
+    } else {
+      // if empty, set head to newTail
+      this.head = newTail;
+    }
+    // set tail property to new tail
+    this.tail = newTail;
+    // if multiple pieces of data were passed in, call addBatch
+    if (data.length) this.addBatch(data);
+  }
+  addBatch(data) {
+    // call add on each piece of data
+    for (const datum of data) this.add(datum);
+  }
 }
 
 const {expect} = require('chai');
@@ -137,5 +159,28 @@ describe('LinkedList class', () => {
     expect(l.head.next.next).to.equal(n1);
     expect(l.head.next.next.next).to.equal(n2);
     expect(l.tail).to.equal(n2);
+  });
+  context('add method', () => {
+    it('should add a Node to the end of the LinkedList', () => {
+      const l = new LinkedList(0, 1, 2);
+      const n = new Node(3);
+      l.add(n);
+      expect(l.head.next.next.next).to.equal(n);
+      expect(l.tail).to.equal(n);
+    });
+    it('should add a Node if passed data', () => {
+      const l = new LinkedList();
+      l.add(2);
+      expect(l.head.data).to.equal(2);
+    });
+    it('should add multiple', () => {
+      const l = new LinkedList(0);
+      const n = new Node(2);
+      l.add(1, n);
+      expect(l.head.data).to.equal(0);
+      expect(l.head.next.data).to.equal(1);
+      expect(l.head.next.next).to.equal(n);
+      expect(l.tail).to.equal(n);
+    });
   });
 });
