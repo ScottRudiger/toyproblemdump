@@ -19,7 +19,16 @@ If n is <= 0 then return the input text.
 */
 
 const encrypt = (text, n) => {
-
+  if (text) {
+    for (let i = 1; i < text.length; i += 2) {
+      encrypted += text[i];
+    }
+    for (let i = 0; i < text.length; i += 2) {
+      encrypted += text[i];
+    }
+    return encrypted;
+  }
+  return text;
 };
 
 const decrypt = (encryptedText, n) => {
