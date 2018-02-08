@@ -62,7 +62,8 @@ const tests = [
   [['This is a test!', -1], 'This is a test!'],
   [['This kata is very interesting!', 1], 'hskt svr neetn!Ti aai eyitrsig'],
   [['', 0], ''],
-  [[null, 0], null]
+  [[null, 0], null],
+  [[null, 1], null]
 ];
 
 describe('encrypt function', () => {
