@@ -70,7 +70,9 @@ class LinkedList {
     // call push on each piece of data
     for (const datum of data) this.push(datum);
   }
-
+  getLast() {
+    return this.tail;
+  }
 }
 
 const {expect} = require('chai');
@@ -161,6 +163,7 @@ describe('LinkedList class', () => {
     expect(l.head.next.next.next).to.equal(n2);
     expect(l.tail).to.equal(n2);
   });
+
   context('push method', () => {
     it('should add a Node to the end of the LinkedList', () => {
       const l = new LinkedList(0, 1, 2);
@@ -182,6 +185,15 @@ describe('LinkedList class', () => {
       expect(l.head.next.data).to.equal(1);
       expect(l.head.next.next).to.equal(n);
       expect(l.tail).to.equal(n);
+    });
+  });
+
+  context('getLast method', () => {
+    it('should return the last Node', () => {
+      const l = new LinkedList(1, 2);
+      const n = new Node(3);
+      l.push(n);
+      expect(l.getLast()).to.equal(n);
     });
   });
 });
