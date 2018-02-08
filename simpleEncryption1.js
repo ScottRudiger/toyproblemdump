@@ -20,13 +20,13 @@ If n is <= 0 then return the input text.
 
 const encrypt = (text, n) => {
   if (text) {
-    for (let i = 1; i < text.length; i += 2) {
-      encrypted += text[i];
+    for (n; n > 0; n--) {
+        const [odds, evens] = [[], []];
+        for (let i = 0; i < text.length; i++) {
+          (i % 2 ? odds : evens).push(text[i]);
+        }
+        text = [...odds, ...evens].join``;
     }
-    for (let i = 0; i < text.length; i += 2) {
-      encrypted += text[i];
-    }
-    return encrypted;
   }
   return text;
 };
@@ -50,7 +50,7 @@ const tests = [
 ];
 
 describe('encrypt function', () => {
-  for ([input, output] of tests) {
+  for (const [input, output] of tests) {
     it(`should return ${output} given (${input})`, () => {
       expect(encrypt(...input)).to.equal(output);
     });
@@ -58,7 +58,7 @@ describe('encrypt function', () => {
 });
 
 describe('decrypt function', () => {
-  for ([input, output] of tests) {
+  for (const [input, output] of tests) {
     it(`should return ${input[0]} given (${output}, ${input[1]})`, () => {
       expect(decrypt(output, input[1])).to.equal(input[0]);
     });
