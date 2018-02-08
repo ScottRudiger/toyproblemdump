@@ -31,7 +31,7 @@ let encrypt = (text, n) => {
   return text;
 };
 
-encrypt=(t,n)=>n>0?encrypt(t.replace(/.(.|$)/g,'$1')+t.replace(/(.)./g,'$1'),n-1):t
+encrypt=(t,n)=>n>0&&t?encrypt(t.replace(/.(.|$)/g,'$1')+t.replace(/(.)./g,'$1'),n-1):t
 
 let decrypt = (encryptedText, n) => {
   if (!encryptedText || n <= 0) return encryptedText;
@@ -49,7 +49,7 @@ let decrypt = (encryptedText, n) => {
   return decodedText;
 };
 
-decrypt=(t,n)=>n>0?decrypt((m=t.length/2|0,t.slice(m).replace(/./g,(c,i)=>c+(i<m?t[i]:''))),n-1):t
+decrypt=(t,n)=>n>0&&t?decrypt((m=t.length/2|0,t.slice(m).replace(/./g,(c,i)=>c+(i<m?t[i]:''))),n-1):t
 
 const {expect} = require('chai');
 
