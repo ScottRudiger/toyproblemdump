@@ -18,22 +18,22 @@ If the input-string is null or empty return exactly this value!
 If n is <= 0 then return the input text.
 */
 
-// const encrypt = (text, n) => {
-//   if (text) {
-//     for (; n > 0; n--) {
-//         const [odds, evens] = [[], []];
-//         for (let i = 0; i < text.length; i++) {
-//           (i % 2 ? odds : evens).push(text[i]);
-//         }
-//         text = [...odds, ...evens].join``;
-//     }
-//   }
-//   return text;
-// };
+let encrypt = (text, n) => {
+  if (text) {
+    for (; n > 0; n--) {
+        const [odds, evens] = [[], []];
+        for (let i = 0; i < text.length; i++) {
+          (i % 2 ? odds : evens).push(text[i]);
+        }
+        text = [...odds, ...evens].join``;
+    }
+  }
+  return text;
+};
 
 encrypt=(t,n)=>n>0?encrypt(t.replace(/.(.|$)/g,'$1')+t.replace(/(.)./g,'$1'),n-1):t
 
-const decrypt = (encryptedText, n) => {
+let decrypt = (encryptedText, n) => {
   if (!encryptedText || n <= 0) return encryptedText;
   const mid = encryptedText.length / 2 | 0;
   let decodedText = encryptedText;
@@ -48,6 +48,8 @@ const decrypt = (encryptedText, n) => {
   }
   return decodedText;
 };
+
+decrypt=(t,n)=>n>0?decrypt((m=t.length/2|0,t.slice(m).replace(/./g,(c,i)=>c+(i<m?t[i]:''))),n-1):t
 
 const {expect} = require('chai');
 
