@@ -18,6 +18,38 @@ class Node {
   }
 }
 
+class LinkedList {
+  constructor(head, ...data) {
+    // if head not given
+    head === undefined
+    // default to null
+    ? null
+    // if first argument is a Node,
+    : head instanceof Node
+    // set head to it
+    ? this.head = head
+    // otherwise, create a new Node and set head to it
+    : this.head = new Node(head);
+    // create temp variable to hold current node, starting at head
+    let node = this.head;
+    // if only one Node is passed in, set tail to same Node as head
+    !data.length ? this.tail = node
+    // otherwise, iterate through the data
+    : data.forEach((datum, i) => {
+      // if each datum is a Node,
+      datum instanceof Node
+      // set node.next to that datum
+      ? node.next = datum
+      // else, create a Node with that datum and set node.next to it
+      : node.next = new Node(datum);
+      // update node to current Node
+      node = node.next;
+      // if last Node in data, set it to tail
+      if (i === data.length - 1) this.tail = node;
+    });
+  }
+}
+
 const {expect} = require('chai');
 
 describe('Node class', () => {
@@ -44,5 +76,66 @@ describe('Node class', () => {
   it('should handle edge case where passed-in next is meant to have data: null', () => {
     const n = new Node(5, null);
     expect(n.next.data).to.be.null;
+  });
+});
+
+describe('LinkedList class', () => {
+  it('should be a class', () => {
+    expect(new LinkedList() instanceof LinkedList);
+  });
+  it('should accept one Node', () => {
+    const n = new Node(5);
+    const l = new LinkedList(n);
+    expect(l.head).to.equal(n);
+    expect(l.tail).to.equal(n);
+  });
+  it('should accept one piece of data', () => {
+    const l = new LinkedList(6);
+    expect(l.head instanceof Node);
+    expect(l.head.data).to.equal(6);
+    expect(l.tail.data).to.equal(6);
+    expect(l.head.next).to.be.null;
+  });
+  it('should accept multiple unlinked Nodes', () => {
+    const n1 = new Node(1);
+    const n2 = new Node(2);
+    const n3 = new Node(3);
+    const l = new LinkedList(n1, n2, n3);
+    expect(l.head).to.equal(n1);
+    expect(l.head.next).to.equal(n2);
+    expect(l.head.next.next).to.equal(n3);
+    expect(l.tail).to.equal(n3);
+    expect(l.tail.next).to.be.null;
+  });
+  it('should accept multiple pieces of data', () => {
+    const l = new LinkedList(1, 2, 3);
+    expect(l.head.data).to.equal(1);
+    expect(l.head.next.data).to.equal(2);
+    expect(l.head.next.next.data).to.equal(3);
+    expect(l.tail.data).to.equal(3);
+    expect(l.tail.next).to.be.null;
+  });
+  it('should accept previously linked Nodes', () => {
+    const n3 = new Node(3);
+    const n2 = new Node(2, n3);
+    const n1 = new Node(1, n2);
+    const l = new LinkedList(n1, n2, n3);
+    expect(l.head).to.equal(n1);
+    expect(l.head.data).to.equal(1);
+    expect(l.head.next).to.equal(n2);
+    expect(l.head.next.next).to.equal(n3);
+    expect(l.tail).to.equal(n3);
+    expect(l.tail.data).to.equal(3);
+  });
+  it('should accept a mixture of data and linked/unlinked Nodes', () => {
+    const n = new Node(2);
+    const n2 = new Node(4);
+    const n1 = new Node(3, n2);
+    const l = new LinkedList(1, n, n1, n2);
+    expect(l.head.data).to.equal(1);
+    expect(l.head.next).to.equal(n);
+    expect(l.head.next.next).to.equal(n1);
+    expect(l.head.next.next.next).to.equal(n2);
+    expect(l.tail).to.equal(n2);
   });
 });
