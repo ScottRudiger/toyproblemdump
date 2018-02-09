@@ -109,6 +109,19 @@ class LinkedList {
     });
     return last;
   }
+  size() { // O(n) looping for size rather than increment/decrement w/ each operation
+    // initialize size at 0
+    let size = 0;
+    // if list is not empty,
+    if (this.head) {
+      // iterate through nodes
+      this.traverse((node, i) => {
+        // if node is the tail, set size to i + 1 since indices are zero-based
+        if (node === this.tail) size = i + 1;
+      });
+    }
+    return size;
+  }
 }
 
 const {expect} = require('chai');
@@ -280,6 +293,7 @@ describe('LinkedList class', () => {
       expect(result).to.equal(28);
     });
   });
+
   context('pop method', () => {
     const l = new LinkedList(1, 2);
     const n = new Node(3);
@@ -293,6 +307,17 @@ describe('LinkedList class', () => {
       l.pop();
       expect(l.head.next.next).to.be.null;
       expect(l.tail.data).to.equal(2);
+    });
+  });
+
+  context('size method', () => {
+    it('should return 0 for an empty list', () => {
+      const l = new LinkedList();
+      expect(l.size()).to.equal(0);
+    });
+    it('should return 3 for a list with 3 Nodes', () => {
+      const l = new LinkedList(1, 2, 3);
+      expect(l.size()).to.equal(3);
     });
   });
 });
