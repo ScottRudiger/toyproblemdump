@@ -73,6 +73,20 @@ class LinkedList {
   getLast() {
     return this.tail;
   }
+  *[Symbol.iterator]() {
+    // start at head
+    let node = this.head;
+    // if head isn't null (non-empty linked list)
+    if (node) {
+      // until node is null
+      while(node) {
+        // yield each node
+        yield node;
+        // and set node to next node
+        node = node.next;
+      }
+    }
+  }
 }
 
 const {expect} = require('chai');
@@ -194,6 +208,23 @@ describe('LinkedList class', () => {
       const n = new Node(3);
       l.push(n);
       expect(l.getLast()).to.equal(n);
+    });
+  });
+
+  context('should be iterable', () => {
+    it(', work with for..of', () => {
+      const l = new LinkedList(0, 1, 2, 3);
+      let result = 0;
+      for (const node of l) {
+        result += node.data;
+      }
+      expect(result).to.equal(6);
+    });
+    it('and work with ...', () => {
+      const l = [...new LinkedList(0, 1, 2, 3)];
+      let result = 0;
+      l.forEach(node => result += node.data);
+      expect(result).to.equal(6);
     });
   });
 });
