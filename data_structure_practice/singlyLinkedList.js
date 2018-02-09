@@ -138,6 +138,14 @@ class LinkedList {
       }
     });
   }
+  copy() {
+    // initialize copy (empty array)
+    const copy = [];
+    // traverse the original LinkedList, pushing each Node's data to the copy
+    this.traverse(n => copy.push(n.data));
+    // return a new LinkedList based on the copied data
+    return new LinkedList(...copy);
+  }
 }
 
 const {expect} = require('chai');
@@ -372,6 +380,19 @@ describe('LinkedList class', () => {
       l.insertAt(23, 4);
       expect(l.tail.data).to.equal(4);
       expect(l.head.next.next.next.next.data).to.equal(4);
+    });
+  });
+
+  context('copy method', () => {
+    const original = new LinkedList(1, 2, 3);
+    const copy = original.copy();
+    it('should return a copy with the same data as the original', () => {
+      expect(copy).to.eql(original);
+    });
+    it('should not mutate original when changes are made to a copy', () => {
+      copy.push(4);
+      expect(original).to.eql(new LinkedList(1, 2, 3));
+      expect(copy).to.eql(new LinkedList(1, 2, 3, 4));
     });
   });
 });
