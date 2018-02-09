@@ -152,6 +152,22 @@ class LinkedList {
     // return a new LinkedList based on the filtered data
     return new LinkedList(...filtered);
   }
+  map(fn) {
+    // initialize copy as empty array
+    const copy = [];
+    // intialize i at -1
+    let i = -1
+    // loop through nodes
+    for (let node of this) {
+      // save reference to original node
+      const original = node;
+      // apply map fn to node and push it to copy
+      copy.push(fn(node, ++i, this));
+      // reset node original LinkedList to prevent mutation
+      node = original;
+    }
+    return new LinkedList(...copy);
+  }
 }
 
 const {expect} = require('chai');
@@ -409,6 +425,21 @@ describe('LinkedList class', () => {
     });
     it('should not mutate the original LinkedList', () => {
       expect(l).to.eql(new LinkedList(1, 2, 3));
+    });
+  });
+
+  context('map method', () => {
+    const original = new LinkedList(1, 2, 3);
+    it('should return a copy of the original, altered by the mapping fn', () => {
+      const copy = original.map((n, i, list) => {
+        if (n === list.head) return n.data + 6;
+        if (!(n.data % 2)) return n.data + 5;
+        if (i === 2) return n.data * 2 + 1;
+      });
+      expect(copy).to.eql(new LinkedList(7, 7, 7));
+    });
+    it('should not mutate the original', () => {
+      expect(original).to.eql(new LinkedList(1, 2, 3));
     });
   });
 });
