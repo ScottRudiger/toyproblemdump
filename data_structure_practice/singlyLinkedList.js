@@ -147,26 +147,37 @@ class LinkedList {
     return new LinkedList(...copy);
   }
   filter(fn) {
-    // make a copy of original LinkedList and filter it based on passed-in fn
-    const filtered = [...this.copy()].filter(fn);
-    // return a new LinkedList based on the filtered data
+    // initialize empty array to hold filtered Nodes
+    const filtered = [];
+    // initialize i at -1
+    let i = -1;
+    // iterate through Nodes
+    for (let node of this) {
+      // apply fn to each Node,
+      if (fn(node, ++i, this)) {
+        // and push it to filtered if fn returns true
+        filtered.push(node.data);
+      }
+    }
+    // return a new LinkedList, with data passed in from filtered
     return new LinkedList(...filtered);
   }
   map(fn) {
-    // initialize copy as empty array
-    const copy = [];
+    // initialize empty array to hold mapped Nodes
+    const mapped = [];
     // intialize i at -1
     let i = -1
     // loop through nodes
     for (let node of this) {
       // save reference to original node
       const original = node;
-      // apply map fn to node and push it to copy
-      copy.push(fn(node, ++i, this));
-      // reset node original LinkedList to prevent mutation
+      // apply map fn to node and push it to mapped
+      mapped.push(fn(node, ++i, this));
+      // reset node on original LinkedList to prevent mutation
       node = original;
     }
-    return new LinkedList(...copy);
+    // return a new LinkedList, with data passed in from mapped
+    return new LinkedList(...mapped);
   }
 }
 
@@ -422,6 +433,12 @@ describe('LinkedList class', () => {
     const l = new LinkedList(1, 2, 3);
     it('should return a new LinkedList filtered based on passed-in function', () => {
       expect(l.filter(n => n.data % 2)).to.eql(new LinkedList(1, 3));
+    });
+    it('should work when using index and list params', () => {
+      const filtered = l.filter((n, index, list) => {
+        return index === 1 && n !== list.tail && n !== list.head;
+      });
+      expect(filtered).to.eql(new LinkedList(2));
     });
     it('should not mutate the original LinkedList', () => {
       expect(l).to.eql(new LinkedList(1, 2, 3));
