@@ -146,6 +146,12 @@ class LinkedList {
     // return a new LinkedList based on the copied data
     return new LinkedList(...copy);
   }
+  filter(fn) {
+    // make a copy of original LinkedList and filter it based on passed-in fn
+    const filtered = [...this.copy()].filter(fn);
+    // return a new LinkedList based on the filtered data
+    return new LinkedList(...filtered);
+  }
 }
 
 const {expect} = require('chai');
@@ -393,6 +399,16 @@ describe('LinkedList class', () => {
       copy.push(4);
       expect(original).to.eql(new LinkedList(1, 2, 3));
       expect(copy).to.eql(new LinkedList(1, 2, 3, 4));
+    });
+  });
+
+  context('filter method', () => {
+    const l = new LinkedList(1, 2, 3);
+    it('should return a new LinkedList filtered based on passed-in function', () => {
+      expect(l.filter(n => n.data % 2)).to.eql(new LinkedList(1, 3));
+    });
+    it('should not mutate the original LinkedList', () => {
+      expect(l).to.eql(new LinkedList(1, 2, 3));
     });
   });
 });
