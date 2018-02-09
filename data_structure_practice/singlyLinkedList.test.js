@@ -142,7 +142,7 @@ describe('LinkedList class', () => {
   context('traverse method', () => {
     it('should not throw on an empty list', () => {
       const l = new LinkedList();
-      expect(l.traverse(console.log)).not.to.throw;
+      expect(() => l.traverse(console.log)).not.to.throw();
     });
     it('should apply a passed-in function', () => {
       const l = new LinkedList(1);
@@ -204,7 +204,7 @@ describe('LinkedList class', () => {
       l.tail = null;
     });
     it('should throw an error if index is negative', () => {
-      expect(() => l.insertAt(-2, 2)).to.throw;
+      expect(() => l.insertAt(-2, 2)).to.throw('insertAt: index must be > -1');
     });
     it('should set head/tail when the list is empty, even when index > 0', () => {
       l.insertAt(23, 2);
@@ -295,7 +295,7 @@ describe('LinkedList class', () => {
       expect(l).to.eql(new LinkedList(1, 2, 3));
     });
     it('should throw an error given a negative index', () => {
-      expect(() => l.removeAt(-1)).to.throw;
+      expect(() => l.removeAt(-1)).to.throw('removeAt: index must be > -1');
     });
     it('should remove a middle Node at the specified index', () => {
       expect(l.removeAt(1).data).to.equal(1);
