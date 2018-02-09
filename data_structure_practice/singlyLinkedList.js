@@ -2,6 +2,8 @@
 
 class Node {
   constructor(data, next) {
+    // if data is already a node, return it (allows for methods to take in data or nodes)
+    if (data instanceof Node) return data;
     // set data property on Node
     this.data = data;
     // set next property: if next is not specified,
@@ -24,35 +26,14 @@ class LinkedList {
     head === undefined
     // default to null
     ? this.head = null
-    // if first argument is a Node,
-    : head instanceof Node
-    // set head to it
-    ? this.head = head
-    // otherwise, create a new Node and set head to it
-    : this.head = new Node(head);
-    // create temp variable to hold current node, starting at head
-    let node = this.head;
-    // if only one Node is passed in, set tail to same Node as head
-    !data.length ? this.tail = node
-    // otherwise, iterate through the data
-    : data.forEach((datum, i) => {
-      // if each datum is a Node,
-      datum instanceof Node
-      // set node.next to that datum
-      ? node.next = datum
-      // else, create a Node with that datum and set node.next to it
-      : node.next = new Node(datum);
-      // update node to current Node
-      node = node.next;
-      // if last Node in data, set it to tail
-      if (i === data.length - 1) this.tail = node;
-    });
+    // otherwise, set list's head to head and push the rest of the data
+    : this.push(head, ...data);
   }
   push(datum, ...data) { // O(1) to add one item, O(n) to add multiple
     // save reference to old tail
     const oldTail = this.tail;
-    // save reference to new tail and convert to Node if necessary
-    const newTail = datum instanceof Node ? datum : new Node(datum);
+    // save reference to new tail
+    const newTail = new Node(datum);
     // if LinkedList is not empty (head/tail aren't null),
     if (oldTail) {
       // set old tail's next property to new tail
@@ -107,6 +88,7 @@ class LinkedList {
         this.tail = node;
       }
     });
+    // return the popped Node
     return last;
   }
   size() { // O(n) looping for size rather than increment/decrement w/ each operation
