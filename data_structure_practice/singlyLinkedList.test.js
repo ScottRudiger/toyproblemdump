@@ -278,4 +278,33 @@ describe('LinkedList class', () => {
       expect(original).to.eql(new LinkedList(1, 2, 3));
     });
   });
+
+  context('removeAt method', () => {
+    let l = new LinkedList(0, 1, 2, 3);
+    afterEach(() => l = new LinkedList(0, 1, 2, 3));
+    it('should remove and return the tail Node', () => {
+      expect(l.removeAt(3).data).to.equal(3);
+      expect(l.tail.data).to.equal(2);
+      expect(l.head.next.next.data).to.equal(2);
+    });
+    it('should remove the tail node given an index > list length - 1', () => {
+      expect(l.removeAt(23).data).to.equal(3);
+      expect(l.tail.data).to.equal(2);
+      expect(l.head.next.next.data).to.equal(2);
+    });
+    it('should remove the head node', () => {
+      expect(l.removeAt(0).data).to.equal(0);
+      expect(l.head.data).to.equal(1);
+      expect(l.head.next.data).to.equal(2);
+    });
+    it('should throw an error given a negative index', () => {
+      expect(() => l.removeAt(-1)).to.throw;
+    });
+    it('should remove a middle Node at the specified index', () => {
+      expect(l.removeAt(1).data).to.equal(1);
+      expect(l.head.data).to.equal(0);
+      expect(l.tail.data).to.equal(3);
+      expect(l).to.eql(new LinkedList(0, 2, 3));
+    });
+  });
 });
