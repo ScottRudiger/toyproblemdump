@@ -95,6 +95,20 @@ class LinkedList {
       fn(node, ++i, this);
     }
   }
+  pop() { // O(n) to update tail since this isn't a doubly linked list
+    // save reference to last Node
+    const last = this.getLast();
+    // iterate until node.next is last
+    this.traverse(node => {
+      if (node.next === last) {
+        // separate last from list by setting the previous Node's next to null
+        node.next = null;
+        // set tail to previous Node
+        this.tail = node;
+      }
+    });
+    return last;
+  }
 }
 
 const {expect} = require('chai');
@@ -264,6 +278,21 @@ describe('LinkedList class', () => {
       let result = 0;
       l.traverse((n, i, list) => result += n.data * list.head.data);
       expect(result).to.equal(28);
+    });
+  });
+  context('pop method', () => {
+    const l = new LinkedList(1, 2);
+    const n = new Node(3);
+    beforeEach(() => {
+      l.push(n);
+    });
+    it('should return the last Node', () => {
+      expect(l.pop()).to.equal(n);
+    });
+    it('should remove the last Node from the LinkedList', () => {
+      l.pop();
+      expect(l.head.next.next).to.be.null;
+      expect(l.tail.data).to.equal(2);
     });
   });
 });
