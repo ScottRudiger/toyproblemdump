@@ -116,16 +116,23 @@ class LinkedList {
       return;
     }
     // traverse list for all other cases
-    let done = false;
+    let done;
+    // pass on refactoring further to use break instead of done flag
     this.traverse((node, i) => {
-      // if node is the node before specified index or tail
-      if (!done && (i + 1 === index || node === this.tail)) {
+      if (done) return;
+      // if node is the tail,
+      if (node === this.tail) {
+        // push the data
+        this.push(data);
+        // to avoid stack overflow, set done flag to true
+        return done = true;
+      }
+      // if node is the node before specified index
+      if (i + 1 === index) {
         // save node.next
         const next = node.next;
         // set next to new Node and relink next
         node.next = new Node(data, next);
-        // relink tail
-        if (node === this.tail) this.tail = node.next;
         // to avoid stack overflow, set done flag to true
         done = true;
       }
