@@ -87,6 +87,14 @@ class LinkedList {
       }
     }
   }
+  traverse(fn) {
+    // iterate through nodes
+    let i = -1;
+    for (const node of this) {
+      // apply fn to each node
+      fn(node, ++i, this);
+    }
+  }
 }
 
 const {expect} = require('chai');
@@ -225,6 +233,37 @@ describe('LinkedList class', () => {
       let result = 0;
       l.forEach(node => result += node.data);
       expect(result).to.equal(6);
+    });
+  });
+
+  context('traverse method', () => {
+    it('should not throw on an empty list', () => {
+      const l = new LinkedList();
+      expect(l.traverse(console.log)).not.to.throw;
+    });
+    it('should apply a passed-in function', () => {
+      const l = new LinkedList(1);
+      let result;
+      l.traverse(n => result = n.data + 1);
+      expect(result).to.equal(2);
+    });
+    it('should apply traverse through every node', () => {
+      const l = new LinkedList(1, 2, 3);
+      let result = 0;
+      l.traverse(n => result += n.data);
+      expect(result).to.equal(6);
+    });
+    it('should work with indices', () => {
+      const l = new LinkedList(0, 1, 2);
+      let result = 0;
+      l.traverse((n, i) => result += n.data * i);
+      expect(result).to.equal(5);
+    });
+    it('should work with list reference', () => {
+      const l = new LinkedList(2, 3, 4, 5);
+      let result = 0;
+      l.traverse((n, i, list) => result += n.data * list.head.data);
+      expect(result).to.equal(28);
     });
   });
 });
