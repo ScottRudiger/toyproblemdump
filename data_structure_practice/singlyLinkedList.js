@@ -48,7 +48,7 @@ class LinkedList {
       if (i === data.length - 1) this.tail = node;
     });
   }
-  push(datum, ...data) {
+  push(datum, ...data) { // O(1) to add one item, O(n) to add multiple
     // save reference to old tail
     const oldTail = this.tail;
     // save reference to new tail and convert to Node if necessary
@@ -66,7 +66,7 @@ class LinkedList {
     // if multiple pieces of data were passed in, call pushBatch
     if (data.length) this.pushBatch(data);
   }
-  pushBatch(data) {
+  pushBatch(data) { // O(n)
     // call push on each piece of data
     for (const datum of data) this.push(datum);
   }
@@ -87,7 +87,7 @@ class LinkedList {
       }
     }
   }
-  traverse(fn) {
+  traverse(fn) { // O(n)
     // iterate through nodes
     let i = -1;
     for (const node of this) {
