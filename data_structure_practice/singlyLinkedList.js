@@ -122,6 +122,33 @@ class LinkedList {
     }
     return size;
   }
+  insertAt(index, data) {
+    // if index is < 0, throw an error
+    if (index < 0) throw new Error('index must be > -1');
+    // if list is empty set head/tail to data, regardless of index
+    if (!this.head) return this.push(data);
+    // if index is 0,
+    if (index === 0) {
+      // set head to data, and head's next to old head
+      this.head = new Node(data, this.head);
+      return;
+    }
+    // traverse list for all other cases
+    let done = false;
+    this.traverse((node, i) => {
+      // if node is the node before specified index or tail
+      if (!done && (i + 1 === index || node === this.tail)) {
+        // save node.next
+        const next = node.next;
+        // set next to new Node and relink next
+        node.next = new Node(data, next);
+        // relink tail
+        if (node === this.tail) this.tail = node.next;
+        // to avoid stack overflow, set done flag to true
+        done = true;
+      }
+    });
+  }
 }
 
 const {expect} = require('chai');
@@ -318,6 +345,44 @@ describe('LinkedList class', () => {
     it('should return 3 for a list with 3 Nodes', () => {
       const l = new LinkedList(1, 2, 3);
       expect(l.size()).to.equal(3);
+    });
+  });
+
+  context('insertAt method', () => {
+    const l = new LinkedList();
+    afterEach(() => {
+      l.head = null;
+      l.tail = null;
+    });
+    it('should throw an error if index is negative', () => {
+      expect(() => l.insertAt(-2, 2)).to.throw;
+    });
+    it('should set head/tail when the list is empty, even when index > 0', () => {
+      l.insertAt(23, 2);
+      expect(l.head.data).to.equal(2);
+      expect(l.tail.data).to.equal(2);
+    });
+    it('should insert data at head when index is 0 for a non-empty list', () => {
+      l.push(1, 2, 3);
+      l.insertAt(0, 0);
+      expect(l.head.data).to.equal(0);
+      expect(l.head.next.data).to.equal(1);
+    });
+    it('should insert data at the specified index', () => {
+      l.push(0, 1, 3);
+      l.insertAt(2, 2);
+      expect(l.head.next.next.data).to.equal(2);
+    });
+    it('should insert data at tail if index is >= the list\'s size', () => {
+      l.push(0, 1, 2);
+
+      l.insertAt(3, 3);
+      expect(l.tail.data).to.equal(3);
+      expect(l.head.next.next.next.data).to.equal(3);
+
+      l.insertAt(23, 4);
+      expect(l.tail.data).to.equal(4);
+      expect(l.head.next.next.next.next.data).to.equal(4);
     });
   });
 });
