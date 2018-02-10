@@ -23,9 +23,9 @@ class Node {
 class LinkedList {
   constructor(head, ...data) {
     // if head not given
-    head === undefined
-    // default to null
-    ? this.head = null
+    !arguments.length
+    // default head/tail to null
+    ? this.tail = this.head = null
     // otherwise, set list's head to head and push the rest of the data
     : this.push(head, ...data);
   }
