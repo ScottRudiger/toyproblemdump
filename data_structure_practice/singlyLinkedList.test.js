@@ -288,9 +288,17 @@ describe('LinkedList class', () => {
   });
 
   context('shift method', () => {
-    const l = new LinkedList(1, 2, 3);
-    expect(l.shift().data).to.equal(1);
-    expect(l).to.eql(new LinkedList(2, 3));
+    it('should remove and return the first Node in a list', () => {
+      const l = new LinkedList(1, 2, 3);
+      expect(l.shift().data).to.equal(1);
+      expect(l).to.eql(new LinkedList(2, 3));
+    });
+    it('should leave an empty list when called on a list where size = 1', () => {
+      const l = new LinkedList(1);
+      expect(l.shift().data).to.equal(1);
+      expect(l.tail).to.be.null;
+      expect(l).to.eql(new LinkedList());
+    });
   });
 
   context('unshift method', () => {
