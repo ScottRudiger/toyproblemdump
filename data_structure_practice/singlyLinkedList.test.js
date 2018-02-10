@@ -279,6 +279,14 @@ describe('LinkedList class', () => {
     });
   });
 
+  context('clear method', () => {
+    const l = new LinkedList(1, 2, 3);
+    it('should remove all Nodes from the LinkedList', () => {
+      l.clear();
+      expect(l).to.eql(new LinkedList());
+    });
+  });
+
   context('removeAt method', () => {
     let l = new LinkedList(0, 1, 2, 3);
     afterEach(() => l = new LinkedList(0, 1, 2, 3));

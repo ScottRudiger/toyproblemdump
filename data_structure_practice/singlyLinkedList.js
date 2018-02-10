@@ -179,6 +179,10 @@ class LinkedList {
     // return a new LinkedList, with data passed in from mapped
     return new LinkedList(...mapped);
   }
+  clear() {
+    this.head = null;
+    this.tail = null;
+  }
 }
 
 module.exports = {Node, LinkedList};
