@@ -105,8 +105,8 @@ class LinkedList {
     return size;
   }
   insertAt(index, data) {
-    // if index is < 0, throw an error
-    if (index < 0) throw new Error('insertAt: index must be > -1');
+    // if index is < 0 or undefined, throw an error
+    if (index < 0 || index === undefined) throw new Error('insertAt: index must be > -1');
     // if list is empty set head/tail to data, regardless of index
     if (!this.head) return this.push(data);
     // if index is 0,
