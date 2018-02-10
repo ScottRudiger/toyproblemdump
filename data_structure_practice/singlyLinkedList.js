@@ -105,16 +105,10 @@ class LinkedList {
     return size;
   }
   insertAt(index, data) {
-    // if index is < 0 or undefined, throw an error
-    if (index < 0 || index === undefined) throw new Error('insertAt: index must be > -1');
-    // if list is empty set head/tail to data, regardless of index
-    if (!this.head) return this.push(data);
-    // if index is 0,
-    if (index === 0) {
-      // set head to data, and head's next to old head
-      this.head = new Node(data, this.head);
-      return;
-    }
+    // if index is 0 or list is empty, place data at head
+    if (index === 0 || !this.head && index >= 0) return this.unshift(data);
+    // if index is < 0 or undefined/null, throw an error
+    if (index < 0 || !index) throw new Error('insertAt: index must be > -1');
     // traverse list for all other cases
     let done;
     // pass on refactoring further to use break instead of done flag
