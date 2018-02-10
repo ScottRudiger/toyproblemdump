@@ -188,6 +188,12 @@ class LinkedList {
     this.head = removed.next;
     return removed;
   }
+  unshift(data) {
+    // if list is empty, set head/tail to data
+    if (!this.head) return this.push(data);
+    // otherwise, set head to data and head.next to old head
+    this.head = new Node(data, this.head);
+  }
 }
 
 module.exports = {Node, LinkedList};

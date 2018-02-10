@@ -293,6 +293,20 @@ describe('LinkedList class', () => {
     expect(l).to.eql(new LinkedList(2, 3));
   });
 
+  context('unshift method', () => {
+    it('should place data at the head of an empty LinkedList', () => {
+      const l = new LinkedList();
+      l.unshift(0);
+      expect(l.head.data).to.equal(0);
+      expect(l.head.next).to.be.null;
+    });
+    it('should place data at the head of a non-empty list', () => {
+      const l = new LinkedList(0);
+      l.unshift(-1);
+      expect(l).to.eql(new LinkedList(-1, 0));
+    });
+  });
+
   context('removeAt method', () => {
     let l = new LinkedList(0, 1, 2, 3);
     afterEach(() => l = new LinkedList(0, 1, 2, 3));
