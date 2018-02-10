@@ -183,6 +183,11 @@ class LinkedList {
     this.head = null;
     this.tail = null;
   }
+  shift() {
+    const removed = this.head;
+    this.head = removed.next;
+    return removed;
+  }
 }
 
 module.exports = {Node, LinkedList};

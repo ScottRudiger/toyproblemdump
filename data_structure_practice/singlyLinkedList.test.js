@@ -287,6 +287,12 @@ describe('LinkedList class', () => {
     });
   });
 
+  context('shift method', () => {
+    const l = new LinkedList(1, 2, 3);
+    expect(l.shift().data).to.equal(1);
+    expect(l).to.eql(new LinkedList(2, 3));
+  });
+
   context('removeAt method', () => {
     let l = new LinkedList(0, 1, 2, 3);
     afterEach(() => l = new LinkedList(0, 1, 2, 3));
