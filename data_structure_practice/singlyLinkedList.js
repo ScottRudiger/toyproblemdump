@@ -109,28 +109,17 @@ class LinkedList {
     if (index === 0 || !this.head && index >= 0) return this.unshift(data);
     // if index is < 0 or undefined/null, throw an error
     if (index < 0 || !index) throw new Error('insertAt: index must be > -1');
-    // traverse list for all other cases
-    let done;
-    // pass on refactoring further to use break instead of done flag
-    this.traverse((node, i) => {
-      if (done) return;
-      // if node is the tail,
-      if (node === this.tail) {
-        // push the data
-        this.push(data);
-        // to avoid stack overflow, set done flag to true
-        return done = true;
+    // traverse list for all other cases:
+    let i = -1;
+    for (const node of this) {
+      // if node is the tail, push the data
+      if (node === this.tail) return this.push(data);
+      // if node is the node before specified index,
+      if (++i + 1 === index) {
+        // set node's next to new Node and relink old next; e.g., b -> (a, c) -> (a, b, c)
+        return node.next = new Node(data, node.next);
       }
-      // if node is the node before specified index
-      if (i + 1 === index) {
-        // save node.next
-        const next = node.next;
-        // set next to new Node and relink next
-        node.next = new Node(data, next);
-        // to avoid stack overflow, set done flag to true
-        done = true;
-      }
-    });
+    }
   }
   copy() {
     // initialize copy (empty array)
