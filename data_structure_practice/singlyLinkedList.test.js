@@ -1,4 +1,4 @@
-const {Node, LinkedList} = require('./singlyLinkedList');
+const [Node, LinkedList] = require('./singlyLinkedList');
 
 const { expect } = require('chai');
 
