@@ -322,9 +322,9 @@ describe('LinkedList class', () => {
       expect(l.removeAt(3).data).to.equal(3);
       expect(l).to.eql(new LinkedList(0, 1, 2));
     });
-    it('should remove the tail node given an index > list length - 1', () => {
-      expect(l.removeAt(23).data).to.equal(3);
-      expect(l).to.eql(new LinkedList(0, 1, 2));
+    it('should return undefined given an index > list length - 1', () => {
+      expect(l.removeAt(23)).to.equal(undefined);
+      expect(l).to.eql(new LinkedList(0, 1, 2, 3));
     });
     it('should remove the head node', () => {
       expect(l.removeAt(0).data).to.equal(0);

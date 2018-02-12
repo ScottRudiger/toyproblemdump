@@ -182,6 +182,27 @@ class LinkedList {
     // otherwise, set head to data and head.next to old head
     this.head = new Node(data, this.head);
   }
+  removeAt(index) {
+    // remove head node if index is 0
+    if (index === 0) return this.shift();
+    // handle invalid passed-in index
+    if (index < 0 || !index) throw new Error('removeAt: index must be > -1');
+    let i = -1;
+    // iterate through the list
+    for (const node of this) {
+      // if the next Node is at the specified index,
+      if (++i === index - 1) {
+        // save a reference to the next Node
+        const removed = node.next;
+        // set node.next to node.next.next (i.e., skip the removed Node)
+        node.next = node.next.next;
+        // if the removed Node is the tail, set tail to current Node
+        if (removed === this.tail) this.tail = node;
+        // return the removed node
+        return removed;
+      }
+    }
+  }
 }
 
 module.exports = {Node, LinkedList};
