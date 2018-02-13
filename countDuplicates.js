@@ -34,6 +34,8 @@ duplicateCount=t=>new Set([...t.toLowerCase()].sort().join``.match(/(.)\1/g)).si
 
 duplicateCount=t=>([...t.toLowerCase()].sort().join``.match(/(.)\1+/g)||'').length
 
+duplicateCount=t=>new Set(t.toLowerCase().match(/(.)(?=.*\1)/g)).size
+
 const {expect} = require('chai');
 
 describe('duplicateCount function', () => {
