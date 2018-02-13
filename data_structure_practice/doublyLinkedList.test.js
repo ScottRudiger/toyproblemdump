@@ -187,6 +187,7 @@ describe('LinkedList class', () => {
   context('clear method', () => {
     const l = new LinkedList(1, 2, 3);
     l.clear();
+    expect(l.size).to.equal(0);
     expect(l).to.eql(new LinkedList());
   });
 
