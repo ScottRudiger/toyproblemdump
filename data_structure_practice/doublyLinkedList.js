@@ -89,6 +89,37 @@ class LinkedList extends singlyLinkedList {
       this.size++;
     }
   }
+  insertAt(index, data) {
+    // for cases: index = 0, empty list, negative index, or undefined index, call super's
+    if (index === 0 || !this.head && index >= 0 || index < 0 || !index) {
+      super.insertAt(...arguments);
+    // if inserting in the middle or end of list,
+  } else {
+      // e.g., insert Node 2 at index 2 in list (0, 1, 3) -> (0, 1, 2, 3)
+      let i = this.size;
+      // if index is >= size, push it
+      if (index >= i) return this.push(data);
+      // otherwise start at last Node,
+      let node = this.tail;
+      while (node) {
+        // and traverse until reaching the desired index
+        if (--i === index) {
+          // save ref for new Node & set its next;, e.g., following the above example:
+          const inserted = new Node(data, node); // 2.next = 3
+          // set new Node's prev
+          inserted.prev = node.prev; // 2.prev = 1
+          // update prev Node's next
+          node.prev.next = inserted; // 1.next = 2
+          // update node's prev
+          node.prev = inserted; // 3.prev = 2
+          // update size;
+          this.size++;
+          break;
+        }
+        node = node.prev;
+      }
+    }
+  }
 }
 
 module.exports = {Node, LinkedList};
