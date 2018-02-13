@@ -41,6 +41,17 @@ class LinkedList extends singlyLinkedList {
     // if list is empty, return 0; otherwise, return the tail's index + 1
     return this.tail ? this.tail.index + 1 : 0;
   }
+  traverseRight(fn) { // O(n) linear
+    // start traversal at tail
+    let node = this.tail;
+    // until node is null,
+    while(node) {
+      // apply fn to the node
+      fn(node, node.index, this);
+      // set node to node's prev
+      node = node.prev;
+    }
+  }
 }
 
 module.exports = {Node, LinkedList};

@@ -110,4 +110,35 @@ describe('LinkedList class', () => {
       expect(l.size()).to.equal(3);
     });
   });
+
+  context('traverseRight method', () => {
+    it('should not throw on an empty list', () => {
+      const l = new LinkedList();
+      expect(() => l.traverseRight(console.log)).not.to.throw();
+    });
+    it('should apply a passed-in function', () => {
+      const l = new LinkedList(1);
+      let result;
+      l.traverseRight(n => result = n.data + 1);
+      expect(result).to.equal(2);
+    });
+    it('should apply fn to every node, starting at the end', () => {
+      const l = new LinkedList(1, 2, 3);
+      let result = [];
+      l.traverseRight(n => result.push(n.data));
+      expect(result).to.eql([3, 2, 1]);
+    });
+    it('should work with indices', () => {
+      const l = new LinkedList(0, 1, 2);
+      let result = 0;
+      l.traverseRight((n, i) => result += n.data * i);
+      expect(result).to.equal(5);
+    });
+    it('should work with list reference', () => {
+      const l = new LinkedList(2, 3, 4, 5);
+      let result = 0;
+      l.traverseRight((n, i, list) => result += n.data * list.head.data);
+      expect(result).to.equal(28);
+    });
+  });
 });
