@@ -141,4 +141,20 @@ describe('LinkedList class', () => {
       expect(result).to.equal(28);
     });
   });
+
+  context('pop method', () => {
+    const l = new LinkedList(1, 2);
+    const n = new Node(3);
+    beforeEach(() => {
+      l.push(n);
+    });
+    it('should return the last Node', () => {
+      expect(l.pop()).to.equal(n);
+    });
+    it('should remove the last Node from the LinkedList', () => {
+      l.pop();
+      expect(l.tail.data).to.equal(2);
+      expect(l.tail.prev.prev).to.be.null;
+    });
+  });
 });
