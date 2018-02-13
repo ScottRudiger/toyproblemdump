@@ -55,9 +55,9 @@ describe('duplicateCount function', () => {
     zZzZzZzZzZz: 1
   };
 
-  Object.entries(tests).forEach(test => {
-    it(`should return ${test[1]} given ${test[0]}`, () => {
-      expect(duplicateCount(test[0])).to.equal(test[1]);
+  Object.entries(tests).forEach(([test, sol]) => {
+    it(`should return ${sol} given ${test}`, () => {
+      expect(duplicateCount(test)).to.equal(sol);
     });
   });
 
