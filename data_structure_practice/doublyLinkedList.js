@@ -74,6 +74,21 @@ class LinkedList extends singlyLinkedList {
     super.clear();
     this.size = 0;
   }
+  unshift(data) {
+    // if list is empty, set head/tail to data
+    if (!this.head) this.push(data);
+    // otherwise,
+    else {
+      // save ref to old head
+      const oldHead = this.head;
+      // set head to data and head.next to old head,
+      this.head = new Node(data, oldHead);
+      // set oldHead's prev to new head
+      oldHead.prev = this.head;
+      // and increment size
+      this.size++;
+    }
+  }
 }
 
 module.exports = {Node, LinkedList};
