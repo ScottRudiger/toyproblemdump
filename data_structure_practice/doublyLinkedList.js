@@ -52,6 +52,16 @@ class LinkedList extends singlyLinkedList {
       node = node.prev;
     }
   }
+  pop() { // O(1)
+    // save a ref to the tail
+    const removed = this.tail;
+    // update tail to prev Node
+    this.tail = removed.prev;
+    // update tail's next to null
+    this.tail.next = null;
+    // return the removed Node
+    return removed;
+  }
 }
 
 module.exports = {Node, LinkedList};
