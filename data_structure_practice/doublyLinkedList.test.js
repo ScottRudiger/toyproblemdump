@@ -155,10 +155,11 @@ describe('LinkedList class', () => {
     it('should throw an error if index is negative', () => {
       expect(() => l.insertAt(-2, 2)).to.throw('insertAt: index must be > -1');
     });
-    it('should set head/tail & Node index property when the list is empty, even when index > 0', () => {
+    it('should set head/tail when the list is empty, even when index > 0', () => {
       l.insertAt(23, 2);
       expect(l.head.data).to.equal(2);
       expect(l.tail.data).to.equal(2);
+      expect(l.size).to.equal(1);
     });
     it('should insert data at head when index is 0 for a non-empty list', () => {
       l.push(1, 2, 3);
