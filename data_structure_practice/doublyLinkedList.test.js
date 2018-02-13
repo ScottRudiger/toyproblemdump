@@ -147,6 +147,19 @@ describe('LinkedList class', () => {
     });
   });
 
+  context('unshift method', () => {
+    it('should place data at the head/tail of an empty LinkedList', () => {
+      const l = new LinkedList();
+      l.unshift(0);
+      expect(l).to.eql(new LinkedList(0));
+    });
+    it('should place data at the head of a non-empty list', () => {
+      const l = new LinkedList(0);
+      l.unshift(-1);
+      expect(l).to.eql(new LinkedList(-1, 0));
+    });
+  });
+
   context('insertAt method', () => {
     const l = new LinkedList();
     afterEach(() => {
