@@ -70,6 +70,10 @@ class LinkedList extends singlyLinkedList {
     // return the removed Node
     return removed;
   }
+  clear() {
+    super.clear();
+    this.size = 0;
+  }
 }
 
 module.exports = {Node, LinkedList};

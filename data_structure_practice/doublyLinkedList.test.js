@@ -150,9 +150,7 @@ describe('LinkedList class', () => {
   context('insertAt method', () => {
     const l = new LinkedList();
     afterEach(() => {
-      l.head = null;
-      l.tail = null;
-      l.size = 0;
+      l.clear();
     });
     it('should throw an error if index is negative', () => {
       expect(() => l.insertAt(-2, 2)).to.throw('insertAt: index must be > -1');
@@ -184,6 +182,12 @@ describe('LinkedList class', () => {
       l.insertAt(l.size, 5);
       expect(l).to.eql(new LinkedList(0, 1, 2, 3, 4, 5));
     });
+  });
+
+  context('clear method', () => {
+    const l = new LinkedList(1, 2, 3);
+    l.clear();
+    expect(l).to.eql(new LinkedList());
   });
 
   context('size property', () => {
