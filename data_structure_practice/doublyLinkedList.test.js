@@ -99,4 +99,15 @@ describe('LinkedList class', () => {
       expect(l.head.data).to.equal(0);
     });
   });
+
+  context('size method', () => {
+    it('should return 0 for an empty list', () => {
+      const l = new LinkedList();
+      expect(l.size()).to.equal(0);
+    });
+    it('should return 3 for a list with 3 Nodes', () => {
+      const l = new LinkedList(1, 2, 3);
+      expect(l.size()).to.equal(3);
+    });
+  });
 });
