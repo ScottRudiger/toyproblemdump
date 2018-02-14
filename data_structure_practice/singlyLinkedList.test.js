@@ -299,6 +299,12 @@ describe('LinkedList class', () => {
       expect(l.tail).to.be.null;
       expect(l).to.eql(new LinkedList());
     });
+    it('should handle being called on an empty list', () => {
+      const l = new LinkedList();
+      expect(() => l.shift()).not.to.throw();
+      expect(l.shift()).to.equal(undefined);
+      expect(l).to.eql(new LinkedList());
+    });
   });
 
   context('unshift method', () => {

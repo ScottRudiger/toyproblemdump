@@ -167,6 +167,8 @@ class LinkedList {
     this.tail = null;
   }
   shift() {
+    // handle empty list
+    if (!this.head) return;
     // save head
     const removed = this.head;
     // set head to old head's next
