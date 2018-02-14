@@ -89,6 +89,22 @@ class LinkedList extends singlyLinkedList {
       this.size++;
     }
   }
+  shift() {
+    // handle empty list
+    if (!this.head) return;
+    // save head
+    const removed = this.head;
+    // set head to old head's next
+    this.head = removed.next;
+    // if new head is null, set tail to null as well
+    if (!this.head) this.tail = null;
+    // else, set head's prev to null
+    else this.head.prev = null;
+    // decrement size
+    this.size--;
+    // return the old head
+    return removed;
+  }
   insertAt(index, data) {
     // for cases: index = 0, empty list, negative index, or undefined index, call super's
     if (index === 0 || !this.head && index >= 0 || index < 0 || !index) {
