@@ -236,27 +236,31 @@ describe('LinkedList class', () => {
     });
   });
 
-  // context('removeAt method', () => {
-  //   let l;
-  //   beforeEach(() => l = new LinkedList(0, 1, 2, 3));
-  //   it('should remove and return the tail Node', () => {
-  //     expect(l.removeAt(3).data).to.equal(3);
-  //     expect(l).to.eql(new LinkedList(0, 1, 2));
-  //   });
-  //   it('should return undefined given an index > list length - 1', () => {
-  //     expect(l.removeAt(23)).to.equal(undefined);
-  //     expect(l).to.eql(new LinkedList(0, 1, 2, 3));
-  //   });
-  //   it('should remove the head node', () => {
-  //     expect(l.removeAt(0).data).to.equal(0);
-  //     expect(l).to.eql(new LinkedList(1, 2, 3));
-  //   });
-  //   it('should throw an error given a negative index', () => {
-  //     expect(() => l.removeAt(-1)).to.throw('removeAt: index must be > -1');
-  //   });
-  //   it('should remove a middle Node at the specified index', () => {
-  //     expect(l.removeAt(1).data).to.equal(1);
-  //     expect(l).to.eql(new LinkedList(0, 2, 3));
-  //   });
-  // });
+  context('removeAt method', () => {
+    let l;
+    beforeEach(() => l = new LinkedList(0, 1, 2, 3));
+    it('should remove and return the tail Node', () => {
+      expect(l.removeAt(3).data).to.equal(3);
+      expect(l).to.eql(new LinkedList(0, 1, 2));
+    });
+    it('should return undefined given an index > list length - 1', () => {
+      expect(l.removeAt(23)).to.equal(undefined);
+      expect(l).to.eql(new LinkedList(0, 1, 2, 3));
+    });
+    it('should remove the head node', () => {
+      expect(l.removeAt(0).data).to.equal(0);
+      expect(l).to.eql(new LinkedList(1, 2, 3));
+    });
+    it('should throw an error given a negative index', () => {
+      expect(() => l.removeAt(-1)).to.throw('removeAt: index must be > -1');
+    });
+    it('should remove a middle Node at the specified index', () => {
+      expect(l.removeAt(1).data).to.equal(1);
+      expect(l).to.eql(new LinkedList(0, 2, 3));
+    });
+    it('should return undefined on an empty list', () => {
+      const l = new LinkedList();
+      expect(l.removeAt(0)).to.equal(undefined);
+    });
+  });
 });

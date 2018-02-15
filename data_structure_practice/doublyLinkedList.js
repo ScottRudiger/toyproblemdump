@@ -136,6 +136,30 @@ class LinkedList extends singlyLinkedList {
       }
     }
   }
+  removeAt(index) {
+    // if removing head, index is out of bounds, or empty list, call super's removeAt
+    if (!index || index >= this.size || index < 0 || !this.size) {
+      return super.removeAt(index);
+    }
+    // if removing tail, call pop method
+    if (index === this.size - 1) return this.pop();
+    // otherwise, node is in the middle; traverse Nodes
+    let node = this.head.next;
+    let i = 0;
+    while (node) {
+      // when reaching the desired index
+      if (++i === index) {
+        // set previous Node's next to node's next
+        node.prev.next = node.next;
+        // set next Node's prev to node's prev
+        node.next.prev = node.prev;
+        // decrement size
+        this.size--;
+        // return the removed node
+        return node;
+      }
+    }
+  }
 }
 
 module.exports = {Node, LinkedList};
