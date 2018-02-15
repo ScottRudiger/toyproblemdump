@@ -299,4 +299,36 @@ describe('LinkedList class', () => {
       expect(() => l.remove()).to.throw();
     });
   });
+
+  context('removeAfter method', () => {
+    const l = new LinkedList();
+    const n0 = new Node(0);
+    const n1 = new Node(1);
+    const n2 = new Node(2);
+    const n3 = new Node(3);
+    afterEach(() => {
+      l.clear();
+      l.push(n0, n1, n2, n3);
+    });
+    it('should return undefined if list is empty', () => {
+      expect(l.removeAfter(n0)).to.equal(undefined);
+      expect(l).to.eql(new LinkedList(0, 1, 2, 3));
+    });
+    it('should remove the tail Node', () => {
+      expect(l.removeAfter(n2)).to.equal(n3);
+      expect(l).to.eql(new LinkedList(0, 1, 2));
+    });
+    it('should remove a middle Node', () => {
+      expect(l.removeAfter(n1)).to.equal(n2);
+      expect(l).to.eql(new LinkedList(0, 1, 3));
+    });
+    it('should return undefined given the tail Node', () => {
+      expect(l.removeAfter(n3)).to.equal(undefined);
+      expect(l).to.eql(new LinkedList(0, 1, 2, 3));
+    });
+    it('should throw an error when argument is not a Node', () => {
+      expect(() => l.removeAfter(1)).to.throw();
+      expect(() => l.removeAfter()).to.throw();
+    });
+  });
 });
