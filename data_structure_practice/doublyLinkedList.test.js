@@ -331,4 +331,36 @@ describe('LinkedList class', () => {
       expect(() => l.removeAfter()).to.throw();
     });
   });
+
+  context('removeBefore method', () => {
+    const l = new LinkedList();
+    const n0 = new Node(0);
+    const n1 = new Node(1);
+    const n2 = new Node(2);
+    const n3 = new Node(3);
+    afterEach(() => {
+      l.clear();
+      l.push(n0, n1, n2, n3);
+    });
+    it('should return undefined if list is empty', () => {
+      expect(l.removeBefore(n0)).to.equal(undefined);
+      expect(l).to.eql(new LinkedList());
+    });
+    it('should remove the head Node', () => {
+      expect(l.removeBefore(n1)).to.equal(n0);
+      expect(l).to.eql(new LinkedList(1, 2, 3));
+    });
+    it('should remove a middle Node', () => {
+      expect(l.removeBefore(n2)).to.equal(n1);
+      expect(l).to.eql(new LinkedList(0, 2, 3));
+    });
+    it('should return undefined given the head Node', () => {
+      expect(l.removeBefore(n0)).to.equal(undefined);
+      expect(l).to.eql(new LinkedList(0, 1, 2, 3));
+    });
+    it('should throw an error when argument is not a Node', () => {
+      expect(() => l.removeBefore(1)).to.throw();
+      expect(() => l.removeBefore()).to.throw();
+    });
+  });
 });
