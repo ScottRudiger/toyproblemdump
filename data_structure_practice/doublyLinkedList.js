@@ -51,7 +51,7 @@ class LinkedList extends singlyLinkedList {
     let node = this.tail;
     let i = this.size;
     // until node is null,
-    while(node) {
+    while (node) {
       // apply fn to the node
       fn(node, --i, this);
       // set node to node's prev
@@ -70,11 +70,11 @@ class LinkedList extends singlyLinkedList {
     // return the removed Node
     return removed;
   }
-  clear() {
+  clear() { // O(1)
     super.clear();
     this.size = 0;
   }
-  unshift(data) {
+  unshift(data) { // O(1)
     // if list is empty, set head/tail to data
     if (!this.head) this.push(data);
     // otherwise,
@@ -89,7 +89,7 @@ class LinkedList extends singlyLinkedList {
       this.size++;
     }
   }
-  shift() {
+  shift() { // O(1)
     // handle empty list
     if (!this.head) return;
     // save head
@@ -105,7 +105,7 @@ class LinkedList extends singlyLinkedList {
     // return the old head
     return removed;
   }
-  insertAt(index, data) {
+  insertAt(index, data) { // O(n) -- depends on size of the list
     // for cases: index = 0, empty list, negative index, or undefined index, call super's
     if (index === 0 || !this.head && index >= 0 || index < 0 || !index) {
       super.insertAt(...arguments);
@@ -136,7 +136,7 @@ class LinkedList extends singlyLinkedList {
       }
     }
   }
-  removeAt(index) {
+  removeAt(index) { // O(n) -- depends on size of the list
     // if removing head, index is out of bounds, or empty list, call super's removeAt
     if (!index || index >= this.size || index < 0 || !this.size) {
       return super.removeAt(index);
@@ -160,7 +160,7 @@ class LinkedList extends singlyLinkedList {
       }
     }
   }
-  remove(node) {
+  remove(node) { // O(1)
     // throw an error if invalid argument passed in for node
     if (!(node instanceof Node)) throw new Error('node must be an instance of Node');
     // handle empty list
@@ -181,19 +181,19 @@ class LinkedList extends singlyLinkedList {
     this.size--;
     return node;
   }
-  removeAfter(node) {
+  removeAfter(node) { // O(1)
     // if passed the tail node or list is empty, return undefined
     if (node === this.tail || !this.size) return;
     // otherwise, call remove on node's next
     return this.remove(node.next);
   }
-  removeBefore(node) {
+  removeBefore(node) { // O(1)
     // if passed the head node or list is empty, return undefined
     if (node === this.head || !this.size) return;
     // otherwise, call remove on node's prev
     return this.remove(node.prev);
   }
-  insertBefore(node, data) {
+  insertBefore(node, data) { // O(1)
     // throw an error if called on an empty list
     if (!this.size) throw new Error('insertBefore cannot be called on an empty list');
     // throw an error if invalid argument passed in for node
@@ -213,13 +213,13 @@ class LinkedList extends singlyLinkedList {
     // increment size
     this.size++;
   }
-  insertAfter(node, data) {
+  insertAfter(node, data) { // O(1)
     // if node is the tail, call push on data
     if (node === this.tail) return this.push(data);
     // otherwise, call insertBefore on node's next
     return this.insertBefore(node.next, data);
   }
-  copy() {
+  copy() { // O(n)
     // initialize copy (empty array)
     const copy = [];
     // traverse the original LinkedList, pushing each Node's data to the copy
@@ -227,7 +227,7 @@ class LinkedList extends singlyLinkedList {
     // return a new LinkedList based on the copied data
     return new LinkedList(...copy);
   }
-  slice(start, end) {
+  slice(start, end) { // O(n)
     // if list is empty or end is 0, return a new, empty list
     if (!this.size || end === 0) return new LinkedList();
     // return a copy if no arguments given or when start = 0 & !end or end >= size

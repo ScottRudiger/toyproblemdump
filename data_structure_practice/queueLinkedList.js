@@ -40,7 +40,7 @@ class Queue {
     // and return the data
     return data;
   }
-  peek() {
+  peek() { // O(1)
     // if Queue is not empty,
     return this.storage.head
     // return the head's data
