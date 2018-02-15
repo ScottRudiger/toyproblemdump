@@ -213,6 +213,11 @@ class LinkedList extends singlyLinkedList {
     // increment size
     this.size++;
   }
+  insertAfter(node, data) {
+    // if node is the tail, call push on data
+    if (node === this.tail) return this.push(data);
+    return this.insertBefore(node.next, data);
+  }
 }
 
 module.exports = {Node, LinkedList};
