@@ -271,6 +271,7 @@ describe('LinkedList class', () => {
     const n2 = new Node(2);
     const n3 = new Node(3);
     afterEach(() => {
+      l.clear();
       l.push(n0, n1, n2, n3);
     });
     it('should return undefined if list is empty', () => {
@@ -290,7 +291,7 @@ describe('LinkedList class', () => {
     });
     it('should handle a node not contained in the list', () => {
       const n4 = new Node(4);
-      expect(l.remove(n4)).to.equal(undefined);
+      expect(l.remove(n4)).to.equal(n4);
       expect(l).to.eql(new LinkedList(0, 1, 2, 3));
     });
     it('should throw an error when argument is not a Node', () => {

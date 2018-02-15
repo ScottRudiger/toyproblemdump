@@ -160,6 +160,27 @@ class LinkedList extends singlyLinkedList {
       }
     }
   }
+  remove(node) {
+    // throw an error if invalid argument passed in for node
+    if (!(node instanceof Node)) throw new Error('node must be an instance of Node');
+    // handle empty list
+    if (!this.size) return;
+    // if node is the head, call shift
+    if (node === this.head) return this.shift();
+    // if node is the tail, call pop
+    if (node === this.tail) return this.pop();
+    // if node is not in the list, return the node w/o alteration to list
+    // pass on handling case where node is a middle Node in a different list
+    if (!node.next || !node.prev) return node;
+    // otherwise, node is a middle Node,
+    // set previous Node's next to node's next
+    node.prev.next = node.next;
+    // set next Node's prev to node's prev
+    node.next.prev = node.prev;
+    // decrement size
+    this.size--;
+    return node;
+  }
 }
 
 module.exports = {Node, LinkedList};
