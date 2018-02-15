@@ -227,6 +227,42 @@ class LinkedList extends singlyLinkedList {
     // return a new LinkedList based on the copied data
     return new LinkedList(...copy);
   }
+  slice(start, end) {
+    // if list is empty or end is 0, return a new, empty list
+    if (!this.size || end === 0) return new LinkedList();
+    // return a copy if no arguments given or when start = 0 & !end or end >= size
+    if (!start && !end || !start && end >= this.size) return this.copy();
+    // otherwise, start a new LinkedList
+    const sliced = new LinkedList();
+    // handle positive start
+    if (start >= 0) {
+      // if end is undefined, set it to size
+      if (!end) end = this.size;
+      // start at head
+      let node = this.head;
+      let i = -1;
+      // until reaching end
+      while (++i < end) {
+        // push node data to sliced if it's >= start & < end
+        if (i >= start) sliced.push(node.data);
+        node = node.next;
+      }
+    // otherwise, start is < 0
+    } else {
+      // if end is undefined, set it to 0
+      if (!end) end = 0;
+      // start at tail
+      let node = this.tail;
+      let i = 0;
+      // until reaching start
+      while (--i >= start) {
+        // unshift node data on sliced if it's < end
+        if (i < end) sliced.unshift(node.data);
+        node = node.prev;
+      }
+    }
+    return sliced;
+  }
 }
 
 module.exports = {Node, LinkedList};
