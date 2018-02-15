@@ -418,6 +418,19 @@ describe('LinkedList class', () => {
     });
   });
 
+  context('copy method', () => {
+    const original = new LinkedList(1, 2, 3);
+    const copy = original.copy();
+    it('should return a copy with the same data as the original', () => {
+      expect(copy).to.eql(original);
+    });
+    it('should not mutate original when changes are made to a copy', () => {
+      copy.push(4);
+      expect(original).to.eql(new LinkedList(1, 2, 3));
+      expect(copy).to.eql(new LinkedList(1, 2, 3, 4));
+    });
+  });
+
   context('slice method', () => {
     const l = new LinkedList();
     it('should work with an empty list', () => {
