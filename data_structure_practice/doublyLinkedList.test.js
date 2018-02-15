@@ -312,7 +312,7 @@ describe('LinkedList class', () => {
     });
     it('should return undefined if list is empty', () => {
       expect(l.removeAfter(n0)).to.equal(undefined);
-      expect(l).to.eql(new LinkedList(0, 1, 2, 3));
+      expect(l).to.eql(new LinkedList());
     });
     it('should remove the tail Node', () => {
       expect(l.removeAfter(n2)).to.equal(n3);
