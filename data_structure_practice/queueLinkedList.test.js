@@ -51,4 +51,27 @@ describe('Queue', () => {
       expect(q).to.eql(new Queue(1, 2));
     });
   });
+
+  context('peek method', () => {
+    const q = new Queue();
+    it('should return undefined when Queue is empty', () => {
+      expect(q.peek()).to.equal(undefined);
+      expect(q).to.eql(new Queue());
+    });
+    it('should return data when size = 1, but not remove any Nodes', () => {
+      q.enqueue(0);
+      expect(q.peek()).to.equal(0);
+      expect(q).to.eql(new Queue(0));
+    });
+    it('should return data when size = 2, but not remove any Nodes', () => {
+      q.enqueue(1);
+      expect(q.peek()).to.equal(0);
+      expect(q).to.eql(new Queue(0, 1));
+    });
+    it('should return data when size = 3, but not remove any Nodes', () => {
+      q.enqueue(2);
+      expect(q.peek()).to.equal(0);
+      expect(q).to.eql(new Queue(0, 1, 2));
+    });
+  });
 });
