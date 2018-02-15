@@ -442,9 +442,17 @@ describe('LinkedList class', () => {
       expect(l.slice(-1, -3)).to.eql(empty);
       expect(l.slice(-3, -1)).to.eql(empty);
     });
-    it('should copy the list given no arguments', () => {
+    it('should return an empty list because of start/end', () => {
       l.push(0, 1, 2, 3);
-      expect(l.slice()).to.eql(new LinkedList(0, 1, 2, 3));
+      expect(l.slice(-2, 0)).to.eql(new LinkedList());
+      expect(l.slice(2, 0)).to.eql(new LinkedList());
+      expect(l.slice(3, 1)).to.eql(new LinkedList());
+      expect(l.slice(-1, -2)).to.eql(new LinkedList());
+    });
+    it('should copy the list', () => {
+      expect(l.slice()).to.eql(l);
+      expect(l.slice(0)).to.eql(l);
+      expect(l.slice(0, 15)).to.eql(l);
     });
     it('should slice off the head', () => {
       expect(l.slice(1)).to.eql(new LinkedList(1, 2, 3));
@@ -460,9 +468,9 @@ describe('LinkedList class', () => {
     });
     it('should slice from the tail given a negative index', () => {
       expect(l.slice(-2)).to.eql(new LinkedList(2, 3));
-      expect(l.slice(-1, -2)).to.eql(new LinkedList());
       expect(l.slice(-3, -1)).to.eql(new LinkedList(1, 2));
       expect(l).to.eql(new LinkedList(0, 1, 2, 3));
+      const a = [0, 1, 2, 3];
     });
   });
 });
