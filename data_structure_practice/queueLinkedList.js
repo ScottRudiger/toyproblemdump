@@ -40,6 +40,14 @@ class Queue {
     // and return the data
     return data;
   }
+  peek() {
+    // if Queue is not empty,
+    return this.storage.head
+    // return the head's data
+    ? this.storage.head.data
+    // otherwise, return undefined
+    : undefined;
+  }
 }
 
 module.exports = Queue;
