@@ -24,6 +24,22 @@ class Queue {
     // and increment Queue's size
     this.storage.size++;
   }
+  dequeue() { // O(1); assuming we only want data, not nodes returned
+    // handle an empty list by returning undefined
+    if (!this.storage.size) return;
+    // otherwise, save the head Node's data
+    const data = this.storage.head.data;
+    // set head to the next Node
+    this.storage.head = this.storage.head.next;
+    // if storage is not empty, set new head's prev to null
+    if (this.storage.head) this.storage.head.prev = null;
+    // otherwise, storage is now empty; set tail to null
+    else this.storage.tail = null;
+    // decrement size
+    this.storage.size--;
+    // and return the data
+    return data;
+  }
 }
 
 module.exports = Queue;
