@@ -187,6 +187,12 @@ class LinkedList extends singlyLinkedList {
     // otherwise, call remove on node's next
     return this.remove(node.next);
   }
+  removeBefore(node) {
+    // if passed the head node or list is empty, return undefined
+    if (node === this.head || !this.size) return;
+    // otherwise, call remove on node's prev
+    return this.remove(node.prev);
+  }
 }
 
 module.exports = {Node, LinkedList};
