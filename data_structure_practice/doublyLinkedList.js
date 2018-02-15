@@ -219,6 +219,14 @@ class LinkedList extends singlyLinkedList {
     // otherwise, call insertBefore on node's next
     return this.insertBefore(node.next, data);
   }
+  copy() {
+    // initialize copy (empty array)
+    const copy = [];
+    // traverse the original LinkedList, pushing each Node's data to the copy
+    this.traverse(n => copy.push(n.data));
+    // return a new LinkedList based on the copied data
+    return new LinkedList(...copy);
+  }
 }
 
 module.exports = {Node, LinkedList};
