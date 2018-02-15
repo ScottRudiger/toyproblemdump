@@ -8,26 +8,20 @@ class Queue {
     this.storage = new LinkedList(...data);
   }
   enqueue(data) { // O(1)
-    // if Queue is empty,
-    if (!this.storage.size) {
-      // create a new Node w/ data
-      const node = new Node(data);
-      // set head
-      this.storage.head = node;
-      // set tail
-      this.storage.tail = node;
+    // create a new Node w/ data
+    const node = new Node(data);
+    // if Queue is empty, set head to node
+    if (!this.storage.size) this.storage.head = node;
     // otherwise, Queue is not empty,
-    } else {
-      // create a new Node w/ data
-      const node = new Node(data);
+    else {
       // set tail's next to node
       this.storage.tail.next = node;
       // set node's prev to old tail
       node.prev = this.storage.tail
-      // and set tail to nodoe
-      this.storage.tail = node;
     }
-    // increment Queue's size
+    // set tail to node
+    this.storage.tail = node;
+    // and increment Queue's size
     this.storage.size++;
   }
 }
