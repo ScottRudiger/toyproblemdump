@@ -294,8 +294,8 @@ describe('LinkedList class', () => {
       expect(l).to.eql(new LinkedList(0, 1, 2, 3));
     });
     it('should throw an error when argument is not a Node', () => {
-      expect(l.remove(1)).to.throw();
-      expect(l.remove()).to.throw();
+      expect(() => l.remove(1)).to.throw();
+      expect(() => l.remove()).to.throw();
     });
   });
 });
