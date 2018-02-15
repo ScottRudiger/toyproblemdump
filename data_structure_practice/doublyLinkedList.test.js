@@ -390,4 +390,31 @@ describe('LinkedList class', () => {
       expect(l).to.eql(new LinkedList(-1, 0, 1, 2, 3));
     });
   });
+
+  context('insertAfter method', () => {
+    const l = new LinkedList();
+    const n0 = new Node(0);
+    const n1 = new Node(1);
+    const n2 = new Node(2);
+    const n3 = new Node(3);
+    afterEach(() => {
+      l.clear();
+      l.push(n0, n1, n2, n3);
+    });
+    it('should throw an error if list is empty', () => {
+      expect(() => l.insertAfter(n0)).to.throw();
+    });
+    it('should throw an error when node argument is not a Node', () => {
+      expect(() => l.insertAfter(1)).to.throw();
+      expect(() => l.insertAfter()).to.throw();
+    });
+    it('should insert a Node after a middle Node', () => {
+      l.insertAfter(n2, new Node(2.5));
+      expect(l).to.eql(new LinkedList(0, 1, 2, 2.5, 3));
+    });
+    it('should insert data after the tail', () => {
+      l.insertAfter(n3, 4);
+      expect(l).to.eql(new LinkedList(0, 1, 2, 3, 4));
+    });
+  });
 });
