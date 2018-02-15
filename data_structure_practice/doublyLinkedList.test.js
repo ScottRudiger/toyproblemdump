@@ -363,4 +363,31 @@ describe('LinkedList class', () => {
       expect(() => l.removeBefore()).to.throw();
     });
   });
+
+  context('insertBefore method', () => {
+    const l = new LinkedList();
+    const n0 = new Node(0);
+    const n1 = new Node(1);
+    const n2 = new Node(2);
+    const n3 = new Node(3);
+    afterEach(() => {
+      l.clear();
+      l.push(n0, n1, n2, n3);
+    });
+    it('should throw an error if list is empty', () => {
+      expect(l.insertBefore(n0)).to.throw();
+    });
+    it('should throw an error when argument is not a Node', () => {
+      expect(() => l.insertBefore(1)).to.throw();
+      expect(() => l.insertBefore()).to.throw();
+    });
+    it('should insert a Node before a middle Node', () => {
+      l.insertBefore(n2, new Node(1.5));
+      expect(l).to.eql(new LinkedList(0, 1, 1.5, 2, 3));
+    });
+    it('should insert data before the head', () => {
+      l.insertBefore(0, -1);
+      expect(l).to.eql(new LinkedList(-1, 0, 1, 2, 3));
+    });
+  });
 });
