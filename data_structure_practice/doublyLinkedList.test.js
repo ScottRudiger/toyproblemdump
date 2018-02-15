@@ -375,9 +375,9 @@ describe('LinkedList class', () => {
       l.push(n0, n1, n2, n3);
     });
     it('should throw an error if list is empty', () => {
-      expect(l.insertBefore(n0)).to.throw();
+      expect(() => l.insertBefore(n0)).to.throw();
     });
-    it('should throw an error when argument is not a Node', () => {
+    it('should throw an error when node argument is not a Node', () => {
       expect(() => l.insertBefore(1)).to.throw();
       expect(() => l.insertBefore()).to.throw();
     });
@@ -386,7 +386,7 @@ describe('LinkedList class', () => {
       expect(l).to.eql(new LinkedList(0, 1, 1.5, 2, 3));
     });
     it('should insert data before the head', () => {
-      l.insertBefore(0, -1);
+      l.insertBefore(n0, -1);
       expect(l).to.eql(new LinkedList(-1, 0, 1, 2, 3));
     });
   });

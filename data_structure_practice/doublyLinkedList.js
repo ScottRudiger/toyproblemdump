@@ -193,6 +193,26 @@ class LinkedList extends singlyLinkedList {
     // otherwise, call remove on node's prev
     return this.remove(node.prev);
   }
+  insertBefore(node, data) {
+    // throw an error if called on an empty list
+    if (!this.size) throw new Error('insertBefore cannot be called on an empty list');
+    // throw an error if invalid argument passed in for node
+    if (!(node instanceof Node)) throw new Error('node must be an instance of Node');
+    // if inserting before head, call unshift on data
+    if (node === this.head) return this.unshift(data);
+    // otherwise, create a new Node based on data
+    const inserted = new Node(data);
+    // set previous Node's next to new Node
+    node.prev.next = inserted;
+    // set new Node's prev to node's prev
+    inserted.prev = node.prev;
+    // set new Node's next to node
+    inserted.next = node;
+    // set node's prev to new Node
+    node.prev = inserted;
+    // increment size
+    this.size++;
+  }
 }
 
 module.exports = {Node, LinkedList};
