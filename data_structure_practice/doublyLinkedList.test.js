@@ -417,4 +417,39 @@ describe('LinkedList class', () => {
       expect(l).to.eql(new LinkedList(0, 1, 2, 3, 4));
     });
   });
+
+  context('slice method', () => {
+    const l = new LinkedList();
+    it('should work with an empty list', () => {
+      const empty = new LinkedList();
+      expect(l.slice()).to.eql(empty);
+      expect(l.slice(1)).to.eql(empty);
+      expect(l.slice(1, 15)).to.eql(empty);
+      expect(l.slice(-1)).to.eql(empty);
+      expect(l.slice(-1, -3)).to.eql(empty);
+      expect(l.slice(-3, -1)).to.eql(empty);
+    });
+    it('should copy the list given no arguments', () => {
+      l.push(0, 1, 2, 3);
+      expect(l.slice()).to.eql(new LinkedList(0, 1, 2, 3));
+    });
+    it('should slice off the head', () => {
+      expect(l.slice(1)).to.eql(new LinkedList(1, 2, 3));
+      expect(l).to.eql(new LinkedList(0, 1, 2, 3));
+    });
+    it('should slice off the head and tail', () => {
+      expect(l.slice(1, 3)).to.eql(new LinkedList(1, 2));
+      expect(l).to.eql(new LinkedList(0, 1, 2, 3));
+    });
+    it('should slice off the tail', () => {
+      expect(l.slice(0, 3)).to.eql(new LinkedList(0, 1, 2));
+      expect(l).to.eql(new LinkedList(0, 1, 2, 3));
+    });
+    it('should slice from the tail given a negative index', () => {
+      expect(l.slice(-2)).to.eql(new LinkedList(2, 3));
+      expect(l.slice(-1, -2)).to.eql(new LinkedList());
+      expect(l.slice(-3, -1)).to.eql(new LinkedList(1, 2));
+      expect(l).to.eql(new LinkedList(0, 1, 2, 3));
+    });
+  });
 });
