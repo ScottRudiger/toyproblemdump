@@ -216,6 +216,7 @@ class LinkedList extends singlyLinkedList {
   insertAfter(node, data) {
     // if node is the tail, call push on data
     if (node === this.tail) return this.push(data);
+    // otherwise, call insertBefore on node's next
     return this.insertBefore(node.next, data);
   }
 }
