@@ -5,3 +5,5 @@ class Stack {
     this.storage = [...data];
   }
 }
+
+module.exports = Stack;
