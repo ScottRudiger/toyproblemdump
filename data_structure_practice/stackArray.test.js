@@ -27,4 +27,25 @@ describe('Stack class', () => {
       expect(stack).to.eql(new Stack(0, 1, 2));
     });
   });
+
+  context('pop method', () => {
+    const stack = new Stack();
+    afterEach(() => stack.storage = []);
+    it('should return undefined for an empty Stack', () => {
+      expect(stack.pop()).to.equal(undefined);
+      expect(stack).to.eql(new Stack());
+    });
+    it('should return the last in when storage has a length of 1', () => {
+      stack.push(0);
+      expect(stack.pop()).to.equal(0);
+      expect(stack).to.eql(new Stack());
+    });
+    it('should return the last in when storage has more than 1 item', () => {
+      stack.push(0);
+      stack.push(1);
+      stack.push(2);
+      expect(stack.pop()).to.equal(2);
+      expect(stack).to.eql(new Stack(0, 1));
+    });
+  });
 });
