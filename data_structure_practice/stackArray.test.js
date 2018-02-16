@@ -48,4 +48,24 @@ describe('Stack class', () => {
       expect(stack).to.eql(new Stack(0, 1));
     });
   });
+
+  context('peek method', () => {
+    const stack = new Stack();
+    it('should return undefined when Stack is empty', () => {
+      expect(stack.peek()).to.equal(undefined);
+    });
+    it('should return the only data when Stack\'s storage is length: 1', () => {
+      stack.push(0);
+      expect(stack.peek()).to.equal(0);
+    });
+    it('should not remove the data from the stack', () => {
+      expect(stack).to.eql(new Stack(0));
+    });
+    it('should return the last element pushed to the Stack', () => {
+      stack.push(1);
+      stack.push(2);
+      expect(stack.peek()).to.equal(2);
+      expect(stack).to.eql(new Stack(0, 1, 2));
+    });
+  });
 });
