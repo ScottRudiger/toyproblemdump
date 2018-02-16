@@ -13,4 +13,18 @@ describe('Stack class', () => {
   it('should store data in its storage', () => {
     expect(new Stack(0, 1, 2, 3).storage).to.eql([0, 1, 2, 3]);
   });
+
+  context('push method', () => {
+    const stack = new Stack();
+    it('should add data to an empty Stack', () => {
+      stack.push(0);
+      expect(stack).to.eql(new Stack(0));
+    });
+    it('should add data to the end of a Stack', () => {
+      stack.push(1);
+      expect(stack).to.eql(new Stack(0, 1));
+      stack.push(2);
+      expect(stack).to.eql(new Stack(0, 1, 2));
+    });
+  });
 });
