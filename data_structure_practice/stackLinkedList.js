@@ -22,7 +22,7 @@ class Stack { // could just use LinkedList's push & pop, but recreating for prac
     // increment size
     this.storage.size++;
   }
-  pop() {
+  pop() { // O(1)
     // return undefined if called on an empty Stack
     if (!this.storage.size) return;
     // otherwise, save the tail's data
@@ -38,7 +38,7 @@ class Stack { // could just use LinkedList's push & pop, but recreating for prac
     // return the data
     return data;
   }
-  peek() {
+  peek() { // O(1)
     // if Stack is not empty,
     return this.storage.tail
     // return the tail node's data

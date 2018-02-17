@@ -4,13 +4,13 @@ class Queue {
   constructor(...data) {
     this.storage = [...data]; // O(n)
   }
-  enqueue(data) {
+  enqueue(data) { // O(n) due to shifting all other data to the right
     this.storage.unshift(data);
   }
-  dequeue() {
+  dequeue() { // O(1)
     return this.storage.pop();
   }
-  peek() {
+  peek() { // O(1)
     return this.storage[this.storage.length - 1];
   }
 }
