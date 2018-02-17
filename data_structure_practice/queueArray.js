@@ -4,6 +4,9 @@ class Queue {
   constructor(...data) {
     this.storage = [...data]; // O(n)
   }
+  enqueue(data) {
+    this.storage.unshift(data);
+  }
 }
 
 module.exports = Queue;
