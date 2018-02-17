@@ -26,4 +26,28 @@ describe('Queue class', () => {
       expect(q).to.eql(new Queue(1, 0));
     });
   });
+
+  context('dequeue method', () => {
+    const q = new Queue();
+    afterEach(() => q.storage = []);
+    it('should return undefined if Queue is empty', () => {
+      expect(q.dequeue()).to.equal(undefined);
+      expect(q).to.eql(new Queue());
+    });
+    it('should return & remove data when Queue length is 1', () => {
+      q.enqueue(0);
+      expect(q.dequeue()).to.equal(0);
+      expect(q).to.eql(new Queue());
+    });
+    it('should remove data in a FIFO fashion', () => {
+      q.enqueue(0);
+      q.enqueue(1);
+      expect(q.dequeue()).to.equal(0);
+      expect(q).to.eql(new Queue(1));
+      q.enqueue(2);
+      q.enqueue(3);
+      expect(q.dequeue()).to.equal(1);
+      expect(q).to.eql(new Queue(3, 2));
+    });
+  });
 });
