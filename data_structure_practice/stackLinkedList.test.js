@@ -48,4 +48,27 @@ describe('Stack class', () => {
       expect(stack).to.eql(new Stack(0, 1));
     });
   });
+
+  context('peek method', () => {
+    it('should return undefined when the Stack is empty', () => {
+      const stack = new Stack();
+      expect(stack.peek()).to.equal(undefined);
+    });
+    it('should return, but not remove, the only data when Stack is size: 1', () => {
+      const stack = new Stack(1);
+      expect(stack.peek()).to.equal(1);
+      expect(stack).to.eql(new Stack(1));
+    });
+    it('should return, but not remove, the most recently added data', () => {
+      const stack = new Stack(1, 2, 3);
+      expect(stack.peek()).to.equal(3);
+      expect(stack).to.eql(new Stack(1, 2, 3));
+    });
+    it('should return the same data as the pop method', () => {
+      const stack = new Stack(1, 2);
+      const peeked = stack.peek();
+      const popped = stack.pop();
+      expect(peeked).to.equal(popped);
+    });
+  });
 });
