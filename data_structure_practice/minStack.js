@@ -21,17 +21,17 @@ class minStack {
   }
   pop() {
     // if next value is not Infinity, pop from min
-    if (this.min.peek() < Infinity) this.min.pop();
+    if (this.min.storage.size > 1) this.min.pop();
     // pop value from storage and return it
     return this.storage.pop();
   }
   getMin() {
-    // if next value in min is Infinity,
-    return this.min.peek() === Infinity
-    // return undefined
-    ? undefined
-    // otherwise, return the next value in min
-    : this.min.peek();
+    // if next value in min is not Infinity,
+    return this.min.storage.size > 1
+    // return the next value in min
+    ? this.min.peek()
+    // otherwise, return undefined
+    : undefined;
   }
 }
 
