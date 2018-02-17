@@ -1,5 +1,5 @@
 {
-  "name": "toyproblems",
+  "name": "toyproblemdump",
   "version": "1.0.0",
   "description": "Repository for dumping my solutions to various toy problems I've come across",
   "main": "WUBWUB.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ScottRudiger/toyproblems.git"
+    "url": "git+https://github.com/ScottRudiger/toyproblemdump.git"
   },
   "keywords": [
     "javascript",
@@ -18,9 +18,9 @@
   "author": "Scott Rudiger",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ScottRudiger/toyproblems/issues"
+    "url": "https://github.com/ScottRudiger/toyproblemdump/issues"
   },
-  "homepage": "https://github.com/ScottRudiger/toyproblems#readme",
+  "homepage": "https://github.com/ScottRudiger/toyproblemdump#readme",
   "dependencies": {
     "async-af": "^2.0.0",
     "chai": "^4.1.2",
