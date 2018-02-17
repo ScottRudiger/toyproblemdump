@@ -50,4 +50,33 @@ describe('Queue class', () => {
       expect(q).to.eql(new Queue(3, 2));
     });
   });
+
+  context('peek method', () => {
+    const q = new Queue();
+    afterEach(() => q.storage = []);
+    it('should return undefined when Queue is empty', () => {
+      expect(q.peek()).to.equal(undefined);
+      expect(q).to.eql(new Queue());
+    });
+    it('should return the first item added to the Queue w/ length 1', () => {
+      q.enqueue(0);
+      expect(q.peek()).to.equal(0);
+      expect(q).to.eql(new Queue(0));
+    });
+    it('should return the first item added to the Queue w/ length > 1', () => {
+      q.enqueue(0);
+      q.enqueue(1);
+      q.enqueue(2);
+      expect(q.peek()).to.equal(0);
+    });
+    it('should return the same item as dequeue', () => {
+      q.enqueue(0);
+      q.enqueue(1);
+      q.enqueue(2);
+
+      const peeked = q.peek();
+      const dequeued = q.dequeue();
+      expect(peeked).to.equal(dequeued);
+    });
+  });
 });
