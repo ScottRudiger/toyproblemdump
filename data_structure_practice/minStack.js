@@ -102,4 +102,62 @@ describe('minStack class', () => {
       expect(m.min).to.eql(new Stack(Infinity));
     });
   });
+
+  context('getMin method', () => {
+    it('should consistently return the minimum value in an in-order Stack', () => {
+      m.push(5);
+      m.push(4);
+      m.push(3);
+      m.push(2);
+      m.push(1);
+      expect(m.getMin()).to.equal(1);
+      expect(m.pop()).to.equal(1);
+      expect(m.getMin()).to.equal(2);
+      expect(m.pop()).to.equal(2);
+      m.push(4);
+      expect(m.getMin()).to.equal(3);
+      expect(m.pop()).to.equal(4);
+      expect(m.getMin()).to.equal(3);
+      expect(m.pop()).to.equal(3);
+      expect(m.getMin()).to.equal(4);
+      expect(m.pop()).to.equal(4);
+      expect(m.getMin()).to.equal(5);
+      expect(m.pop()).to.equal(5);
+      expect(m.getMin()).to.equal(undefined);
+      expect(m.pop()).to.equal(undefined);
+    });
+    it('should consistently return the min value in a reverse-order Stack', () => {
+      m.push(1);
+      m.push(2);
+      m.push(3);
+      m.push(4);
+      expect(m.getMin()).to.equal(1);
+      expect(m.pop()).to.equal(4);
+      expect(m.getMin()).to.equal(1);
+      expect(m.pop()).to.equal(3);
+      expect(m.getMin()).to.equal(1);
+      expect(m.pop()).to.equal(2);
+      expect(m.getMin()).to.equal(1);
+      expect(m.pop()).to.equal(1);
+      expect(m.getMin()).to.equal(undefined);
+    });
+    it('should consistently return the min value in an unsorted Stack', () => {
+      m.push(3);
+      m.push(5);
+      m.push(2);
+      m.push(4);
+      m.push(1);
+      expect(m.getMin()).to.equal(1);
+      expect(m.pop()).to.equal(1);
+      expect(m.getMin()).to.equal(2);
+      expect(m.pop()).to.equal(4);
+      expect(m.getMin()).to.equal(2);
+      expect(m.pop()).to.equal(2);
+      expect(m.getMin()).to.equal(3);
+      expect(m.pop()).to.equal(5);
+      expect(m.getMin()).to.equal(3);
+      expect(m.pop()).to.equal(3);
+      expect(m.getMin()).to.equal(undefined);
+    });
+  });
 });
