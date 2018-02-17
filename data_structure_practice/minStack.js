@@ -7,6 +7,18 @@ class minStack {
     this.storage = new Stack();
     this.min = new Stack(Infinity);
   }
+  push(data) {
+    this.min.push(
+      // if data is less than current minimum
+      data < this.min.peek()
+      // push data to min
+      ? data
+      // else, push the current minimum again
+      : this.min.peek()
+    );
+    // push data to storage
+    this.storage.push(data);
+  }
 }
 
 const {expect} = require('chai');
