@@ -22,6 +22,22 @@ class Stack { // could just use LinkedList's push & pop, but recreating for prac
     // increment size
     this.storage.size++;
   }
+  pop() {
+    // return undefined if called on an empty Stack
+    if (!this.storage.size) return;
+    // otherwise, save the tail's data
+    const data = this.storage.tail.data;
+    // set tail to old tail's prev
+    this.storage.tail = this.storage.tail.prev;
+    // if new tail is null, the storage is now empty; set head to null
+    if (!this.storage.tail) this.storage.head = null;
+    // otherwise, storage is not empty; set new tail's next to null
+    else this.storage.tail.next = null;
+    // decrement size
+    this.storage.size--;
+    // return the data
+    return data;
+  }
 }
 
 module.exports = Stack;
