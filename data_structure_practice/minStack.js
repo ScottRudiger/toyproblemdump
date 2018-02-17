@@ -19,6 +19,12 @@ class minStack {
     // push data to storage
     this.storage.push(data);
   }
+  pop() {
+    // if next value is not Infinity, pop from min
+    if (this.min.peek() < Infinity) this.min.pop();
+    // pop value from storage and return it
+    return this.storage.pop();
+  }
 }
 
 const {expect} = require('chai');
