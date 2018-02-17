@@ -38,6 +38,14 @@ class Stack { // could just use LinkedList's push & pop, but recreating for prac
     // return the data
     return data;
   }
+  peek() {
+    // if Stack is not empty,
+    return this.storage.tail
+    // return the tail node's data
+    ? this.storage.tail.data
+    // otherwise, return undefined
+    : undefined;
+  }
 }
 
 module.exports = Stack;
