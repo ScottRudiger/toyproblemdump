@@ -2,12 +2,16 @@
 
 const Stack = require('./stackLinkedList');
 
-class minStack {
-  constructor() {
+class MinStack { // O(1) if creating empty MinStack, O(n) to push all the data
+  constructor(...data) {
+    // store data in a Stack based on doubly linked list so insertion/deletion is O(1)
     this.storage = new Stack();
+    // store minimum values in a Stack, with default min of Infinity
     this.min = new Stack(Infinity);
+    // for convenience, loop through data and add it to the Stacks
+    for (const datum of data) this.push(datum);
   }
-  push(data) {
+  push(data) { // O(1) insertion
     this.min.push(
       // if data is less than current minimum
       data < this.min.peek()
@@ -19,13 +23,13 @@ class minStack {
     // push data to storage
     this.storage.push(data);
   }
-  pop() {
+  pop() { // O(1) deletion
     // if next value is not Infinity, pop from min
     if (this.min.storage.size > 1) this.min.pop();
     // pop value from storage and return it
     return this.storage.pop();
   }
-  getMin() {
+  getMin() { // O(1) to find min value
     // if next value in min is not Infinity,
     return this.min.storage.size > 1
     // return the next value in min
@@ -37,12 +41,12 @@ class minStack {
 
 const {expect} = require('chai');
 
-describe('minStack class', () => {
-  let m = new minStack();
-  afterEach(() => m = new minStack());
+describe('MinStack class', () => {
+  let m = new MinStack();
+  afterEach(() => m = new MinStack());
 
-  it('should create an instance of minStack', () => {
-    expect(m).to.be.an.instanceof(minStack);
+  it('should create an instance of MinStack', () => {
+    expect(m).to.be.an.instanceof(MinStack);
   });
   it('should store data in a Stack', () => {
     expect(m.storage).to.be.an.instanceof(Stack);
@@ -82,20 +86,16 @@ describe('minStack class', () => {
 
   context('pop method', () => {
     it('should remove/return data from storage in a LIFO fashion', () => {
-      m.push(1);
-      m.push(2);
-      m.push(3);
+      const m = new MinStack(1, 2, 3);
       expect(m.pop()).to.equal(3);
       expect(m.pop()).to.equal(2);
       expect(m.pop()).to.equal(1);
     });
-    it('should return undefined when the minStack is empty', () => {
+    it('should return undefined when the MinStack is empty', () => {
       expect(m.pop()).to.equal(undefined);
     });
-    it('should remove from the minStack with each pop', () => {
-      m.push(3);
-      m.push(2);
-      m.push(1);
+    it('should remove from the MinStack with each pop', () => {
+      const m = new MinStack(3, 2, 1);
       m.pop();
       expect(m.min).to.eql(new Stack(Infinity, 3, 2));
       m.pop();
@@ -113,11 +113,7 @@ describe('minStack class', () => {
 
   context('getMin method', () => {
     it('should consistently return the minimum value in an in-order Stack', () => {
-      m.push(5);
-      m.push(4);
-      m.push(3);
-      m.push(2);
-      m.push(1);
+      const m = new MinStack(5, 4, 3, 2, 1);
       expect(m.getMin()).to.equal(1);
       expect(m.pop()).to.equal(1);
       expect(m.getMin()).to.equal(2);
@@ -135,10 +131,7 @@ describe('minStack class', () => {
       expect(m.pop()).to.equal(undefined);
     });
     it('should consistently return the min value in a reverse-order Stack', () => {
-      m.push(1);
-      m.push(2);
-      m.push(3);
-      m.push(4);
+      const m = new MinStack(1, 2, 3, 4);
       expect(m.getMin()).to.equal(1);
       expect(m.pop()).to.equal(4);
       expect(m.getMin()).to.equal(1);
@@ -150,11 +143,7 @@ describe('minStack class', () => {
       expect(m.getMin()).to.equal(undefined);
     });
     it('should consistently return the min value in an unsorted Stack', () => {
-      m.push(3);
-      m.push(5);
-      m.push(2);
-      m.push(4);
-      m.push(1);
+      const m = new MinStack(3, 5, 2, 4, 1);
       expect(m.getMin()).to.equal(1);
       expect(m.pop()).to.equal(1);
       expect(m.getMin()).to.equal(2);
