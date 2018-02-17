@@ -65,4 +65,35 @@ describe('minStack class', () => {
       expect(m.min).to.eql(new Stack(Infinity, 3, 2, 1));
     });
   });
+
+  context('pop method', () => {
+    it('should remove/return data from storage in a LIFO fashion', () => {
+      m.push(1);
+      m.push(2);
+      m.push(3);
+      expect(m.pop()).to.equal(3);
+      expect(m.pop()).to.equal(2);
+      expect(m.pop()).to.equal(1);
+    });
+    it('should return undefined when the minStack is empty', () => {
+      expect(m.pop()).to.equal(undefined);
+    });
+    it('should remove from the minStack with each pop', () => {
+      m.push(3);
+      m.push(2);
+      m.push(1);
+      m.pop();
+      expect(m.min).to.eql(new Stack(Infinity, 3, 2));
+      m.pop();
+      expect(m.min).to.eql(new Stack(Infinity, 3));
+      m.pop();
+      expect(m.min).to.eql(new Stack(Infinity));
+    });
+    it('should not remove Infinity from min', () => {
+      m.pop();
+      expect(m.min).to.eql(new Stack(Infinity));
+      m.pop();
+      expect(m.min).to.eql(new Stack(Infinity));
+    });
+  });
 });
