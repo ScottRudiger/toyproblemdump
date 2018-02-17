@@ -2,15 +2,15 @@
 
 class Stack {
   constructor(...data) {
-    this.storage = [...data];
+    this.storage = [...data]; // O(n)
   }
-  push(data) {
+  push(data) { // O(1)
     this.storage.push(data);
   }
-  pop() {
+  pop() { // O(1)
     return this.storage.pop();
   }
-  peek() {
+  peek() { // O(1)
     return this.storage[this.storage.length - 1];
   }
 }
