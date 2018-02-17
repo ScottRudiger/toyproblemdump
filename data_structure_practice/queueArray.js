@@ -7,6 +7,9 @@ class Queue {
   enqueue(data) {
     this.storage.unshift(data);
   }
+  dequeue() {
+    return this.storage.pop();
+  }
 }
 
 module.exports = Queue;
