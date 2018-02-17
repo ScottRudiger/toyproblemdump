@@ -32,4 +32,25 @@ describe('minStack class', () => {
   it('should have a default min value of Infinity', () => {
     expect(m.min.peek()).to.equal(Infinity);
   });
+
+  context('push method', () => {
+    it('should push to storage', () => {
+      m.push(1);
+      m.push(2);
+      m.push(3);
+      expect(m.storage).to.eql(new Stack(1, 2, 3));
+    });
+    it('should push the minimum value to min when it doesn\'t change', () => {
+      m.push(1);
+      m.push(2);
+      m.push(3);
+      expect(m.min).to.eql(new Stack(Infinity, 1, 1, 1));
+    });
+    it('should push the minimum value as it changes', () => {
+      m.push(3);
+      m.push(2);
+      m.push(1);
+      expect(m.min).to.eql(new Stack(Infinity, 3, 2, 1));
+    });
+  });
 });
