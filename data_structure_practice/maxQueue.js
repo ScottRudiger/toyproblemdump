@@ -11,7 +11,7 @@ class MaxQueue {
     // if enqueueing data at construction, iterate through data and enqueue each
     if (data.length) for (const datum of data) this.enqueue(datum);
   }
-  enqueue(data) {
+  enqueue(data) { // O(1) constant insertion time
     // if the MaxQueue is empty,
     if (!this.dqStack.peek()) {
       // push data to the dequeue Stack and indicate it's the max;
@@ -25,7 +25,7 @@ class MaxQueue {
       if (data > next[1]) next[1] = data;
     }
   }
-  moveAllFromEqToDq() {
+  moveAllFromEqToDq() { // O(1) amortized as each value will move at most once
     // start max at -Infinity for comparison with the first value
     let max = -Infinity;
     // until enqueue Stack is empty,
@@ -38,7 +38,7 @@ class MaxQueue {
       this.dqStack.push([data, max]);
     }
   }
-  dequeue() {
+  dequeue() { // O(1) amortized deletion due to calling moveAllFromEqToDq from time-to-time
     // if the MaxQueue is empty, return undefined
     if (!this.dqStack.peek()) return;
     // pop from the dequeue Stack and save it's data
@@ -48,13 +48,13 @@ class MaxQueue {
     // return the data
     return data;
   }
-  peek() {
+  peek() { // O(1) constant peek time
     // if the MaxQueue is empty, return undefined
     if (!this.dqStack.peek()) return;
     // peek at dequeue Stack and return its data
     return this.dqStack.peek()[0];
   }
-  getMax() {
+  getMax() { // O(1) constant time to find maximum value
     // if the MaxQueue is empty, return undefined
     if (!this.dqStack.peek()) return;
     // peek at dequeue Stack and return the current max
