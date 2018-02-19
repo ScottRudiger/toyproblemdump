@@ -1,7 +1,12 @@
 // implement a queue with O(1) time complexity for insertion, deletion, and finding the maximum value
 
-class MaxQueue {
+const Queue = require('./queueLinkedList');
 
+class MaxQueue {
+  constructor() {
+    this.storage = new Queue();
+    this.max = new Queue(-Infinity);
+  }
 }
 
 const {expect} = require('chai');
