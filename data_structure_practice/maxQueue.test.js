@@ -16,4 +16,18 @@ describe('MaxQueue class', () => {
     const {LinkedList} = require('./doublyLinkedList');
     for (const prop in m) expect(m[prop].storage).to.be.an.instanceof(LinkedList);
   });
+
+  context('enqueue method', () => {
+    it('should add data to the dequeue Stack if MaxQueue is empty', () => {
+      m.enqueue(1);
+      expect(m.dqStack).to.not.eql(new Stack());
+      expect(m.eqStack).to.eql(new Stack());
+    });
+    it('should add data to the enqueue Stack if MaxQueue is not empty', () => {
+      m.enqueue(1);
+      m.enqueue(2);
+      expect(m.dqStack).to.not.eql(new Stack());
+      expect(m.eqStack).to.not.eql(new Stack());
+    });
+  });
 });
