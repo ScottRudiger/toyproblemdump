@@ -65,4 +65,47 @@ describe('MaxQueue class', () => {
       expect(m.peek()).to.equal(undefined);
     });
   });
+
+  context('getMax method', () => {
+    it('should consistently return the max value with increasing data', () => {
+      const inc = new MaxQueue(1, 2, 3);
+      expect(inc.getMax()).to.equal(3);
+      m.dequeue();
+      expect(inc.getMax()).to.equal(3);
+      m.dequeue();
+      expect(inc.getMax()).to.equal(3);
+    });
+    it('should consistently return the max value with decreasing data', () => {
+      const dec = new MaxQueue(3, 2, 1);
+      expect(dec.getMax()).to.equal(3);
+      dec.dequeue();
+      expect(dec.getMax()).to.equal(2);
+      dec.dequeue();
+      expect(dec.getMax()).to.equal(1);
+    });
+    it('should consistently return the max value with unsorted data', () => {
+      const mix = new MaxQueue(3, 5, 2, 4, 1);
+      expect(mix.getMax()).to.equal(5);
+      mix.dequeue();
+      expect(mix.getMax()).to.equal(5);
+      mix.dequeue();
+      expect(mix.getMax()).to.equal(4);
+      mix.dequeue();
+      expect(mix.getMax()).to.equal(4);
+      mix.dequeue();
+      expect(mix.getMax()).to.equal(1);
+    });
+    it('should return the max when an enqueue follows a dequeue', () => {
+      m.enqueue(1);
+      m.enqueue(2);
+      m.enqueue(3);
+      m.enqueue(4);
+      m.dequeue();
+      m.enqueue(0);
+      expect(m.getMax()).to.equal(4);
+    });
+    it('should return undefined when MaxQueue is empty', () => {
+      expect(m.getMax()).to.equal(undefined);
+    });
+  });
 });
