@@ -1,27 +1,16 @@
 // implement a queue with O(1) time complexity for insertion, deletion, and finding the maximum value
 
-const Queue = require('./queueLinkedList');
+const Stack = require('./stackLinkedList');
 
 class MaxQueue {
-  constructor() {
-    this.storage = new Queue();
-    this.max = new Queue(-Infinity);
+  constructor(...data) {
+    // create a dequeue Stack from which we'll pop
+    this.dqStack = new Stack();
+    // create an enqueue Stack to which we'll push
+    this.eqStack = new Stack();
+    // if enqueueing data at construction, iterate through data and enqueue each
+    if (data.length) for (const datum of data) this.enqueue(datum);
   }
 }
 
-const {expect} = require('chai');
-
-describe('MaxQueue class', () => {
-  const m = new MaxQueue();
-  it('should store data in a Queue', () => {
-    expect(m.storage).to.be.an.instanceof(Queue);
-  });
-  it('should store maximum values in a Queue', () => {
-    expect(m.max).to.be.an.instanceof(Queue);
-  });
-  it('should use Queues that store data in a linked list', () => {
-    const {LinkedList} = require('./doublyLinkedList');
-    expect(m.storage.storage).to.be.an.instanceof(LinkedList);
-    expect(m.max.storage).to.be.an.instanceof(LinkedList);
-  });
-});
+module.exports = MaxQueue;
