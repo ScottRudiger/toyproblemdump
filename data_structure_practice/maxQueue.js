@@ -54,6 +54,12 @@ class MaxQueue {
     // peek at dequeue Stack and return its data
     return this.dqStack.peek()[0];
   }
+  getMax() {
+    // if the MaxQueue is empty, return undefined
+    if (!this.dqStack.peek()) return;
+    // peek at dequeue Stack and return the current max
+    return this.dqStack.peek()[1];
+  }
 }
 
 module.exports = MaxQueue;
