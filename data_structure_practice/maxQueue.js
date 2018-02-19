@@ -38,6 +38,16 @@ class MaxQueue {
       this.dqStack.push([data, max]);
     }
   }
+  dequeue() {
+    // if the MaxQueue is empty, return undefined
+    if (!this.dqStack.peek()) return;
+    // pop from the dequeue Stack and save it's data
+    const [data] = this.dqStack.pop();
+    // if there's no data left in dequeue Stack, move all data from enqueue Stack
+    if (!this.dqStack.peek()) this.moveAllFromEqToDq();
+    // return the data
+    return data;
+  }
 }
 
 module.exports = MaxQueue;
