@@ -13,7 +13,7 @@ class MaxQueue {
   }
   enqueue(data) { // O(1) constant insertion time
     // if the MaxQueue is empty,
-    if (!this.dqStack.peek()) {
+    if (!this.peek()) {
       // push data to the dequeue Stack and indicate it's the max;
       this.dqStack.push([data, data]); // e.g., enqueue(8) ==> [data: 8, max: 8]
     } else {
@@ -40,7 +40,7 @@ class MaxQueue {
   }
   dequeue() { // O(1) amortized deletion due to calling moveAllFromEqToDq from time-to-time
     // if the MaxQueue is empty, return undefined
-    if (!this.dqStack.peek()) return;
+    if (!this.peek()) return;
     // pop from the dequeue Stack and save it's data
     const [data] = this.dqStack.pop();
     // if there's no data left in dequeue Stack, move all data from enqueue Stack
@@ -56,7 +56,7 @@ class MaxQueue {
   }
   getMax() { // O(1) constant time to find maximum value
     // if the MaxQueue is empty, return undefined
-    if (!this.dqStack.peek()) return;
+    if (!this.peek()) return;
     // peek at dequeue Stack and return the current max
     return this.dqStack.peek()[1];
   }
