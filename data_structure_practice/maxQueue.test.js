@@ -50,4 +50,19 @@ describe('MaxQueue class', () => {
       expect(m.dqStack).to.not.equal(new Stack);
     });
   });
+
+  context('peek method', () => {
+    it('should return the only value enqueued', () => {
+      m.enqueue(1);
+      expect(m.peek()).to.equal(1);
+    });
+    it('should return the first value enqueued', () => {
+      m.enqueue(1);
+      m.enqueue(2);
+      expect(m.peek()).to.equal(1);
+    });
+    it('should return undefined when MaxQueue is empty', () => {
+      expect(m.peek()).to.equal(undefined);
+    });
+  });
 });
