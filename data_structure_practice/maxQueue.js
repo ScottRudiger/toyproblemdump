@@ -18,7 +18,7 @@ class MaxQueue {
       this.dqStack.push([data, data]); // e.g., enqueue(8) ==> [data: 8, max: 8]
     } else {
       // otherwise, the MaxQueue is not empty; push data to enqueue Stack
-      this.eqStack.push([data]);
+      this.eqStack.push(data);
       // save a reference to the tuple that's next in line to be dequeued
       const next = this.dqStack.peek();
       // if the enqueueing data is > the max in that tuple, update it
@@ -31,7 +31,7 @@ class MaxQueue {
     // until enqueue Stack is empty,
     while (this.eqStack.peek()) {
       // pop from enqueue Stack and save its data
-      const [data] = this.eqStack.pop();
+      const data = this.eqStack.pop();
       // if data is > max, set max to data
       if (data > max) max = data;
       // push to dequeue Stack and indicate the current max; e.g., [data: 7: max: 8]
