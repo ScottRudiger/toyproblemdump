@@ -30,4 +30,24 @@ describe('MaxQueue class', () => {
       expect(m.eqStack).to.not.eql(new Stack());
     });
   });
+
+  context('dequeue method', () => {
+    it('should remove/return values in a FIFO fashion', () => {
+      m.enqueue(1);
+      m.enqueue(2);
+      m.enqueue(3);
+      expect(m.dequeue()).to.equal(1);
+      expect(m.dequeue()).to.equal(2);
+      expect(m.dequeue()).to.equal(3);
+      expect(m.dequeue()).to.equal(undefined);
+    });
+    it('should move all data from eqStack to dqStack when dqStack is empty', () => {
+      m.enqueue(1);
+      m.enqueue(2);
+      m.enqueue(3);
+      m.dequeue();
+      expect(m.eqStack).to.eql(new Stack());
+      expect(m.dqStack).to.not.equal(new Stack);
+    });
+  });
 });
