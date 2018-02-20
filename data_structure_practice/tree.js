@@ -14,7 +14,9 @@ class Node {
 }
 
 class Tree {
-
+  constructor(root) {
+    this.root = root;
+  }
 }
 
 module.exports = {Node, Tree};
