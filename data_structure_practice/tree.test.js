@@ -27,4 +27,15 @@ describe('Tree class', () => {
       });
     });
   });
+
+  context('constructor', () => {
+    const n = new Node(1);
+    const t = new Tree(n);
+    it('should create a Tree', () => {
+      expect(t).to.be.an.instanceof(Tree);
+    });
+    it('should accept a Node and set it as the Tree\'s root', () => {
+      expect(t.root).to.equal(n);
+    });
+  });
 });
