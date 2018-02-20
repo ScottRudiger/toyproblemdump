@@ -7,3 +7,5 @@ class Node {
 class Tree {
 
 }
+
+module.exports = {Node, Tree};
