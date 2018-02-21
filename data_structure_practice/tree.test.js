@@ -51,8 +51,29 @@ describe('Tree class', () => {
           /
          3
     */
-    const ordered = [];
-    t.traverseDF(n => ordered.push(n.data));
-    expect(ordered).to.eql([1, 2, 3, 4]);
+    it('should traverse in a depth-first fashion', () => {
+      const ordered = [];
+      t.traverseDF(n => ordered.push(n.data));
+      expect(ordered).to.eql([1, 2, 3, 4]);
+    });
+  });
+
+  context('traverseBF method', () => {
+    const n = new Node(1);
+    const t = new Tree(n);
+    t.root.add(2, 3);
+    t.root.children[0].add(4);
+    /*  Tree:
+              1
+            /   \
+           2    3
+          /
+         4
+    */
+    it('should traverse in a breadth-first fashion', () => {
+      const ordered = [];
+      t.traverseBF(n => ordered.push(n.data));
+      expect(ordered).to.eql([1, 2, 3, 4]);
+    });
   });
 });

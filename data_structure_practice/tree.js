@@ -20,7 +20,7 @@ class Tree {
   traverseDF(fn) {
     (function inner(node) {
       fn(node);
-      node.children.forEach(child => inner(child));
+      node.children.forEach(inner);
     })(this.root);
   }
 }
