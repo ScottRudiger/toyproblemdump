@@ -35,12 +35,12 @@ class BSTree {
     // otherwise, the last arg is data; set default options
     else this.setOptions({});
     // iterate through data and insert each
-    for (const datum of data) this.insert(datum);
+    this.insert(...data);
   }
   insert(...data) {
     // iterate through data in case we're inserting multiple
     for (const datum of data) {
-      // wrap data in Node if it's not already
+      // wrap data in Node if it's not already in one
       const nodeToInsert = datum instanceof Node
       ? datum
       : new Node(datum);
