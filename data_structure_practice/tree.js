@@ -23,6 +23,13 @@ class Tree {
       node.children.forEach(inner);
     })(this.root);
   }
+  traverseBF(fn) {
+    fn(this.root);
+    (function inner(node) {
+      node.children.forEach(fn);
+      node.children.forEach(inner);
+    })(this.root);
+  }
 }
 
 module.exports = {Node, Tree};
