@@ -38,4 +38,50 @@ describe('BSTree class', () => {
       expect(new BSTree(1).root.data).to.equal(1);
     });
   });
+
+  context('insert method', () => {
+    let b = new BSTree();
+    afterEach(() => b = new BSTree());
+    it('should set root if root isn\'t yet defined', () => {
+      b.insert(2);
+      expect(b.root.data).to.equal(2);
+    });
+    it('should insert a Node to the left', () => {
+      b.insert(2);
+      b.insert(1);
+      expect(b.root.left.data).to.equal(1);
+    });
+    it('should insert a Node to the right', () => {
+      b.insert(2);
+      b.insert(3);
+      expect(b.root.right.data).to.equal(3);
+    });
+    it('should insert multiple values', () => {
+      b.insert(2, 1, 3);
+      expect(b.root.data).to.equal(2);
+      expect(b.root.left.data).to.equal(1);
+      expect(b.root.right.data).to.equal(3);
+    });
+    it('should insert multiple Nodes', () => {
+      const n2 = new Node(2);
+      const n1 = new Node(1);
+      const n3 = new Node(3);
+      b.insert(n2, n1, n3);
+      expect(b.root).to.equal(n2);
+      expect(b.root.left).to.equal(n1);
+      expect(b.root.right).to.equal(n3);
+    });
+    it('should insert more data', () => {
+      b.insert(5, 7, 3, 6, 4, 10, 1, 8, 9);
+      expect(b.root.data).to.equal(5);
+      expect(b.root.right.data).to.equal(7);
+      expect(b.root.left.data).to.equal(3);
+      expect(b.root.right.left.data).to.equal(6);
+      expect(b.root.left.right.data).to.equal(4);
+      expect(b.root.right.right.data).to.equal(10);
+      expect(b.root.left.left.data).to.equal(1);
+      expect(b.root.right.right.left.data).to.equal(8);
+      expect(b.root.right.right.left.right.data).to.equal(9);
+    });
+  });
 });
