@@ -20,15 +20,13 @@ class Node {
 }
 
 class BSTree {
-  constructor(root = null, comp = (a, b) => a.data > b.data) {
-    // if root is null or already wrapped in a Node,
-    this.root = !root || root instanceof Node
-      // set root prop to root
-      ? root
-      // otherwise, set root prop to a new Node
-      : new Node(root);
-    // set comparator; default to a > b
-    this.comp = comp;
+  constructor(...data) {
+    // default root to null
+    this.root = null;
+    // set default comparator
+    this.comp = (a, b) => a.data > b.data;
+    // iterate through data and insert each
+    for (const datum of data) this.insert(datum);
   }
   insert(...data) {
     // iterate through data in case we're inserting multiple

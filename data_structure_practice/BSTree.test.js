@@ -37,6 +37,12 @@ describe('BSTree class', () => {
     it('should set root given a value', () => {
       expect(new BSTree(1).root.data).to.equal(1);
     });
+    it('should build a tree given multiple values', () => {
+      const b = new BSTree(2, 1, 3);
+      expect(b.root.data).to.equal(2);
+      expect(b.root.left.data).to.equal(1);
+      expect(b.root.right.data).to.equal(3);
+    });
   });
 
   context('insert method', () => {
