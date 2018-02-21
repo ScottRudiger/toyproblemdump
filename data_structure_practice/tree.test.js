@@ -38,4 +38,21 @@ describe('Tree class', () => {
       expect(t.root).to.equal(n);
     });
   });
+
+  context('traverseDF method', () => {
+    const n = new Node(1);
+    const t = new Tree(n);
+    t.root.add(2, 4);
+    t.root.children[0].add(3);
+    /*  Tree:
+              1
+            /   \
+           2    4
+          /
+         3
+    */
+    const ordered = [];
+    t.traverseDF(n => ordered.push(n.data));
+    expect(ordered).to.eql([1, 2, 3, 4]);
+  });
 });
