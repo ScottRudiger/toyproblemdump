@@ -20,7 +20,16 @@ class Node {
 }
 
 class BSTree {
-
+  constructor(root = null, comp = (a, b) => a.data > b.data) {
+    // if root is null or already wrapped in a Node,
+    this.root = !root || root instanceof Node
+      // set root prop to root
+      ? root
+      // otherwise, set root prop to a new Node
+      : new Node(root);
+    // set comparator; default to a > b
+    this.comp = comp;
+  }
 }
 
 module.exports = {Node, BSTree};
