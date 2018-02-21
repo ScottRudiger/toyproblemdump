@@ -21,4 +21,21 @@ describe('BSTree class', () => {
       expect(n.right.data).to.equal(3);
     });
   });
+
+  context('constructor', () => {
+    const b = new BSTree();
+    it('should create a BSTree', () => {
+      expect(b).to.be.an.instanceof(BSTree);
+    });
+    it('should default root to null', () => {
+      expect(b.root).to.be.null;
+    });
+    it('should set root given a Node', () => {
+      const n = new Node(1);
+      expect(new BSTree(n).root).to.equal(n);
+    });
+    it('should set root given a value', () => {
+      expect(new BSTree(1).root.data).to.equal(1);
+    });
+  });
 });
