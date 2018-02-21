@@ -118,5 +118,18 @@ describe('BSTree class', () => {
       });
       expect(b.equals(0, b.root.left)).to.be.true;
     });
+    it('should be able to create a BSTree of BSTrees', () => {
+      const bRoot = new BSTree(2, 1, 3);
+      const bRight = new BSTree(5, 6, 4);
+      const bLeft = new BSTree([1], [], [1, 2], {
+        comparator: (a, b) => a.data.length > b.data.length
+      });
+      const b = new BSTree(bRoot, bRight, bLeft, {
+        comparator: (a, b) => a.data.root.data > b.data.root.data
+      });
+      expect(b.root.data).to.equal(bRoot);
+      expect(b.root.right.data).to.equal(bRight);
+      expect(b.root.left.data).to.equal(bLeft);
+    });
   });
 });

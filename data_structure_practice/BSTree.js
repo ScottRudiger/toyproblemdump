@@ -23,8 +23,17 @@ class BSTree {
   constructor(...data) {
     // default root to null
     this.root = null;
-    // set default comparator
-    this.comp = (a, b) => a.data > b.data;
+    // save the last argument
+    const opts = data[data.length - 1];
+    // if the last arg is an options argument (for comparator & equality),
+    if (
+      opts
+      && typeof opts === 'object'
+      && Object.keys(opts).some(prop => prop === 'comparator' || prop === 'equality')
+    ) // set the given options and remove them from data
+      this.setOptions(data.pop());
+    // otherwise, the last arg is data; set default options
+    else this.setOptions({});
     // iterate through data and insert each
     for (const datum of data) this.insert(datum);
   }
@@ -67,6 +76,12 @@ class BSTree {
         }
       }
     }
+  }
+  setOptions(options) {
+    // set comparator option
+    this.comp = options.comparator || ((a, b) => a.data > b.data);
+    // set equality option
+    this.equals = options.equality || ((a, b) => a === b.data);
   }
 }
 
