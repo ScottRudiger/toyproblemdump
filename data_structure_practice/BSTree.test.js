@@ -90,4 +90,33 @@ describe('BSTree class', () => {
       expect(b.root.right.right.left.right.data).to.equal(9);
     });
   });
+
+  context('setOptions method', () => {
+    it('should set default methods for comparison & equality', () => {
+      const b = new BSTree();
+      expect(b.comp.toString()).to.equal(((a, b) => a.data > b.data).toString());
+      expect(b.equals.toString()).to.equal(((a, b) => a === b.data).toString());
+    });
+    it('should set a different comparator method', () => {
+      const b = new BSTree([1], [], [1, 2], {
+        comparator: (a, b) => a.data.length > b.data.length
+      });
+      expect(b.root.data).to.eql([1]);
+      expect(b.root.left.data).to.eql([]);
+      expect(b.root.right.data).to.eql([1, 2]);
+    });
+    it('should set a different equality method', () => {
+      const b = new BSTree([1], [], {
+        equality: (a, b) => a == b.data
+      });
+      expect(b.equals.toString()).to.equal(((a, b) => a == b.data).toString());
+    });
+    it('should set both options', () => {
+      const b = new BSTree([1], [], [1, 2], {
+        comparator: (a, b) => a.data.length > b.data.length,
+        equality: (a, b) => a == b.data
+      });
+      expect(b.equals(0, b.root.left)).to.be.true;
+    });
+  });
 });
