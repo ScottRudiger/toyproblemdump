@@ -84,6 +84,29 @@ b)
 ||
 n)
 
+f= // 22
+n=>
+!(n
+%15
+)?
+'f\
+iz\
+zb\
+uz\
+z':
+!(n
+%5)
+?'\
+bu\
+zz'
+:!(
+n%3
+)?
+'f\
+iz\
+z':
+n
+
 const {expect} = require('chai');
 
 describe('multiline fizz buzz function', () => {
