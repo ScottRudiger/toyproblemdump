@@ -11,3 +11,21 @@ where n is a positive integer.
 
 Requirement: Every line must have at most 3 characters, and total number of lines must be less than 25.
 */
+
+const {expect} = require('chai');
+
+describe('multiline fizz buzz function', () => {
+  it('should return \'fizz\' given a number divisible by 3', () => {
+    expect(f(3)).to.equal('fizz');
+  });
+  it('should return \'buzz\' given a number divisible by 5', () => {
+    expect(f(5)).to.equal('buzz');
+  });
+  it('should return \'fizzbuzz\' given a number divisible by 15', () => {
+    expect(f(15)).to.equal('fizzbuzz');
+  });
+  it('should otherwise return the number', () => {
+    expect(f(8)).to.equal(8);
+    expect(f(28)).to.equal(28);
+  });
+});
