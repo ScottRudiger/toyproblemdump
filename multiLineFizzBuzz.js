@@ -256,6 +256,25 @@ z')
 f=g
 ``
 
+z= // 18
+'z\
+z'
+f=
+n=>
+(n%
+3?
+'':
+'f\
+i'+
+z)+
+(n%
+5?
+'':
+'b\
+u'+
+z)
+||n
+
 const {expect} = require('chai');
 
 describe('multiline fizz buzz function', () => {
