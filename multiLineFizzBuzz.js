@@ -173,6 +173,28 @@ z'
 ?b:
 n
 
+f= // 21
+n=>
+(w=
+['\
+fi\
+zz'
+,'\
+bu\
+zz'
+],(
+n%3
+?''
+:w[
+0])
++(n
+%5?
+'':
+w[1
+])
+||
+n)
+
 const {expect} = require('chai');
 
 describe('multiline fizz buzz function', () => {
