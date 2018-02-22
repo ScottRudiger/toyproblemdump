@@ -216,6 +216,26 @@ z'
 '')
 ||n
 
+a= // 19
+'f\
+iz\
+z'
+b=
+'b\
+uz\
+z'
+f=
+n=>
+(n%
+3?
+'':
+a)+
+(n%
+5?
+'':
+b)
+||n
+
 const {expect} = require('chai');
 
 describe('multiline fizz buzz function', () => {
