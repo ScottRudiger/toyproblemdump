@@ -195,6 +195,27 @@ w[1
 ||
 n)
 
+f= // 20
+n=>
+(n%
+3==
+0&&
+'f\
+iz\
+z'
+||
+'')
++(n
+%5
+==0
+&&
+'b\
+uz\
+z'
+||
+'')
+||n
+
 const {expect} = require('chai');
 
 describe('multiline fizz buzz function', () => {
