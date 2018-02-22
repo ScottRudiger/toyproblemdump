@@ -61,6 +61,29 @@ b}`
 ||
 n)
 
+f= // 22
+n=>
+(w=
+{a:
+'f\
+iz\
+z',
+b:
+'b\
+uz\
+z'}
+,(n
+%3?
+'':
+w.a
+)+(
+n%5
+?''
+:w.
+b)
+||
+n)
+
 const {expect} = require('chai');
 
 describe('multiline fizz buzz function', () => {
