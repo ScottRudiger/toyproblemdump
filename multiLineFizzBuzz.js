@@ -151,6 +151,28 @@ z',
 ?b:
 n)
 
+f=( // 21
+n,a
+='\
+fi\
+zz'
+,b=
+'b\
+uz\
+z'
+)=>
+!(n
+%15
+)?a
++b:
+!(n
+%3)
+?a:
+!(n
+%5)
+?b:
+n
+
 const {expect} = require('chai');
 
 describe('multiline fizz buzz function', () => {
