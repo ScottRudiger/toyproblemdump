@@ -12,6 +12,31 @@ where n is a positive integer.
 Requirement: Every line must have at most 3 characters, and total number of lines must be less than 25.
 */
 
+f= // 24
+n=>
+n%3
+&
+n%5
+?n:
+(s=
+'',
+!(n
+%3)
+&&(
+s+=
+'f\
+iz\
+z')
+,!(
+n%5
+)&&
+(s
++=
+'b\
+uz\
+z')
+,s)
+
 const {expect} = require('chai');
 
 describe('multiline fizz buzz function', () => {
