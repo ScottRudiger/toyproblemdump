@@ -39,8 +39,58 @@ If there's a winner, there will be only one
 You will not receive empty array, nor invalid inputs
 There will not be duplicates points*/
 
-const connectFour = moves => {
+const changeSomethingBy = something => (move, amount) => JSON.stringify(Object.assign(
+  JSON.parse(move),
+  {[something]: JSON.parse(move)[something] + amount},
+));
 
+const changeXBy = (move, amount) => changeSomethingBy('x')(move, amount);
+const changeYBy = (move, amount) => changeSomethingBy('y')(move, amount);
+const changeXAndYBy = (move, xAmount, yAmount) => JSON.stringify(Object.assign(
+  JSON.parse(move),
+  {x: JSON.parse(move).x + xAmount},
+  {y: JSON.parse(move).y + yAmount},
+));
+
+const checkHorizontally = (mv, bd) => [
+  [1, 2, 3].map(n => changeXBy(mv, n)).every(co => bd[co] === bd[mv]),
+  [-1, -2, -3].map(n => changeXBy(mv, n)).every(co => bd[co] === bd[mv]),
+  [1, -1, -2].map(n => changeXBy(mv, n)).every(co => bd[co] === bd[mv]),
+  [-1, 1, 2].map(n => changeXBy(mv, n)).every(co => bd[co] === bd[mv]),
+].some(Boolean);
+
+const checkVertically = (mv, bd) => [
+  [1, 2, 3].map(n => changeYBy(mv, n)).every(co => bd[co] === bd[mv]),
+  [-1, -2, -3].map(n => changeYBy(mv, n)).every(co => bd[co] === bd[mv]),
+  [1, -1, -2].map(n => changeYBy(mv, n)).every(co => bd[co] === bd[mv]),
+  [-1, 1, 2].map(n => changeYBy(mv, n)).every(co => bd[co] === bd[mv]),
+].some(Boolean);
+
+const checkDiagonally = (m, b) => [
+  [[1, 1], [2, 2], [3, 3]].map(c => changeXAndYBy(m, ...c)).every(p => b[p] === b[m]),
+  [[-1, -1], [-2, -2], [-3, -3]].map(c => changeXAndYBy(m, ...c)).every(p => b[p] === b[m]),
+  [[1, -1], [2, -2], [3, -3]].map(c => changeXAndYBy(m, ...c)).every(p => b[p] === b[m]),
+  [[-1, 1], [-2, 2], [-3, 3]].map(c => changeXAndYBy(m, ...c)).every(p => b[p] === b[m]),
+  [[1, 1], [-1, -1], [-2, -2]].map(c => changeXAndYBy(m, ...c)).every(p => b[p] === b[m]),
+  [[-1, -1], [1, 1], [2, 2]].map(c => changeXAndYBy(m, ...c)).every(p => b[p] === b[m]),
+  [[1, -1], [-1, 1], [-2, 2]].map(c => changeXAndYBy(m, ...c)).every(p => b[p] === b[m]),
+  [[-1, 1], [1, -1], [2, -2]].map(c => changeXAndYBy(m, ...c)).every(p => b[p] === b[m]),
+].some(Boolean);
+
+const areFourConnected = (move, board) => [
+  checkHorizontally,
+  checkVertically,
+  checkDiagonally,
+].map(fn => fn(move, board)).some(Boolean);
+
+const connectFour = moves => {
+  const board = {};
+  for (const move of moves) {
+    board[JSON.stringify(move)] = move.p;
+    if (areFourConnected(JSON.stringify(move), board))
+      return move.p;
+  }
+  return null;
 };
 
 const {assert} = require('chai');
