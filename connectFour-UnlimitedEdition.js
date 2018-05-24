@@ -45,7 +45,7 @@ const connectFour = moves => {
 
 const {assert} = require('chai');
 
-describe("Tests", function () {
+describe("Tests", () => {
   const moves1 = [
     {p: 'R', x: 0, y: 0},
     {p: 'Y', x: 100, y: 100},
@@ -101,19 +101,40 @@ describe("Tests", function () {
     {p: 'E', x: 3, y: -3}
   ];
 
-  it("4 in a row", function () {
+  const moves6 = [
+    {p: 'C', x: 4, y: -4},
+    {p: 'C', x: 3, y: 3},
+    {p: 'C', x: 2, y: -2},
+    {p: 'C', x: 1, y: 1}
+  ];
+
+  const moves7 = [
+    {p: 'D', x: 0, y: 0},
+    {p: 'D', x: 1, y: -1},
+    {p: 'D', x: 2, y: -2},
+    {p: 'D', x: 7, y: 7},
+    {p: 'D', x: 3, y: -3},
+  ];
+
+  it("4 in a row", () => {
     assert.deepEqual(connectFour(moves1), 'R', 'Should check 4 in a row');
   });
-  it("4 in a column", function () {
+  it("4 in a column", () => {
     assert.deepEqual(connectFour(moves2), 'Y', 'Should check 4 in a column');
   });
-  it("4 in diagonal", function () {
+  it("4 in diagonal", () => {
     assert.deepEqual(connectFour(moves3), 'G', 'Should check 4 in diagonal');
   });
-  it("no winner", function () {
+  it("no winner", () => {
     assert.deepEqual(connectFour(moves4), null, 'Should check if there\'s no winner');
   });
-  it("4 in diagonal", function () {
+  it("4 in diagonal", () => {
     assert.deepEqual(connectFour(moves5), 'E', 'Should check 4 in diagonal');
+  });
+  it("no winner", () => {
+    assert.deepEqual(connectFour(moves6), null, 'Should check if there\'s no winner');
+  });
+  it("4 in diagonal", () => {
+    assert.deepEqual(connectFour(moves7), 'D', 'Should check 4 in diagonal');
   });
 });
