@@ -42,3 +42,78 @@ There will not be duplicates points*/
 const connectFour = moves => {
 
 };
+
+const {assert} = require('chai');
+
+describe("Tests", function () {
+  const moves1 = [
+    {p: 'R', x: 0, y: 0},
+    {p: 'Y', x: 100, y: 100},
+    {p: 'R', x: 1, y: 0},
+    {p: 'Y', x: 99, y: 100},
+    {p: 'R', x: 2, y: 0},
+    {p: 'Y', x: 98, y: 100},
+    {p: 'R', x: 3, y: 0},
+    {p: 'Y', x: 96, y: 100}
+  ];
+
+  const moves2 = [
+    {p: 'R', x: 15, y: 15},
+    {p: 'Y', x: 10, y: 10},
+    {p: 'Y', x: 10, y: 11},
+    {p: 'Y', x: 10, y: 12},
+    {p: 'Y', x: 10, y: 13},
+    {p: 'R', x: 15, y: 16},
+    {p: 'R', x: 16, y: 15},
+    {p: 'R', x: 16, y: 16}
+  ];
+
+  const moves3 = [
+    {p: 'G', x: 0, y: 0},
+    {p: 'Y', x: 0, y: 1},
+    {p: 'G', x: 1, y: 1},
+    {p: 'Y', x: 1, y: 2},
+    {p: 'G', x: 2, y: 2},
+    {p: 'Y', x: 2, y: 3},
+    {p: 'G', x: -1, y: -1},
+    {p: 'Y', x: 3, y: 3}
+  ];
+
+  const moves4 = [
+    {p: 'A', x: 50, y: -50},
+    {p: 'B', x: 49, y: -50},
+    {p: 'C', x: 48, y: -50},
+    {p: 'D', x: 50, y: -49},
+    {p: 'A', x: 51, y: -50},
+    {p: 'B', x: 49, y: -49},
+    {p: 'C', x: 48, y: -51},
+    {p: 'D', x: 51, y: -49}
+  ];
+
+  const moves5 = [
+    {p: 'P', x: 0, y: 1},
+    {p: 'P', x: 0, y: -1},
+    {p: 'P', x: 0, y: -2},
+    {p: 'P', x: 0, y: -3},
+    {p: 'E', x: 0, y: 0},
+    {p: 'E', x: 1, y: -1},
+    {p: 'E', x: 2, y: -2},
+    {p: 'E', x: 3, y: -3}
+  ];
+
+  it("4 in a row", function () {
+    assert.deepEqual(connectFour(moves1), 'R', 'Should check 4 in a row');
+  });
+  it("4 in a column", function () {
+    assert.deepEqual(connectFour(moves2), 'Y', 'Should check 4 in a column');
+  });
+  it("4 in diagonal", function () {
+    assert.deepEqual(connectFour(moves3), 'G', 'Should check 4 in diagonal');
+  });
+  it("no winner", function () {
+    assert.deepEqual(connectFour(moves4), null, 'Should check if there\'s no winner');
+  });
+  it("4 in diagonal", function () {
+    assert.deepEqual(connectFour(moves5), 'E', 'Should check 4 in diagonal');
+  });
+});
