@@ -19,11 +19,14 @@
 // };
 
 // solve w/o for loop
-const reverse = str => {
-  let reversed = '';
-  for (const char of str)
-    reversed = char + reversed;
-  return reversed;
-};
+// const reverse = str => {
+//   let reversed = '';
+//   for (const char of str)
+//     reversed = char + reversed;
+//   return reversed;
+// };
+
+// solve w/ reduce
+const reverse = str => [...str].reduce((reversed, char) => char + reversed, '');
 
 module.exports = reverse;
