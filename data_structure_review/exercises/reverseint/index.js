@@ -10,8 +10,10 @@
 
 // const reverseInt = n => +(n < 0 ? [...`${n}-`].slice(1) : [...`${n}`]).reverse().join``;
 
-const reverseInt = n => Number(
-  [...Math.abs(n).toString()].reverse().join``
-) * Math.sign(n);
+// const reverseInt = n => Number(
+//   [...Math.abs(n).toString()].reverse().join``
+// ) * Math.sign(n);
+
+const reverseInt = n => parseInt([...`${n}`].reverse().join``) * Math.sign(n);
 
 module.exports = reverseInt;
