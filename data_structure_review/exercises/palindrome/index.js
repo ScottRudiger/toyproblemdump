@@ -17,11 +17,14 @@
 // const palindrome = str => str === [...str].reduce((rev, char) => char + rev, '');
 
 // solve in O(log n) time O(1) space
-const palindrome = str => {
-  for (let i = 0, j = str.length - 1; i < j; i++, j--) {
-    if (str[i] !== str[j]) return false;
-  }
-  return true;
-};
+// const palindrome = str => {
+//   for (let i = 0, j = str.length - 1; i < j; i++, j--) {
+//     if (str[i] !== str[j]) return false;
+//   }
+//   return true;
+// };
+
+// solve w/ every
+const palindrome = str => [...str].every((char, i) => char === str[str.length - i - 1]);
 
 module.exports = palindrome;
