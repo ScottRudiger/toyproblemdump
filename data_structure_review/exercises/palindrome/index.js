@@ -14,6 +14,14 @@
 // const palindrome = str => reverse(str) === str;
 
 // solve w/ reduce
-const palindrome = str => str === [...str].reduce((rev, char) => char + rev, '');
+// const palindrome = str => str === [...str].reduce((rev, char) => char + rev, '');
+
+// solve in O(log n) time O(1) space
+const palindrome = str => {
+  for (let i = 0, j = str.length - 1; i < j; i++, j--) {
+    if (str[i] !== str[j]) return false;
+  }
+  return true;
+};
 
 module.exports = palindrome;
