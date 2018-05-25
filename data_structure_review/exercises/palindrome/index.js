@@ -9,8 +9,11 @@
 
 
 // solve using `reverse` function
-const reverse = require('../reversestring');
+// const reverse = require('../reversestring');
 
-const palindrome = str => reverse(str) === str;
+// const palindrome = str => reverse(str) === str;
+
+// solve w/ reduce
+const palindrome = str => str === [...str].reduce((rev, char) => char + rev, '');
 
 module.exports = palindrome;
