@@ -8,6 +8,6 @@
 //   reverseInt(-15) === -51
 //   reverseInt(-90) === -9
 
-function reverseInt(n) {}
+const reverseInt = n => +(n < 0 ? [...`${n}-`].slice(1) : [...`${n}`]).reverse().join``;
 
 module.exports = reverseInt;
