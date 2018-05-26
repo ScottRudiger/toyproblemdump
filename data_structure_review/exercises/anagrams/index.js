@@ -8,11 +8,28 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
+// using String.prototype.replace
 // const sortWithoutNonWords = str => [...str.replace(/\W/g, '').toLowerCase()].sort().join``;
 
-const sortWithoutNonWords = str => str.toLowerCase().match(/\w/g).sort().join``;
+// using String.prototype.match
+// const sortWithoutNonWords = str => str.toLowerCase().match(/\w/g).sort().join``;
 
-const anagrams = (stringA, stringB) =>
-  sortWithoutNonWords(stringA) === sortWithoutNonWords(stringB);
+// const anagrams = (stringA, stringB) =>
+//   sortWithoutNonWords(stringA) === sortWithoutNonWords(stringB);
+
+// counting
+const countChars = str => [...str.toLowerCase().replace(/\W/g, '')].reduce((count, char) => {
+  count[char] = (count[char] || 0) + 1;
+  return count;
+}, {});
+
+const anagrams = (stringA, stringB) => {
+  const [countA, countB] = [stringA, stringB].map(countChars);
+  if (Object.keys(countA).length !== Object.keys(countB).length) return false;
+  for (const char in countA) {
+    if (countA[char] !== countB[char]) return false;
+  }
+  return true;
+};
 
 module.exports = anagrams;
