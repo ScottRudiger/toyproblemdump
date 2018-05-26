@@ -8,7 +8,9 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-const sortWithoutNonWords = str => [...str.replace(/\W/g, '').toLowerCase()].sort().join``;
+// const sortWithoutNonWords = str => [...str.replace(/\W/g, '').toLowerCase()].sort().join``;
+
+const sortWithoutNonWords = str => str.toLowerCase().match(/\w/g).sort().join``;
 
 const anagrams = (stringA, stringB) =>
   sortWithoutNonWords(stringA) === sortWithoutNonWords(stringB);
