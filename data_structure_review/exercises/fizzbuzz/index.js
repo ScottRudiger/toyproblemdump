@@ -21,14 +21,23 @@
 
 // const fizzBuzz = n => Array.from({length: n}, (_, i) => fizzBuzzHelper(i + 1));
 
-const fizzBuzzHelper = (_, i) => {
-  const n = i + 1;
-  let output = '';
-  !(n % 3) && (output += 'fizz');
-  !(n % 5) && (output += 'buzz');
-  console.log(output || n);
-};
+// const fizzBuzzHelper = (_, i) => {
+//   const n = i + 1;
+//   let output = '';
+//   !(n % 3) && (output += 'fizz');
+//   !(n % 5) && (output += 'buzz');
+//   console.log(output || n);
+// };
 
-const fizzBuzz = n => Array.from({length: n}, fizzBuzzHelper);
+// const fizzBuzz = n => Array.from({length: n}, fizzBuzzHelper);
+
+const fizzBuzz = n => {
+  for (let i = 1; i <= n; i++) {
+    let output = '';
+    !(i % 3) && (output += 'fizz');
+    !(i % 5) && (output += 'buzz');
+    console.log(output || i);
+  }
+};
 
 module.exports = fizzBuzz;
