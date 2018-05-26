@@ -8,6 +8,9 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-function anagrams(stringA, stringB) {}
+const sortWithoutNonWords = str => [...str.replace(/\W/g, '').toLowerCase()].sort().join``;
+
+const anagrams = (stringA, stringB) =>
+  sortWithoutNonWords(stringA) === sortWithoutNonWords(stringB);
 
 module.exports = anagrams;
