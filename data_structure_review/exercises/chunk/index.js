@@ -8,15 +8,27 @@
 // chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
+// const chunk = (array, size) => {
+//   const copy = [...array];
+//   const chunked = [];
+//   while (copy.length) {
+//     const chunk = [];
+//     for (let i = 0; i < size && copy.length; i++)
+//       chunk.push(copy.shift());
+//     chunked.push(chunk);
+//   }
+//   return chunked;
+// };
+
 const chunk = (array, size) => {
-  const copy = [...array];
-  const chunked = [];
-  while (copy.length) {
-    const chunk = [];
-    for (let i = 0; i < size && copy.length; i++)
-      chunk.push(copy.shift());
-    chunked.push(chunk);
-  }
+  const chunked = [[]];
+  array.forEach(el => {
+    const lastChunk = chunked[chunked.length - 1];
+    if (lastChunk.length !== size)
+      lastChunk.push(el);
+    else
+      chunked.push([el]);
+  });
   return chunked;
 };
 
