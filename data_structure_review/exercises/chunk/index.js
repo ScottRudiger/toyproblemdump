@@ -32,11 +32,21 @@
 //   return chunked;
 // };
 
+// const chunk = (array, size) => {
+//   const copy = [...array];
+//   const chunked = [];
+//   while (copy.length)
+//     chunked.push(copy.splice(0, size));
+//   return chunked;
+// };
+
 const chunk = (array, size) => {
-  const copy = [...array];
   const chunked = [];
-  while (copy.length)
-    chunked.push(copy.splice(0, size));
+  let i = 0;
+  while (i < array.length) {
+    chunked.push(array.slice(i, i + size));
+    i += size;
+  }
   return chunked;
 };
 
