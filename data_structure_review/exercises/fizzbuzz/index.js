@@ -12,6 +12,13 @@
 //   4
 //   buzz
 
-function fizzBuzz(n) {}
+const fizzBuzzHelper = n => {
+  let output = '';
+  !(n % 3) && (output += 'fizz');
+  !(n % 5) && (output += 'buzz');
+  console.log(output || n);
+};
+
+const fizzBuzz = n => Array.from({length: n}, (_, i) => fizzBuzzHelper(i + 1));
 
 module.exports = fizzBuzz;
