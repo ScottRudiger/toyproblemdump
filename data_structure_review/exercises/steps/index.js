@@ -17,6 +17,6 @@
 //       '### '
 //       '####'
 
-function steps(n) {}
+const steps = (n, i) => ~~i + 1 > n ? null : (console.log('#'.repeat(~~i + 1).padEnd(n)), steps(n, ~~i + 1));
 
 module.exports = steps;
