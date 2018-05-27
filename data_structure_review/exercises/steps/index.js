@@ -17,6 +17,9 @@
 //       '### '
 //       '####'
 
+// golfed solution
+steps=(n,i=1)=>i>n?0:(console.log('#'.repeat(i).padEnd(n)),steps(n,i+1))
+
 // semi-golfed recursive solution
 // const steps = (n, i) => ~~i + 1 > n ? null : (console.log('#'.repeat(~~i + 1).padEnd(n)), steps(n, ~~i + 1));
 
@@ -36,12 +39,12 @@
 // };
 
 // solve w/o String.prototype.{repeat,padEnd}
-const steps = n => {
-  for (let i = 1, step = ''; i <= n; i++, step = '') {
-    while (step.length < i) step += '#';
-    while (step.length < n) step += ' ';
-    console.log(step);
-  }
-};
+// const steps = n => {
+//   for (let i = 1, step = ''; i <= n; i++, step = '') {
+//     while (step.length < i) step += '#';
+//     while (step.length < n) step += ' ';
+//     console.log(step);
+//   }
+// };
 
 module.exports = steps;
