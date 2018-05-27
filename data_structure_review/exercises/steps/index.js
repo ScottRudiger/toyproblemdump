@@ -19,12 +19,17 @@
 
 // const steps = (n, i) => ~~i + 1 > n ? null : (console.log('#'.repeat(~~i + 1).padEnd(n)), steps(n, ~~i + 1));
 
+// const steps = n => {
+//   (function nextStep(i) {
+//     if (i > n) return;
+//     console.log('#'.repeat(i).padEnd(n));
+//     nextStep(i + 1);
+//   })(1);
+// };
+
 const steps = n => {
-  (function nextStep(i) {
-    if (i > n) return;
-    console.log('#'.repeat(i).padEnd(n));
-    nextStep(i + 1);
-  })(1);
+  let i = 1;
+  while (i <= n) console.log('#'.repeat(i++).padEnd(n));
 };
 
 module.exports = steps;
