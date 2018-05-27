@@ -22,6 +22,17 @@
 // const vowels = str => [...str.toLowerCase()].filter(char => 'aeiou'.includes(char)).length;
 
 // filter w/ regex test
-const vowels = str => [...str].filter(char => /[aeiou]/i.test(char)).length;
+// const vowels = str => [...str].filter(char => /[aeiou]/i.test(char)).length;
+
+// solve w/o any methods or regex
+const vowels = str => {
+  let count = 0;
+  for (const char of str)
+    if (
+      char === 'a' || char === 'e' || char === 'i' || char === 'o' || char === 'u' ||
+      char === 'A' || char === 'E' || char === 'I' || char === 'O' || char === 'U'
+    ) count++;
+  return count;
+};
 
 module.exports = vowels;
