@@ -19,6 +19,9 @@
 // };
 
 // using filter
-const vowels = str => [...str.toLowerCase()].filter(char => 'aeiou'.includes(char)).length;
+// const vowels = str => [...str.toLowerCase()].filter(char => 'aeiou'.includes(char)).length;
+
+// filter w/ regex test
+const vowels = str => [...str].filter(char => /[aeiou]/i.test(char)).length;
 
 module.exports = vowels;
