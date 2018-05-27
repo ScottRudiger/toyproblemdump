@@ -15,15 +15,28 @@
 //       '#####'
 
 // iterative solution
-const pyramid = n => {
-  for (let i = 1; i < n * 2; i += 2) {
-    let level = '#'.repeat(i);
-    while (level.length < n * 2 - 1)
-      level = ' ' + level + ' ';
-    console.log(level);
-  }
+// const pyramid = n => {
+//   for (let i = 1; i < n * 2; i += 2) {
+//     let level = '#'.repeat(i);
+//     while (level.length < n * 2 - 1)
+//       level = ' ' + level + ' ';
+//     console.log(level);
+//   }
+// };
+
+// solve w/ helper function
+const pad = (str, n) => {
+  while (str.length < n)
+    str = ` ${str} `;
+  return str;
 };
 
-pyramid(4);
+// and recursion
+const pyramid = (n, i = 1) => {
+  if (i < n * 2) {
+    console.log(pad('#'.repeat(i), n * 2 - 1));
+    pyramid(n, i + 2);
+  }
+};
 
 module.exports = pyramid;
