@@ -14,6 +14,16 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+// iterative solution
+const pyramid = n => {
+  for (let i = 1; i < n * 2; i += 2) {
+    let level = '#'.repeat(i);
+    while (level.length < n * 2 - 1)
+      level = ' ' + level + ' ';
+    console.log(level);
+  }
+};
+
+pyramid(4);
 
 module.exports = pyramid;
