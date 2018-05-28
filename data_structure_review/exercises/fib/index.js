@@ -8,6 +8,9 @@
 // Example:
 //   fib(4) === 3
 
+// golfed recursive solution
+fib=n=>n<2?n:fib(n-1)+fib(n-2)
+
 // recursive solution
 // const fib = n => {
 //   if (n < 2) return n;
@@ -15,16 +18,16 @@
 // };
 
 // iterative solution
-const fib = n => {
-  if (n < 2) return n;
-  let seq = [0, 1];
-  let i = 2;
-  while (i++ <= n) {
-    const prev = seq[1];
-    const curr = seq.reduce((a, b) => a + b);
-    seq = [prev, curr];
-  }
-  return seq[1];
-};
+// const fib = n => {
+//   if (n < 2) return n;
+//   let seq = [0, 1];
+//   let i = 2;
+//   while (i++ <= n) {
+//     const prev = seq[1];
+//     const curr = seq.reduce((a, b) => a + b);
+//     seq = [prev, curr];
+//   }
+//   return seq[1];
+// };
 
 module.exports = fib;
