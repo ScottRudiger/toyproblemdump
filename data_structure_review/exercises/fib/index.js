@@ -19,10 +19,10 @@
 
 // iterative solution
 const fib = n => {
-  let seq = [0, 1];
+  let [prev, curr] = [0, 1];
   let i = 2;
-  while (i++ <= n) seq = [seq[1], seq.reduce((a, b) => a + b)];
-  return seq[1];
+  while (i++ <= n) [prev, curr] = [curr, prev + curr];
+  return curr;
 };
 
 module.exports = fib;
