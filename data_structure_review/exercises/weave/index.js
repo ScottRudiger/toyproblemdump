@@ -30,7 +30,7 @@ function weave(sourceOne, sourceTwo) {
     const [elOne, elTwo] = [sourceOne.peek(), sourceTwo.peek()];
     if (elOne !== undefined) weaved.add(sourceOne.remove());
     if (elTwo !== undefined) weaved.add(sourceTwo.remove());
-    if (!elOne && !elTwo) break;
+    if (elOne === undefined && elTwo === undefined) break;
   }
   return weaved;
 }
