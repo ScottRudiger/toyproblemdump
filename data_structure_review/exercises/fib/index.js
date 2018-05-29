@@ -26,10 +26,23 @@
 // };
 
 // memoized recursive solution
+// const memoize = fn => {
+//   const cache = {};
+//   return (...args) => {
+//     const stringifiedArgs = JSON.stringify(args);
+//     if (cache[stringifiedArgs]) return cache[stringifiedArgs];
+//     cache[stringifiedArgs] = fn(...args);
+//     return cache[stringifiedArgs];
+//   };
+// };
+
 const memoize = fn => {
   const cache = {};
+  const isPrimitive = v => Object(v) === v;
   return (...args) => {
-    const stringifiedArgs = JSON.stringify(args);
+    const stringifiedArgs = args.length < 2 && isPrimitive(args[0])
+      ? args[0]
+      : JSON.stringify(args);
     if (cache[stringifiedArgs]) return cache[stringifiedArgs];
     cache[stringifiedArgs] = fn(...args);
     return cache[stringifiedArgs];
