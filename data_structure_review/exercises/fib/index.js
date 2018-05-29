@@ -18,11 +18,27 @@
 // };
 
 // iterative solution
-const fib = n => {
-  let [prev, curr] = [0, 1];
-  let i = 2;
-  while (i++ <= n) [prev, curr] = [curr, prev + curr];
-  return curr;
+// const fib = n => {
+//   let [prev, curr] = [0, 1];
+//   let i = 2;
+//   while (i++ <= n) [prev, curr] = [curr, prev + curr];
+//   return curr;
+// };
+
+// memoized recursive solution
+const memoize = fn => {
+  const cache = {};
+  return (...args) => {
+    const stringifiedArgs = JSON.stringify(args);
+    if (cache[stringifiedArgs]) return cache[stringifiedArgs];
+    cache[stringifiedArgs] = fn(...args);
+    return cache[stringifiedArgs];
+  };
 };
+
+const fib = memoize(n => {
+  if (n < 2) return n;
+  return fib(n - 1) + fib(n - 2);
+});
 
 module.exports = fib;
