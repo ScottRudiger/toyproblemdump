@@ -9,15 +9,28 @@
 //     q.remove(); // returns 1;
 
 // more efficient add
+// class Queue {
+//   constructor() {
+//     this.data = [];
+//   }
+//   add(el) {
+//     this.data.push(el);
+//   }
+//   remove() {
+//     return this.data.shift();
+//   }
+// }
+
+// more efficient remove
 class Queue {
   constructor() {
     this.data = [];
   }
   add(el) {
-    this.data.push(el);
+    this.data.unshift(el);
   }
-  remove(el) {
-    return this.data.shift();
+  remove() {
+    return this.data.pop();
   }
 }
 
