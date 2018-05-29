@@ -42,11 +42,35 @@ const Stack = require('./stack');
 //   }
 // }
 
+// class Queue {
+//   constructor() {
+//     Stack.prototype.moveOneTo = function(stack) {
+//       stack.push(this.pop());
+//     };
+//     Stack.prototype.moveAllTo = function(stack) {
+//       while (this.peek()) stack.push(this.pop());
+//     };
+//     this.stack1 = new Stack;
+//     this.stack2 = new Stack;
+//   }
+//   add(el) {
+//     this.stack1.push(el);
+//   }
+//   remove() {
+//     this.peek();
+//     const el = this.stack1.pop();
+//     this.stack2.moveOneTo(this.stack1);
+//     return el;
+//   }
+//   peek() {
+//     this.stack1.moveAllTo(this.stack2);
+//     this.stack2.moveOneTo(this.stack1);
+//     return this.stack1.peek();
+//   }
+// }
+
 class Queue {
   constructor() {
-    Stack.prototype.moveOneTo = function(stack) {
-      stack.push(this.pop());
-    };
     Stack.prototype.moveAllTo = function(stack) {
       while (this.peek()) stack.push(this.pop());
     };
@@ -57,15 +81,16 @@ class Queue {
     this.stack1.push(el);
   }
   remove() {
-    this.peek();
-    const el = this.stack1.pop();
-    this.stack2.moveOneTo(this.stack1);
+    this.stack1.moveAllTo(this.stack2);
+    const el = this.stack2.pop();
+    this.stack2.moveAllTo(this.stack1);
     return el;
   }
   peek() {
     this.stack1.moveAllTo(this.stack2);
-    this.stack2.moveOneTo(this.stack1);
-    return this.stack1.peek();
+    const el = this.stack2.peek();
+    this.stack2.moveAllTo(this.stack1);
+    return el;
   }
 }
 
