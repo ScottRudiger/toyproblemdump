@@ -22,15 +22,41 @@
 // }
 
 // more efficient remove
+// class Queue {
+//   constructor() {
+//     this.data = [];
+//   }
+//   add(el) {
+//     this.data.unshift(el);
+//   }
+//   remove() {
+//     return this.data.pop();
+//   }
+// }
+
+// Queue w/o Array
+const fromEntries = require('object.fromentries');
+fromEntries.shim();
 class Queue {
   constructor() {
-    this.data = [];
+    this.data = {};
   }
   add(el) {
-    this.data.unshift(el);
+    // move all other elements up one index
+    this.data = Object.fromEntries(
+      Object.entries(this.data).map(([i, el]) => [i + 1, el])
+    );
+    // add new element to beginning
+    this.data[0] = el;
   }
   remove() {
-    return this.data.pop();
+    // if queue is empty return undefined
+    if (!this.data[0]) return;
+    // save element
+    const [i, el] = Object.entries(this.data).pop();
+    // delete it
+    delete this.data[i];
+    return el;
   }
 }
 
