@@ -25,6 +25,9 @@ class LinkedList {
     }
     return count;
   }
+  getFirst() { // O(1) constant time
+    return this.head;
+  }
 }
 
 module.exports = { Node, LinkedList };
