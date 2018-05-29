@@ -8,6 +8,17 @@
 //     q.add(1);
 //     q.remove(); // returns 1;
 
-class Queue {}
+// more efficient add
+class Queue {
+  constructor() {
+    this.data = [];
+  }
+  add(el) {
+    this.data.push(el);
+  }
+  remove(el) {
+    return this.data.shift();
+  }
+}
 
 module.exports = Queue;
