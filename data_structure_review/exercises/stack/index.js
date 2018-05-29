@@ -10,18 +10,37 @@
 //   s.pop(); // returns 2
 //   s.pop(); // returns 1
 
+// class Stack {
+//   constructor() {
+//     this.data = [];
+//   }
+//   push(el) {
+//     this.data.push(el);
+//   }
+//   pop() {
+//     return this.data.pop();
+//   }
+//   peek() {
+//     return this.data[this.data.length - 1];
+//   }
+// }
+
+// implement w/o inner Array storage
 class Stack {
   constructor() {
-    this.data = [];
+    this.data = {};
+    this.index = 0;
   }
   push(el) {
-    this.data.push(el);
+    this.data[this.index++] = el;
   }
   pop() {
-    return this.data.pop();
+    const el = this.data[--this.index];
+    delete this.data[this.index];
+    return el;
   }
   peek() {
-    return this.data[this.data.length - 1];
+    return this.data[this.index - 1];
   }
 }
 
