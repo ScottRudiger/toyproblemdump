@@ -28,6 +28,13 @@ class LinkedList {
   getFirst() { // O(1) constant time
     return this.head;
   }
+  getLast() { // O(n) linear time
+    let current = this.head;
+    while (current && current.next) {
+      current = current.next;
+    }
+    return current;
+  }
 }
 
 module.exports = { Node, LinkedList };
