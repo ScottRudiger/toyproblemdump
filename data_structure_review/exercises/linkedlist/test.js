@@ -137,7 +137,7 @@ describe('RemoveLast', () => {
   });
 });
 
-describe.skip('InsertLast', () => {
+describe('InsertLast', () => {
   test('adds to the end of the list', () => {
     const l = new List();
     l.insertFirst('a');
@@ -146,6 +146,12 @@ describe.skip('InsertLast', () => {
 
     expect(l.size()).toEqual(2);
     expect(l.getLast().data).toEqual('b');
+  });
+  test('adds to the end of an empty list', () => {
+    const l = new List();
+    l.insertLast(1);
+    expect(l.size()).toEqual(1);
+    expect(l.getLast().data).toEqual(1);
   });
 });
 

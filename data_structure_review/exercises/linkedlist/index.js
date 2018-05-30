@@ -52,6 +52,17 @@ class LinkedList {
     }
     current.next = null;
   }
+  insertLast(data) { // O(n) linear time
+    const node = new Node(data);
+    let current = this.head;
+    if (!current) {
+      this.head = node;
+      return;
+    }
+    while (current.next)
+      current = current.next;
+    current.next = node;
+  }
 }
 
 module.exports = { Node, LinkedList };
