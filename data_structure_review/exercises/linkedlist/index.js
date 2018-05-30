@@ -63,6 +63,12 @@ class LinkedList {
       current = current.next;
     current.next = node;
   }
+  getAt(index) { // O(n) linear time
+    let current = this.head;
+    let i = 0;
+    while (i++ < index && current) current = current.next;
+    return current;
+  }
 }
 
 module.exports = { Node, LinkedList };
