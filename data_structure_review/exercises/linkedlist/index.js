@@ -35,6 +35,9 @@ class LinkedList {
     }
     return current;
   }
+  clear() { // O(1) constant time
+    this.head = null;
+  }
 }
 
 module.exports = { Node, LinkedList };
