@@ -3,7 +3,7 @@
 // See 'directions' document
 
 class Node {
-  constructor(data, next) {
+  constructor(data, next = null) {
     this.data = data;
     this.next = next;
   }
@@ -68,6 +68,20 @@ class LinkedList {
     let i = 0;
     while (i++ < index && current) current = current.next;
     return current;
+  }
+  removeAt(index) { // O(n) linear time
+    let curr = this.head;
+    // handle an empty list
+    if (!curr) return;
+    if (index === 0) {
+      this.head = curr.next;
+    }
+    let i = 0;
+    while (i++ < index - 1 && curr) {
+      curr = curr.next;
+    }
+    if (!curr.next) return;
+    curr.next = curr.next.next || null;
   }
 }
 
