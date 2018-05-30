@@ -38,6 +38,9 @@ class LinkedList {
   clear() { // O(1) constant time
     this.head = null;
   }
+  removeFirst() { // O(1) constant time
+    this.head = this.head.next;
+  }
 }
 
 module.exports = { Node, LinkedList };
