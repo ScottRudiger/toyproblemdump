@@ -68,18 +68,16 @@ class LinkedList {
     return null;
   }
   removeAt(index) { // O(n) linear time
-    let curr = this.head;
-    // handle an empty list
-    if (!curr) return;
-    if (index === 0) {
-      this.head = curr.next;
-    }
-    let i = 0;
-    while (i++ < index - 1 && curr) {
-      curr = curr.next;
-    }
-    if (!curr.next) return;
-    curr.next = curr.next.next || null;
+    // handle empty list
+    if (!this.head) return;
+    // handle first node
+    if (index === 0) return this.head = this.head.next;
+    // save ref to previous node
+    const prev = this.getAt(index - 1);
+    // handle out of bounds index
+    if (!prev || !prev.next) return;
+    // common case - remove node
+    prev.next = prev.next.next;
   }
   insertAt(data, index) { // O(n) linear time
     let curr = this.head;
