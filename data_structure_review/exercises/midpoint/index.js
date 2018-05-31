@@ -14,10 +14,7 @@
 
 const midpoint = list => {
   list = [...list];
-  const midpoint = list.length % 2
-    ? Math.floor(list.length / 2)
-    : list.length / 2 - 1;
-  return list[midpoint];
+  return list[Math.ceil(list.length / 2) - 1];
 }
 
 module.exports = midpoint;
