@@ -72,7 +72,7 @@ class LinkedList {
     // handle empty list
     if (!this.head) return;
     // handle first node
-    if (index === 0) return this.head = this.head.next;
+    if (index === 0) return this.removeFirst();
     // save ref to previous node
     const prev = this.getAt(index - 1);
     // handle out of bounds index
