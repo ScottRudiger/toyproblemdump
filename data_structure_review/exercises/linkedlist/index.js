@@ -89,11 +89,9 @@ class LinkedList {
     node.next = new Node(data);
   }
   forEach(fn) { // O(n) linear time
-    let curr = this.head;
-    while (curr) {
-      fn(curr);
-      curr = curr.next;
-    }
+    let i = 0;
+    for (const node of this)
+      fn(node, i++, this);
   }
 }
 

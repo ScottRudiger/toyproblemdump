@@ -304,6 +304,26 @@ describe('ForEach', () => {
     expect(l.getAt(2).data).toEqual(13);
     expect(l.getAt(3).data).toEqual(14);
   });
+
+  test('works index & list arguments', () => {
+    const l = new List();
+
+    l.insertLast(1);
+    l.insertLast(2);
+    l.insertLast(3);
+    l.insertLast(4);
+
+    l.forEach((node, i, list) => {
+      list.size() % 2
+        && i % 2 && (node.data *= 2)
+        || !(i % 2) && (node.data *= 2);
+    });
+
+    expect(l.getAt(0).data).toEqual(2);
+    expect(l.getAt(1).data).toEqual(2);
+    expect(l.getAt(2).data).toEqual(6);
+    expect(l.getAt(3).data).toEqual(4);
+  });
 });
 
 describe('for...of loops', () => {
