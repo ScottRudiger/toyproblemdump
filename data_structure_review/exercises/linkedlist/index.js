@@ -80,20 +80,13 @@ class LinkedList {
     prev.next = prev.next.next;
   }
   insertAt(data, index) { // O(n) linear time
-    let curr = this.head;
-    if (index === 0 || !curr) {
-      this.head = new Node(data, curr);
-      return;
-    }
+    if (index === 0 || !this.head)
+      return this.head = new Node(data, this.head);
     let i = 0;
-    while(i++ < index - 1 && curr) {
-      if (!curr.next) {
-        curr.next = new Node(data);
-        return;
-      }
-      curr = curr.next;
-    }
-    curr.next = new Node(data, curr.next);
+    for (var node of this)
+      if (++i === index)
+        node.next = new Node(data, node.next);
+    node.next = new Node(data);
   }
   forEach(fn) { // O(n) linear time
     let curr = this.head;
