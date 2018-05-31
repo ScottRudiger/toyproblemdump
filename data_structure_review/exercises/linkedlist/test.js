@@ -225,7 +225,7 @@ describe('RemoveAt', () => {
   });
 });
 
-describe.skip('InsertAt', () => {
+describe('InsertAt', () => {
   test('inserts a new node with data at the 0 index when the list is empty', () => {
     const l = new List();
     l.insertAt('hi', 0);
@@ -277,6 +277,12 @@ describe.skip('InsertAt', () => {
     expect(l.getAt(0).data).toEqual('a');
     expect(l.getAt(1).data).toEqual('b');
     expect(l.getAt(2).data).toEqual('hi');
+  });
+
+  test('insert a new node at index 0 when list is empty and index is out of bounds', () => {
+    const l = new List();
+    l.insertAt('a', 5);
+    expect(l.getAt(0).data).toEqual('a');
   });
 });
 
