@@ -24,21 +24,20 @@ class LinkedList {
     this.head = new Node(data, this.head);
   }
   size() { // O(n) linear time
-    // let count = 0;
-    // for (const _ of this)
-    //   count++;
-    // return count;
     return [...this].length;
   }
   getFirst() { // O(1) constant time
     return this.head;
   }
   getLast() { // O(n) linear time
-    let current = this.head;
-    while (current && current.next) {
-      current = current.next;
-    }
-    return current;
+    // let current = this.head;
+    // while (current && current.next) {
+    //   current = current.next;
+    // }
+    // return current;
+    for (const node of this)
+      if (!node.next) return node;
+    return null;
   }
   clear() { // O(1) constant time
     this.head = null;
