@@ -61,10 +61,11 @@ class LinkedList {
       this.head = node;
   }
   getAt(index) { // O(n) linear time
-    let current = this.head;
     let i = 0;
-    while (i++ < index && current) current = current.next;
-    return current;
+    for (const node of this) {
+      if (i++ === index) return node;
+    }
+    return null;
   }
   removeAt(index) { // O(n) linear time
     let curr = this.head;
