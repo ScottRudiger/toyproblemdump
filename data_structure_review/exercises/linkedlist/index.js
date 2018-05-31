@@ -83,7 +83,7 @@ class LinkedList {
     if (!curr.next) return;
     curr.next = curr.next.next || null;
   }
-  insertAt(data, index) {
+  insertAt(data, index) { // O(n) linear time
     let curr = this.head;
     if (index === 0 || !curr) {
       this.head = new Node(data, curr);
@@ -98,6 +98,13 @@ class LinkedList {
       curr = curr.next;
     }
     curr.next = new Node(data, curr.next);
+  }
+  forEach(fn) { // O(n) linear time
+    let curr = this.head;
+    while (curr) {
+      fn(curr);
+      curr = curr.next;
+    }
   }
 }
 
