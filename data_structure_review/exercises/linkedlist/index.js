@@ -38,6 +38,7 @@ class LinkedList {
     this.head = null;
   }
   removeFirst() { // O(1) constant time
+    if (!this.head) return;
     this.head = this.head.next;
   }
   removeLast() { // O(n) linear time

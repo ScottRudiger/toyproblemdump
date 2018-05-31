@@ -97,6 +97,11 @@ describe('RemoveFirst', () => {
     expect(l.size()).toEqual(1);
     expect(l.getFirst().data).toEqual('c');
   });
+
+  test('doesn\'t crash given an empty list', () => {
+    const l = new List();
+    expect(() => l.removeFirst()).not.toThrow();
+  });
 });
 
 describe('RemoveLast', () => {
