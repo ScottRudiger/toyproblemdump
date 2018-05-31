@@ -81,8 +81,7 @@ class LinkedList {
     prev.next = prev.next.next;
   }
   insertAt(data, index) { // O(n) linear time
-    if (index === 0 || !this.head)
-      return this.head = new Node(data, this.head);
+    if (index === 0 || !this.head) return this.insertFirst(data);
     let i = 0;
     for (var node of this)
       if (++i === index)
