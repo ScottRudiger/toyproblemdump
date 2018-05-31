@@ -13,6 +13,13 @@ class LinkedList {
   constructor() {
     this.head = null;
   }
+  *[Symbol.iterator]() {
+    let curr = this.head;
+    while (curr) {
+      yield curr;
+      curr = curr.next;
+    }
+  }
   insertFirst(data) { // O(1) constant time
     this.head = new Node(data, this.head);
   }
