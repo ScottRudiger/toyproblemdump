@@ -18,6 +18,17 @@ describe('A Node', () => {
   });
 });
 
+describe('LinkedList constructor', () => {
+  test('allows setting data on construction', () => {
+    const l = new List(1, 2, 3, 4, 5);
+    expect(l.getFirst().data).toEqual(1);
+    expect(l.getAt(1).data).toEqual(2);
+    expect(l.getAt(2).data).toEqual(3);
+    expect(l.getAt(3).data).toEqual(4);
+    expect(l.getLast().data).toEqual(5);
+  });
+});
+
 describe('Insert First', () => {
   test('appends a node to the start of the list', () => {
     const l = new List();

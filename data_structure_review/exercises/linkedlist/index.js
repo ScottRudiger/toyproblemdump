@@ -10,8 +10,11 @@ class Node {
 }
 
 class LinkedList {
-  constructor() {
-    this.head = null;
+  constructor(head, ...data) {
+    this.head = head !== undefined ? new Node(head) : null;
+    let curr = this.head;
+    for (const datum of data)
+      curr = curr.next = new Node(datum);
   }
   *[Symbol.iterator]() { // O(n) linear time
     let curr = this.head;
