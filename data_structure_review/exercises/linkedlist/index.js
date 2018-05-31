@@ -54,14 +54,11 @@ class LinkedList {
   }
   insertLast(data) { // O(n) linear time
     const node = new Node(data);
-    let current = this.head;
-    if (!current) {
+    const last = this.getLast();
+    if (last)
+      last.next = node;
+    else
       this.head = node;
-      return;
-    }
-    while (current.next)
-      current = current.next;
-    current.next = node;
   }
   getAt(index) { // O(n) linear time
     let current = this.head;
