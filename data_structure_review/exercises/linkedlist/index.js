@@ -13,7 +13,7 @@ class LinkedList {
   constructor() {
     this.head = null;
   }
-  *[Symbol.iterator]() {
+  *[Symbol.iterator]() { // O(n) linear time
     let curr = this.head;
     while (curr) {
       yield curr;
@@ -24,13 +24,11 @@ class LinkedList {
     this.head = new Node(data, this.head);
   }
   size() { // O(n) linear time
-    let count = 0;
-    let current = this.head;
-    while(current) {
-      count++;
-      current = current.next;
-    }
-    return count;
+    // let count = 0;
+    // for (const _ of this)
+    //   count++;
+    // return count;
+    return [...this].length;
   }
   getFirst() { // O(1) constant time
     return this.head;
