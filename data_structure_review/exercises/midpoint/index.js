@@ -12,6 +12,12 @@
 //   l.insertLast('c')
 //   midpoint(l); // returns { data: 'b' }
 
-function midpoint(list) {}
+const midpoint = list => {
+  list = [...list];
+  const midpoint = list.length % 2
+    ? Math.floor(list.length / 2)
+    : list.length / 2 - 1;
+  return list[midpoint];
+}
 
 module.exports = midpoint;
