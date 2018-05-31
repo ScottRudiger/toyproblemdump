@@ -30,11 +30,6 @@ class LinkedList {
     return this.head;
   }
   getLast() { // O(n) linear time
-    // let current = this.head;
-    // while (current && current.next) {
-    //   current = current.next;
-    // }
-    // return current;
     for (const node of this)
       if (!node.next) return node;
     return null;
@@ -46,15 +41,16 @@ class LinkedList {
     this.head = this.head.next;
   }
   removeLast() { // O(n) linear time
-    let current = this.head;
-    if (!current || !current.next) {
+    if (!this.head || !this.head.next) {
       this.head = null;
       return;
     }
-    while (current.next.next) {
-      current = current.next;
+    for (const node of this) {
+      if (!node.next.next) {
+        node.next = null;
+        return;
+      }
     }
-    current.next = null;
   }
   insertLast(data) { // O(n) linear time
     const node = new Node(data);
