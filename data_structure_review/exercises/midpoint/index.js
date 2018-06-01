@@ -13,8 +13,13 @@
 //   midpoint(l); // returns { data: 'b' }
 
 const midpoint = list => {
-  list = [...list];
-  return list[Math.ceil(list.length / 2) - 1];
+  let slow = list.head;
+  let fast = list.head;
+  while (fast && fast.next && fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  return slow;
 }
 
 module.exports = midpoint;

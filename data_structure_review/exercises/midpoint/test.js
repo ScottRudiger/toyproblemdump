@@ -43,4 +43,15 @@ describe('Midpoint returns the middle node of an even numbered list', () => {
     l.insertLast('d');
     expect(midpoint(l).data).toEqual('b');
   });
+
+  test('returns the first node when list has 1 element', () => {
+    const l = new LinkedList();
+    l.insertFirst('a');
+    expect(midpoint(l).data).toEqual('a');
+  });
+
+  test('returns null when list is empty', () => {
+    const l = new LinkedList();
+    expect(midpoint(l)).toEqual(null);
+  });
 });
