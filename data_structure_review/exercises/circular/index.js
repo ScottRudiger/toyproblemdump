@@ -12,6 +12,14 @@
 //   c.next = b;
 //   circular(l) // true
 
-function circular(list) {}
+const circular = list => {
+  let [slow, fast] = Array(2).fill(list.head);
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) return true;
+  }
+  return false;
+}
 
 module.exports = circular;
