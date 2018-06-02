@@ -35,6 +35,12 @@ class Tree {
       fn(node);
     }
   }
+  traverseDF(fn) {
+    (function traverse(node) {
+      fn(node);
+      node.children.forEach(traverse);
+    })(this.root);
+  }
 }
 
 module.exports = { Tree, Node };
