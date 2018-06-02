@@ -14,7 +14,7 @@
 const fromLast = (list, n) => {
   let slow = list.getFirst();
   let fast = list.getFirst();
-  for (let i = 0; i < n; i++)
+  while (n-- > 0)
     fast = fast.next;
   while (fast.next) {
     slow = slow.next;
