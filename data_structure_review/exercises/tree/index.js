@@ -35,11 +35,19 @@ class Tree {
       fn(node);
     }
   }
+  // traverseDF(fn) {
+  //   (function traverse(node) {
+  //     fn(node);
+  //     node.children.forEach(traverse);
+  //   })(this.root);
+  // }
   traverseDF(fn) {
-    (function traverse(node) {
+    const processQueue = [this.root];
+    while (processQueue.length) {
+      const node = processQueue.shift();
+      processQueue.unshift(...node.children);
       fn(node);
-      node.children.forEach(traverse);
-    })(this.root);
+    }
   }
 }
 
