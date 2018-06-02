@@ -19,8 +19,7 @@ const levelWidth = root => {
     if (!node) {
       counters.push(0);
       processQueue.push(null);
-    }
-    else {
+    } else {
       counters[counters.length - 1]++;
       processQueue.push(...node.children);
     }
