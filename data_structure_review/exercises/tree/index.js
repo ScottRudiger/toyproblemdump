@@ -18,8 +18,8 @@ class Node {
   add(data) {
     this.children.push(new Node(data));
   }
-  remove(data) {
-    this.children = this.children.filter(({data: nodeData}) => nodeData !== data);
+  remove(dataToRemove) {
+    this.children = this.children.filter(({data}) => data !== dataToRemove);
   }
 }
 
