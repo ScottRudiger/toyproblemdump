@@ -17,6 +17,16 @@ class Node {
     this.left = null;
     this.right = null;
   }
+  insert(data) {
+    if (data < this.data && !this.left)
+      return this.left = new Node(data);
+    if (data > this.data && !this.right)
+      return this.right = new Node(data);
+    if (data < this.data)
+      return this.left.insert(data);
+    if (data > this.data)
+      return this.right.insert(data);
+  }
 }
 
 module.exports = Node;
