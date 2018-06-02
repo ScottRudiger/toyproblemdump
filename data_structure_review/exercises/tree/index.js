@@ -23,6 +23,10 @@ class Node {
   }
 }
 
-class Tree {}
+class Tree {
+  constructor(root = null) {
+    this.root = root;
+  }
+}
 
 module.exports = { Tree, Node };
