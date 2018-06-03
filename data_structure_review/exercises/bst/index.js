@@ -26,13 +26,12 @@ class Node {
       else this.right.insert(data);
   }
   contains(data) {
-    if (this.data === data) return this;
-    if (data < this.data)
-      if (!this.left) return null;
-      else return this.left.contains(data);
-    if (data > this.data)
-      if (!this.right) return null;
-      else return this.right.contains(data);
+    if (data === this.data) return this;
+    if (data < this.data && this.left)
+      return this.left.contains(data);
+    if (data > this.data && this.right)
+      return this.right.contains(data);
+    return null;
   }
 }
 
