@@ -17,7 +17,9 @@ class Events {
 
   // Trigger all callbacks associated
   // with a given eventName
-  trigger(eventName) {}
+  trigger(eventName) {
+    this.events[eventName].forEach(callback => { callback(); });
+  }
 
   // Remove all event handlers associated
   // with the given eventName
