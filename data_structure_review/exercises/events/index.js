@@ -23,7 +23,9 @@ class Events {
 
   // Remove all event handlers associated
   // with the given eventName
-  off(eventName) {}
+  off(eventName) {
+    this.events[eventName] = [];
+  }
 }
 
 module.exports = Events;
