@@ -18,14 +18,12 @@ class Node {
     this.right = null;
   }
   insert(data) {
-    if (data < this.data && !this.left)
-      return this.left = new Node(data);
-    if (data > this.data && !this.right)
-      return this.right = new Node(data);
     if (data < this.data)
-      return this.left.insert(data);
+      if (!this.left) this.left = new Node(data);
+      else this.left.insert(data);
     if (data > this.data)
-      return this.right.insert(data);
+      if (!this.right) this.right = new Node(data);
+      else this.right.insert(data);
   }
 }
 
