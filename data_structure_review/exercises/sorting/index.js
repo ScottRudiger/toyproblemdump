@@ -29,7 +29,7 @@ function merge(left, right) {
   if (left[left.length - 1] < right[0]) return [...left, ...right];
   if (right[right.length - 1] < left[0]) return [...right, ...left];
   const merged = [];
-  while (left.length || right.length)
+  while (left.length && right.length)
     merged.push(
       (left[0] < right[0] ? left : right).shift()
     );
