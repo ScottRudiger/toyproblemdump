@@ -11,7 +11,14 @@ function bubbleSort(arr) { // O(n^2) quadratic time
 }
 
 function selectionSort(arr) {
-
+  const copy = [...arr];
+  for (let i = 0; i < copy.length; i++) {
+    let minIdx = i;
+    for (let j = i + 1; j < copy.length; j++)
+      if (copy[j] < copy[minIdx]) minIdx = j;
+    [copy[i], copy[minIdx]] = [copy[minIdx], copy[i]];
+  }
+  return copy;
 }
 
 function mergeSort(arr) {
