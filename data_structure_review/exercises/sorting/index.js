@@ -26,7 +26,12 @@ function mergeSort(arr) {
 }
 
 function merge(left, right) {
-
+  const merged = [];
+  while (left.length || right.length)
+    merged.push(
+      (left[0] < right[0] ? left : right).shift()
+    );
+  return [...merged, ...left, ...right];
 }
 
 module.exports = { bubbleSort, selectionSort, mergeSort, merge };
