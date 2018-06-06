@@ -1,8 +1,11 @@
 // Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?
 
-const isUnique = str => {
+// with counts object, O(n) time
+const countChars = str => [...str].reduce((counts, char) => ({ // O(n)
+  ...counts, [char]: (counts[char] || 0) + 1
+}), {});
 
-};
+const isUnique = str => Object.values(countChars(str)).every(count => count === 1); // O(n)
 
 const {expect} = require('chai');
 
