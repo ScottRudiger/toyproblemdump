@@ -10,10 +10,20 @@
 // };
 
 // O(n^2)
+// const countPairs = (nums, k) => {
+//   let count = 0;
+//   nums.forEach(num => {
+//     nums.find(n => n === num + k) && count++;
+//   });
+//   return count;
+// };
+
+// O(n)
 const countPairs = (nums, k) => {
   let count = 0;
+  const numObj = nums.reduce((nums, num) => ({...nums, [num]: true}), {});
   nums.forEach(num => {
-    nums.find(n => n === num + k) && count++;
+    numObj[num + k] && count++;
   });
   return count;
 };
