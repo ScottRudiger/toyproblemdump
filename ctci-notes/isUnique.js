@@ -8,12 +8,15 @@
 // const isUnique = str => Object.values(countChars(str)).every(count => count === 1); // O(n)
 
 // w/o additional data structures
-const isUnique = str => {
-  for (let i = 0; i < str.length; i++)
-    if (str.slice(i + 1).includes(str[i]))
-      return false;
-  return true;
-};
+// const isUnique = str => {
+//   for (let i = 0; i < str.length; i++)
+//     if (str.slice(i + 1).includes(str[i]))
+//       return false;
+//   return true;
+// };
+
+// sublinear; depends on how v8 implements Set
+const isUnique = str => new Set(str).size === str.length;
 
 const {expect} = require('chai');
 
