@@ -5,10 +5,20 @@
 // [17, 35, 39, 40, 55, 58, 60]
 
 // O(n^2)
+// const countCommons = (arr1, arr2) => {
+//   let count = 0;
+//   arr1.forEach(n => {
+//     arr2.includes(n) && count++;
+//   });
+//   return count;
+// };
+
+// O(n)
 const countCommons = (arr1, arr2) => {
   let count = 0;
-  arr1.forEach(n => {
-    arr2.includes(n) && count++;
+  const arr1Map = arr1.reduce((values, n) => ({...values, [n]: true}), {}); // O(n)
+  arr2.forEach(n => { // O(n)
+    arr1Map[n] && count++; // O(1)
   });
   return count;
 };
