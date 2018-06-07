@@ -13,9 +13,20 @@
 // };
 
 // O(n log n)
+// const checkPermutation = (str1, str2) => {
+//   if (str1.length !== str2.length) return false;
+//   return [...str1].sort().join`` === [...str2].sort().join``;
+// };
+
+// O(n)
 const checkPermutation = (str1, str2) => {
   if (str1.length !== str2.length) return false;
-  return [...str1].sort().join`` === [...str2].sort().join``;
+  const str1Counts = [...str1].reduce((counts, char) => ({
+    ...counts, [char]: (counts[char] || 0) + 1
+  }), {});
+  for (const char of str2)
+    str1Counts[char]--;
+  return Object.values(str1Counts).every(count => count === 0);
 };
 
 const {expect} = require('chai');
