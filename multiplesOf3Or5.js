@@ -10,11 +10,13 @@ Note: If the number is a multiple of both 3 and 5, only count it once. Also, if 
 Courtesy of projecteuler.net
 */
 
-function solution(number) {
-  let result = 0;
-  while (number-- > 0) {
-    if (number % 5 === 0 || number % 3 === 0)
-      result += number;
-  }
-  return result;
-}
+// function solution(number) {
+//   let result = 0;
+//   while (number-- > 0) {
+//     if (number % 5 === 0 || number % 3 === 0)
+//       result += number;
+//   }
+//   return result;
+// }
+
+solution=n=>(a=~~(--n/3),b=~~(n/5),c=~~(n/15),(3*a*(a+1)+5*b*(b+1)-15*c*(c+1))/2)
