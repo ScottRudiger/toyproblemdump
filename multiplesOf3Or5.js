@@ -11,5 +11,10 @@ Courtesy of projecteuler.net
 */
 
 function solution(number) {
-
+  let result = 0;
+  while (number-- > 0) {
+    if (number % 5 === 0 || number % 3 === 0)
+      result += number;
+  }
+  return result;
 }
